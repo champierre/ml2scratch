@@ -3,7 +3,7 @@
 ## Requirements
 
 - Chrome browser
-- macOS High Sierra(10.13.3)
+- macOS High Sierra(10.13.3) or Windows 10(1607 OS build 14393.576)
 
 ## Demo Movie
 
@@ -28,6 +28,12 @@ https://www.youtube.com/watch?v=DkH1hwc-Gb4
 	% cd ml2scratch/helper
 	% npm install
 	```
+
+## Setup on Windows 10
+
+- Please use Windows PowerShell.
+
+![PowerShell](https://user-images.githubusercontent.com/10215/38457066-c3aae2aa-3ac6-11e8-8e08-800a08926a01.PNG)
 
 ## How to use
 
