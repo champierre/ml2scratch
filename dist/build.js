@@ -78,9 +78,20 @@ var Main = function () {
 
       // Create info text
       var infoText = document.createElement('span');
-      infoText.innerText = " No examples added";
+      infoText.innerText = " No examples added ";
       div.appendChild(infoText);
       _this.infoTexts.push(infoText);
+
+      // Create class clearing button
+      var clearButton = document.createElement('button');
+      clearButton.innerText = "Clear " + i;
+      div.appendChild(clearButton);
+
+      clearButton.addEventListener('click', function () {
+        _this.knn.clearClass(i);
+        _this.infoTexts[i].style.fontWeight = 'normal';
+        _this.infoTexts[i].innerText = " No examples added ";
+      });
     };
 
     for (var i = 0; i < NUM_CLASSES; i++) {
@@ -153,7 +164,7 @@ var Main = function () {
 
               // Update info text
               if (exampleCount[i] > 0) {
-                _this2.infoTexts[i].innerText = ' ' + exampleCount[i] + ' examples - ' + res.confidences[i] * 100 + '%';
+                _this2.infoTexts[i].innerText = ' ' + exampleCount[i] + ' examples - ' + res.confidences[i] * 100 + '% ';
               }
             }
           })
