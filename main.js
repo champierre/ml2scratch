@@ -58,9 +58,20 @@ class Main {
 
       // Create info text
       const infoText = document.createElement('span')
-      infoText.innerText = " No examples added";
+      infoText.innerText = " No examples added ";
       div.appendChild(infoText);
       this.infoTexts.push(infoText);
+
+      // Create class clearing button
+      const clearButton = document.createElement('button')
+      clearButton.innerText = "Clear "+i;
+      div.appendChild(clearButton);
+
+      clearButton.addEventListener('click', ()=> {
+        this.knn.clearClass(i);
+        this.infoTexts[i].style.fontWeight = 'normal';
+        this.infoTexts[i].innerText = " No examples added ";
+      });
     }
 
 
@@ -121,7 +132,7 @@ class Main {
 
             // Update info text
             if(exampleCount[i] > 0){
-              this.infoTexts[i].innerText = ` ${exampleCount[i]} examples - ${res.confidences[i]*100}%`
+              this.infoTexts[i].innerText = ` ${exampleCount[i]} examples - ${res.confidences[i]*100}% `
             }
           }
         })
