@@ -1,4 +1,6 @@
-# ML2Scratch
+# ML2Scratch(Scratch2ML)
+
+ML2Scratchは機械学習(TensorFlow.js)をScratchXとをつなげます。
 
 *Read this in other languages: [English](README.md), [日本語](README.ja.md).*
 
