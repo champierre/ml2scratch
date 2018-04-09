@@ -1,4 +1,6 @@
-# ML2Scratch
+# ML2Scratch(Scratch2ML)
+
+ML2Scratch connects Machine Learning(TensorFlow.js) to ScratchX.
 
 *Read this in other languages: [English](README.md), [日本語](README.ja.md).*
 
