@@ -56,6 +56,16 @@ var Main = function () {
     // Add video element to DOM
     document.body.appendChild(this.video);
 
+    var div = document.createElement('div');
+    var connectButton = document.createElement('button');
+    connectButton.innerText = "Connect";
+    div.appendChild(connectButton);
+    document.body.appendChild(div);
+    div.style.marginBottom = '10px';
+    connectButton.addEventListener('click', function () {
+      _this.connect();
+    });
+
     // Create training buttons and info texts
 
     var _loop = function _loop(i) {
@@ -177,6 +187,11 @@ var Main = function () {
         }
       }
       this.timer = requestAnimationFrame(this.animate.bind(this));
+    }
+  }, {
+    key: 'connect',
+    value: function connect() {
+      this.ws = new WebSocket('ws://localhost:8080/ml');
     }
   }]);
 

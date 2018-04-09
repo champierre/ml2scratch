@@ -41,6 +41,16 @@ class Main {
     // Add video element to DOM
     document.body.appendChild(this.video);
 
+    const div = document.createElement('div');
+    const connectButton = document.createElement('button')
+    connectButton.innerText = "Connect";
+    div.appendChild(connectButton);
+    document.body.appendChild(div);
+    div.style.marginBottom = '10px';
+    connectButton.addEventListener('click', ()=> {
+      this.connect();
+    });
+
     // Create training buttons and info texts
     for(let i=0;i<NUM_CLASSES; i++){
       const div = document.createElement('div');
@@ -143,6 +153,10 @@ class Main {
       }
     }
     this.timer = requestAnimationFrame(this.animate.bind(this));
+  }
+
+  connect() {
+    this.ws = new WebSocket('ws://localhost:8080/ml');
   }
 }
 
