@@ -26,7 +26,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 // Number of classes to classify
-var NUM_CLASSES = 3;
+var NUM_CLASSES = 10;
 // Webcam Image size. Must be 227.
 var IMAGE_SIZE = 227;
 // K value for KNN

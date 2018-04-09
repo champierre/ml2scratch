@@ -14,7 +14,7 @@ import {KNNImageClassifier} from 'deeplearn-knn-image-classifier';
 import * as dl from 'deeplearn';
 
 // Number of classes to classify
-const NUM_CLASSES = 3;
+const NUM_CLASSES = 10;
 // Webcam Image size. Must be 227.
 const IMAGE_SIZE = 227;
 // K value for KNN
