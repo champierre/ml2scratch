@@ -41,14 +41,24 @@ class Main {
     // Add video element to DOM
     document.body.appendChild(this.video);
 
-    const div = document.createElement('div');
+    const connectButtonDiv = document.createElement('div');
     const connectButton = document.createElement('button')
     connectButton.innerText = "Connect";
-    div.appendChild(connectButton);
-    document.body.appendChild(div);
-    div.style.marginBottom = '10px';
+    connectButtonDiv.appendChild(connectButton);
+    document.body.appendChild(connectButtonDiv);
+    connectButtonDiv.style.marginBottom = '10px';
     connectButton.addEventListener('click', ()=> {
       this.connect();
+    });
+
+    const exportButtonDiv = document.createElement('div');
+    const exportButton = document.createElement('button')
+    exportButton.innerText = "Export";
+    exportButtonDiv.appendChild(exportButton);
+    document.body.appendChild(exportButtonDiv);
+    exportButtonDiv.style.marginBottom = '10px';
+    exportButton.addEventListener('click', ()=> {
+      this.export();
     });
 
     // Create training buttons and info texts
@@ -134,7 +144,6 @@ class Main {
             // Make the predicted class bold
             if(res.classIndex == i){
               this.infoTexts[i].style.fontWeight = 'bold';
-              console.log("classIndex:" + res.classIndex);
               this.ws.send(JSON.stringify({action: 'predict', value: res.classIndex}));
             } else {
               this.infoTexts[i].style.fontWeight = 'normal';
@@ -157,6 +166,10 @@ class Main {
 
   connect() {
     this.ws = new WebSocket('ws://localhost:8080/ml');
+  }
+
+  export() {
+    console.log(this.knn.getClassLogitsMatrices());
   }
 }
 
