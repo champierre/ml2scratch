@@ -172,7 +172,7 @@ var Main = function () {
               // Make the predicted class bold
               if (res.classIndex == i) {
                 _this2.infoTexts[i].style.fontWeight = 'bold';
-                if (_this2.ws) {
+                if (_this2.ws && _this2.ws.readyState === WebSocket.OPEN) {
                   _this2.ws.send(JSON.stringify({ action: 'predict', conn_id: _this2.connId, value: res.classIndex }));
                 }
               } else {

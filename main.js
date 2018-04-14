@@ -140,7 +140,7 @@ class Main {
             // Make the predicted class bold
             if(res.classIndex == i){
               this.infoTexts[i].style.fontWeight = 'bold';
-              if(this.ws){
+              if(this.ws && this.ws.readyState === WebSocket.OPEN){
                 this.ws.send(JSON.stringify({action: 'predict', conn_id: this.connId, value: res.classIndex}));
               }
             } else {
