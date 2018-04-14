@@ -12,7 +12,7 @@
 
     ext.connect = function(_conn_id) {
       conn_id = _conn_id;
-      ws = new WebSocket('ws://ml2scratch-helper.glitch.me/');
+      ws = new WebSocket('wss://ml2scratch-helper.glitch.me/');
       ws.onmessage = function(evt) {
         data = JSON.parse(evt.data);
         if (data.action == 'predict') {

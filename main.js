@@ -140,7 +140,9 @@ class Main {
             // Make the predicted class bold
             if(res.classIndex == i){
               this.infoTexts[i].style.fontWeight = 'bold';
-              this.ws.send(JSON.stringify({action: 'predict', conn_id: this.connId, value: res.classIndex}));
+              if(this.ws){
+                this.ws.send(JSON.stringify({action: 'predict', conn_id: this.connId, value: res.classIndex}));
+              }
             } else {
               this.infoTexts[i].style.fontWeight = 'normal';
             }
@@ -161,7 +163,8 @@ class Main {
   }
 
   connect(connId) {
-    this.ws = new WebSocket('ws://ml2scratch-helper.glitch.me/')
+    this.ws = new WebSocket('wss://ml2scratch-helper.glitch.me/');
+
     this.connId = connId;
   }
 }

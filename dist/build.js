@@ -172,7 +172,9 @@ var Main = function () {
               // Make the predicted class bold
               if (res.classIndex == i) {
                 _this2.infoTexts[i].style.fontWeight = 'bold';
-                _this2.ws.send(JSON.stringify({ action: 'predict', conn_id: _this2.connId, value: res.classIndex }));
+                if (_this2.ws) {
+                  _this2.ws.send(JSON.stringify({ action: 'predict', conn_id: _this2.connId, value: res.classIndex }));
+                }
               } else {
                 _this2.infoTexts[i].style.fontWeight = 'normal';
               }
@@ -196,7 +198,8 @@ var Main = function () {
   }, {
     key: 'connect',
     value: function connect(connId) {
-      this.ws = new WebSocket('ws://ml2scratch-helper.glitch.me/');
+      this.ws = new WebSocket('wss://ml2scratch-helper.glitch.me/');
+
       this.connId = connId;
     }
   }]);
