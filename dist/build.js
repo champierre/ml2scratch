@@ -43,6 +43,8 @@ var Main = function () {
     this.training = -1; // -1 when no class is being trained
     this.videoPlaying = false;
 
+    this.connId = undefined;
+
     // Initiate deeplearn.js math and knn classifier objects
     this.knn = new _deeplearnKnnImageClassifier.KNNImageClassifier(NUM_CLASSES, TOPK);
 
@@ -51,19 +53,23 @@ var Main = function () {
     this.video.setAttribute('autoplay', '');
     this.video.setAttribute('playsinline', '');
 
-    this.ws = new WebSocket('ws://localhost:8080/ml');
-
     // Add video element to DOM
     document.body.appendChild(this.video);
 
     var div = document.createElement('div');
+
+    var textField = document.createElement('input');
+    textField.type = "text";
+    textField.id = "conn_id";
+    div.appendChild(textField);
+
     var connectButton = document.createElement('button');
     connectButton.innerText = "Connect";
     div.appendChild(connectButton);
     document.body.appendChild(div);
     div.style.marginBottom = '10px';
     connectButton.addEventListener('click', function () {
-      _this.connect();
+      _this.connect(textField.value);
     });
 
     // Create training buttons and info texts
@@ -166,8 +172,7 @@ var Main = function () {
               // Make the predicted class bold
               if (res.classIndex == i) {
                 _this2.infoTexts[i].style.fontWeight = 'bold';
-                console.log("classIndex:" + res.classIndex);
-                _this2.ws.send(JSON.stringify({ action: 'predict', value: res.classIndex }));
+                _this2.ws.send(JSON.stringify({ action: 'predict', conn_id: _this2.connId, value: res.classIndex }));
               } else {
                 _this2.infoTexts[i].style.fontWeight = 'normal';
               }
@@ -190,8 +195,9 @@ var Main = function () {
     }
   }, {
     key: 'connect',
-    value: function connect() {
-      this.ws = new WebSocket('ws://localhost:8080/ml');
+    value: function connect(connId) {
+      this.ws = new WebSocket('ws://ml2scratch-helper.glitch.me/');
+      this.connId = connId;
     }
   }]);
 

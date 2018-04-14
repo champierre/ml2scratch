@@ -1,6 +1,6 @@
 {
   "name": "ML2Scratch",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "license": "",
   "dependencies": {
     "deeplearn": "~0.5.0",
