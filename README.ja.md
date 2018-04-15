@@ -18,7 +18,7 @@ https://www.youtube.com/watch?v=DkH1hwc-Gb4
 
 2. 「接続する」ボタンをクリックして、サーバーに接続します。
 
-    <kbd><img src="images/ja/1.png" style="width:500px;border:1px solid #999" /></kbd>
+    <kbd><img src="images/ja/1.png" style="width:600px;border:1px solid #999" /></kbd>
 
 3. あとで貼り付けするために、「接続する」ボタンの横の接続ID(am2x6t5xrpといった文字列)をコピーしておきます。
 
