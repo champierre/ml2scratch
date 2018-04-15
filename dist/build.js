@@ -61,6 +61,12 @@ var Main = function () {
     var textField = document.createElement('input');
     textField.type = "text";
     textField.id = "conn_id";
+    textField.placeholder = "Connection ID";
+    textField.value = Math.random().toString(36).slice(-10);
+    textField.addEventListener('click', function () {
+      textField.select();
+      document.execCommand("Copy");
+    });
     div.appendChild(textField);
 
     var connectButton = document.createElement('button');
@@ -69,8 +75,17 @@ var Main = function () {
     document.body.appendChild(div);
     div.style.marginBottom = '10px';
     connectButton.addEventListener('click', function () {
-      _this.connect(textField.value);
+      if (textField.value.length == 0) {
+        alert("Blank ID is invalid.");
+      } else {
+        _this.connect(textField.value);
+      }
     });
+
+    var helpDiv = document.createElement('div');
+    helpDiv.style.fontSize = "14px";
+    helpDiv.innerHTML = "&uarr; Open <a href=\"http://scratchx.org/?url=https://champierre.github.io/ml2scratch/ml2scratch.js\" target=\"_blank\">ScratchX with extension loaded</a> and use this ID when you connect.";
+    div.appendChild(helpDiv);
 
     // Create training buttons and info texts
 
@@ -95,6 +110,7 @@ var Main = function () {
       // Create info text
       var infoText = document.createElement('span');
       infoText.innerText = " No examples added ";
+      infoText.style.fontSize = "14px";
       div.appendChild(infoText);
       _this.infoTexts.push(infoText);
 
@@ -107,6 +123,7 @@ var Main = function () {
         _this.knn.clearClass(i);
         _this.infoTexts[i].style.fontWeight = 'normal';
         _this.infoTexts[i].innerText = " No examples added ";
+        _this.infoTexts[i].style.fontSize = "14px";
       });
     };
 
