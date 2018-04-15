@@ -48,6 +48,10 @@ var Main = function () {
     // Initiate deeplearn.js math and knn classifier objects
     this.knn = new _deeplearnKnnImageClassifier.KNNImageClassifier(NUM_CLASSES, TOPK);
 
+    var linkToOtherLangDiv = document.createElement('div');
+    linkToOtherLangDiv.innerHTML = I18n.t("menu");
+    document.body.appendChild(linkToOtherLangDiv);
+
     // Create video element that will contain the webcam image
     this.video = document.createElement('video');
     this.video.setAttribute('autoplay', '');
@@ -61,7 +65,7 @@ var Main = function () {
     var textField = document.createElement('input');
     textField.type = "text";
     textField.id = "conn_id";
-    textField.placeholder = "Connection ID";
+    textField.placeholder = I18n.t("connection_id");
     textField.value = Math.random().toString(36).slice(-10);
     textField.addEventListener('click', function () {
       textField.select();
@@ -70,13 +74,14 @@ var Main = function () {
     div.appendChild(textField);
 
     var connectButton = document.createElement('button');
-    connectButton.innerText = "Connect";
+    connectButton.innerText = I18n.t('connect');
     div.appendChild(connectButton);
     document.body.appendChild(div);
     div.style.marginBottom = '10px';
     connectButton.addEventListener('click', function () {
       if (textField.value.length == 0) {
-        alert("Blank ID is invalid.");
+        // alert("Blank ID is invalid.");
+        alert(I18n.t("blank_id_is_invalid"));
       } else {
         _this.connect(textField.value);
       }
@@ -84,7 +89,7 @@ var Main = function () {
 
     var helpDiv = document.createElement('div');
     helpDiv.style.fontSize = "14px";
-    helpDiv.innerHTML = "&uarr; Open <a href=\"http://scratchx.org/?url=https://champierre.github.io/ml2scratch/ml2scratch.js\" target=\"_blank\">ScratchX with extension loaded</a> and use this ID when you connect.";
+    helpDiv.innerHTML = I18n.t("help_text");
     div.appendChild(helpDiv);
 
     // Create training buttons and info texts
@@ -96,7 +101,7 @@ var Main = function () {
 
       // Create training button
       var button = document.createElement('button');
-      button.innerText = "Train " + i;
+      button.innerText = I18n.t('train', i);
       div.appendChild(button);
 
       // Listen for mouse events when clicking the button
@@ -109,20 +114,20 @@ var Main = function () {
 
       // Create info text
       var infoText = document.createElement('span');
-      infoText.innerText = " No examples added ";
+      infoText.innerText = " " + I18n.t('no_examples_added') + " ";
       infoText.style.fontSize = "14px";
       div.appendChild(infoText);
       _this.infoTexts.push(infoText);
 
       // Create class clearing button
       var clearButton = document.createElement('button');
-      clearButton.innerText = "Clear " + i;
+      clearButton.innerText = I18n.t('clear', i);
       div.appendChild(clearButton);
 
       clearButton.addEventListener('click', function () {
         _this.knn.clearClass(i);
         _this.infoTexts[i].style.fontWeight = 'normal';
-        _this.infoTexts[i].innerText = " No examples added ";
+        _this.infoTexts[i].innerText = " " + I18n.t('no_examples_added') + " ";
         _this.infoTexts[i].style.fontSize = "14px";
       });
     };
@@ -198,7 +203,7 @@ var Main = function () {
 
               // Update info text
               if (exampleCount[i] > 0) {
-                _this2.infoTexts[i].innerText = ' ' + exampleCount[i] + ' examples - ' + res.confidences[i] * 100 + '% ';
+                _this2.infoTexts[i].innerText = ' ' + exampleCount[i] + ' ' + I18n.t('examples') + ' - ' + res.confidences[i] * 100 + '% ';
               }
             }
           })
