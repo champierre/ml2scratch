@@ -32,6 +32,105 @@ var IMAGE_SIZE = 227;
 // K value for KNN
 var TOPK = 10;
 
+String.prototype.sprintf = function () {
+  var str = this + '';
+  var args = Array.prototype.slice.call(arguments);
+
+  var ph = true;
+  if (str.indexOf('%s', 0) != -1) {
+    ph = false;
+  }
+
+  if (args.length === 1) {
+    if (ph) {
+      return str.replace(/%1$s/g, args[0]);
+    } else {
+      return str.replace(/%s/g, args[0]);
+    }
+  } else {
+    for (var i = 0; i < args.length; i++) {
+      var n = i + 1;
+      if (ph) {
+        str = str.replace('%' + n + '$s', args[i]);
+      } else {
+        str = str.replace('%s', args[i]);
+      }
+    }
+  }
+  return str;
+};
+
+var LOCALIZED_TEXT = {
+  ja: {
+    menu: "<a href=\"?lang=en\">English</a> | <a href=\"https://github.com/champierre/ml2scratch\">GitHub</a>",
+    connect: "接続する",
+    connection_id: "接続ID",
+    blank_id_is_invalid: "接続IDを入力してください。",
+    no_examples_added: "まだ学習していません",
+    examples: "枚",
+    train: '「分類%s」として学習する',
+    clear: '「分類%s」をリセットする',
+    help_text: "&uarr; <a href=\"http://scratchx.org/?url=https://champierre.github.io/ml2scratch/ml2scratch.js\" target=\"_blank\">拡張機能を読み込んだScratchX</a>のページを開いて、上記の接続IDを「ID: [ ]で接続する」ブロックにコピー&ペーストしてください。"
+  },
+  en: {
+    menu: "<a href=\"?lang=ja\">日本語</a> | <a href=\"https://github.com/champierre/ml2scratch\">GitHub</a>",
+    connect: "Connect",
+    connection_id: "Connection ID",
+    blank_id_is_invalid: "Blank ID is invalid.",
+    no_examples_added: "No examples added",
+    examples: "examples",
+    train: 'Train %s',
+    clear: 'Clear %s',
+    help_text: "&uarr; Open <a href=\"http://scratchx.org/?url=https://champierre.github.io/ml2scratch/ml2scratch.js\" target=\"_blank\">ScratchX with extension loaded</a> and use this ID when you connect."
+  }
+};
+
+var I18n = function () {
+  function I18n() {
+    _classCallCheck(this, I18n);
+
+    window.I18n = this;
+  }
+
+  _createClass(I18n, null, [{
+    key: 't',
+    value: function t(key) {
+      var arg = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+
+      var lang = window.navigator.language;
+      var vars = this.getUrlVars();
+      if (vars['lang'] && vars['lang'].length > 0) {
+        lang = vars['lang'];
+      }
+      if (lang == 'ja') {
+        return LOCALIZED_TEXT['ja'][key].sprintf(arg);
+      } else {
+        return LOCALIZED_TEXT['en'][key].sprintf(arg);
+      }
+    }
+  }, {
+    key: 'getUrlVars',
+    value: function getUrlVars() {
+      var vars = [],
+          max = 0,
+          hash = "",
+          array = "";
+      var url = window.location.search;
+
+      hash = url.slice(1).split('&');
+      max = hash.length;
+      for (var i = 0; i < max; i++) {
+        array = hash[i].split('=');
+        vars.push(array[0]);
+        vars[array[0]] = array[1];
+      }
+      return vars;
+    }
+  }]);
+
+  return I18n;
+}();
+
 var Main = function () {
   function Main() {
     var _this = this;
@@ -230,7 +329,8 @@ var Main = function () {
 }();
 
 window.addEventListener('load', function () {
-  return new Main();
+  new I18n();
+  new Main();
 });
 
 },{"deeplearn":67,"deeplearn-knn-image-classifier":3}],2:[function(require,module,exports){
