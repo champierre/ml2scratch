@@ -18,7 +18,7 @@ https://www.youtube.com/watch?v=DkH1hwc-Gb4
 
 2. Click "Connect" button to connect to the server.
 
-  <img src="images/en/1.png" style="width:500px;border:1px solid #999" />
+  <kbd><img src="images/en/1.png" style="width:500px;border:1px solid #999" /></kbd>
 
 3. In order to paste it later, copy the connection ID(characters such as am2x6t5xrp) next to "Connect" button.
 
