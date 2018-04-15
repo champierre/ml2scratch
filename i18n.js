@@ -29,7 +29,7 @@ String.prototype.sprintf = function()
 
 const LOCALIZED_TEXT = {
   ja: {
-    link_to_other_lang: "&raquo; <a href=\"?lang=en\">English</a>",
+    menu: "<a href=\"?lang=en\">English</a> | <a href=\"https://github.com/champierre/ml2scratch\">GitHub</a>",
     connect: "接続する",
     connection_id: "接続ID",
     blank_id_is_invalid: "接続IDを入力してください。",
@@ -40,7 +40,7 @@ const LOCALIZED_TEXT = {
     help_text: "&uarr; <a href=\"http://scratchx.org/?url=https://champierre.github.io/ml2scratch/ml2scratch.js\" target=\"_blank\">拡張機能を読み込んだScratchX</a>のページを開いて、上記の接続IDを「ID: [ ]で接続する」ブロックにコピー&ペーストしてください。",
   },
   en: {
-    link_to_other_lang: "&raquo; <a href=\"?lang=ja\">日本語</a>",
+    menu: "<a href=\"?lang=ja\">日本語</a> | <a href=\"https://github.com/champierre/ml2scratch\">GitHub</a>",
     connect: "Connect",
     connection_id: "Connection ID",
     blank_id_is_invalid: "Blank ID is invalid.",

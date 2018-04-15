@@ -33,7 +33,7 @@ class Main {
     this.knn = new KNNImageClassifier(NUM_CLASSES, TOPK);
 
     const linkToOtherLangDiv = document.createElement('div');
-    linkToOtherLangDiv.innerHTML = I18n.t("link_to_other_lang");
+    linkToOtherLangDiv.innerHTML = I18n.t("menu");
     document.body.appendChild(linkToOtherLangDiv);
 
     // Create video element that will contain the webcam image
