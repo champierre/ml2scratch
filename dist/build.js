@@ -19,6 +19,12 @@ var _deeplearn = require('deeplearn');
 
 var dl = _interopRequireWildcard(_deeplearn);
 
+var _fileSaver = require('file-saver');
+
+var _fileSaver2 = _interopRequireDefault(_fileSaver);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
@@ -70,6 +76,8 @@ var LOCALIZED_TEXT = {
     examples: "枚",
     train: '「分類%s」として学習する',
     clear: '「分類%s」をリセットする',
+    download: '学習モデルをダウンロード',
+    upload: '学習モデルをアップロード',
     help_text: "&uarr; <a href=\"http://scratchx.org/?url=https://champierre.github.io/ml2scratch/ml2scratch.js\" target=\"_blank\">拡張機能を読み込んだScratchX</a>のページを開いて、上記の接続IDを「ID: [ ]で接続する」ブロックにコピー&ペーストしてください。"
   },
   en: {
@@ -81,6 +89,8 @@ var LOCALIZED_TEXT = {
     examples: "examples",
     train: 'Train %s',
     clear: 'Clear %s',
+    download: 'Download trained model',
+    upload: 'Upload trained model',
     help_text: "&uarr; Open <a href=\"http://scratchx.org/?url=https://champierre.github.io/ml2scratch/ml2scratch.js\" target=\"_blank\">ScratchX with extension loaded</a> and use this ID when you connect."
   }
 };
@@ -188,8 +198,34 @@ var Main = function () {
 
     var helpDiv = document.createElement('div');
     helpDiv.style.fontSize = "14px";
+    helpDiv.style.marginBottom = '20px';
     helpDiv.innerHTML = I18n.t("help_text");
     div.appendChild(helpDiv);
+
+    var downloadButtonDiv = document.createElement('div');
+    var downloadButton = document.createElement('button');
+    downloadButton.innerText = I18n.t('download');
+    downloadButtonDiv.appendChild(downloadButton);
+    downloadButton.addEventListener('click', function () {
+      _this.download();
+    });
+    div.appendChild(downloadButtonDiv);
+
+    var uploadButtonDiv = document.createElement('div');
+    var selectFiles = document.createElement('input');
+    selectFiles.id = "selectFiles";
+    selectFiles.type = "file";
+    uploadButtonDiv.appendChild(selectFiles);
+
+    var uploadButton = document.createElement('button');
+    uploadButton.innerText = I18n.t('upload');
+    uploadButtonDiv.appendChild(uploadButton);
+    uploadButton.addEventListener('click', function () {
+      _this.upload();
+    });
+
+    uploadButtonDiv.style.marginBottom = '20px';
+    div.appendChild(uploadButtonDiv);
 
     // Create training buttons and info texts
 
@@ -323,6 +359,52 @@ var Main = function () {
 
       this.connId = connId;
     }
+  }, {
+    key: 'download',
+    value: function download() {
+      var logits = this.knn.getClassLogitsMatrices();
+      var tensors = logits.map(function (t) {
+        if (t) {
+          return t.dataSync();
+        }
+        return null;
+      });
+      var fileName = name || Date.now();
+      var blob = new Blob([JSON.stringify({ logits: logits, tensors: tensors })], { type: "application/json" });
+      _fileSaver2.default.saveAs(blob, fileName);
+    }
+  }, {
+    key: 'upload',
+    value: function upload() {
+      var knn = this.knn;
+      var files = document.getElementById('selectFiles').files;
+      if (files.length <= 0) {
+        return false;
+      }
+
+      var fr = new FileReader();
+
+      fr.onload = function (e) {
+        var data = JSON.parse(e.target.result);
+
+        var tensors = data.tensors.map(function (tensor, i) {
+          if (tensor) {
+            var values = Object.keys(tensor).map(function (v) {
+              return tensor[v];
+            });
+            return dl.tensor(values, data.logits[i].shape, data.logits[i].dtype);
+          }
+          return null;
+        });
+        knn.setClassLogitsMatrices(tensors);
+      };
+
+      fr.onloadend = function (e) {
+        document.getElementById('selectFiles').value = "";
+      };
+
+      fr.readAsText(files.item(0));
+    }
   }]);
 
   return Main;
@@ -333,7 +415,7 @@ window.addEventListener('load', function () {
   new Main();
 });
 
-},{"deeplearn":67,"deeplearn-knn-image-classifier":3}],2:[function(require,module,exports){
+},{"deeplearn":67,"deeplearn-knn-image-classifier":3,"file-saver":153}],2:[function(require,module,exports){
 
 },{}],3:[function(require,module,exports){
 "use strict";
@@ -530,6 +612,14 @@ var KNNImageClassifier = (function () {
     };
     KNNImageClassifier.prototype.getClassExampleCount = function () {
         return this.classExampleCount;
+    };
+    KNNImageClassifier.prototype.getClassLogitsMatrices = function () {
+        return this.classLogitsMatrices;
+    };
+    KNNImageClassifier.prototype.setClassLogitsMatrices = function (classLogitsMatrices) {
+        this.classLogitsMatrices = classLogitsMatrices;
+        this.classExampleCount = classLogitsMatrices.map(function (tensor) { return tensor != null ? tensor.shape[0] : 0; });
+        this.clearTrainLogitsMatrix();
     };
     KNNImageClassifier.prototype.clearTrainLogitsMatrix = function () {
         if (this.trainLogitsMatrix != null) {
@@ -2101,7 +2191,7 @@ function datasetFromElements(items) {
 }
 exports.datasetFromElements = datasetFromElements;
 
-},{"../../globals":35,"./batch_dataset":11,"./statistics":18,"./streams/data_stream":20,"seedrandom":153}],13:[function(require,module,exports){
+},{"../../globals":35,"./batch_dataset":11,"./statistics":18,"./streams/data_stream":20,"seedrandom":154}],13:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -2653,7 +2743,7 @@ function utfWidth(firstByte) {
     }
 }
 
-},{"./data_stream":20,"./string_stream":22,"utf8":161}],20:[function(require,module,exports){
+},{"./data_stream":20,"./string_stream":22,"utf8":162}],20:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -3164,7 +3254,7 @@ var ShuffleStream = (function (_super) {
 }(PrefetchStream));
 exports.ShuffleStream = ShuffleStream;
 
-},{"../../../globals":35,"../../../util":150,"../util/growing_ring_buffer":24,"../util/ring_buffer":25,"seedrandom":153}],21:[function(require,module,exports){
+},{"../../../globals":35,"../../../util":150,"../util/growing_ring_buffer":24,"../util/ring_buffer":25,"seedrandom":154}],21:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -9704,7 +9794,7 @@ var NDArrayMathCPU = (function (_super) {
 }(math_1.NDArrayMath));
 exports.NDArrayMathCPU = NDArrayMathCPU;
 
-},{"../environment":34,"../math":103,"../ops/axis_util":105,"../ops/broadcast_util":108,"../ops/concat_util":111,"../ops/ops":121,"../ops/selu_util":127,"../tensor":144,"../types":149,"../util":150,"seedrandom":153}],69:[function(require,module,exports){
+},{"../environment":34,"../math":103,"../ops/axis_util":105,"../ops/broadcast_util":108,"../ops/concat_util":111,"../ops/ops":121,"../ops/selu_util":127,"../tensor":144,"../types":149,"../util":150,"seedrandom":154}],69:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -15704,7 +15794,7 @@ var MPRandGauss = (function () {
 }());
 exports.MPRandGauss = MPRandGauss;
 
-},{"seedrandom":153}],124:[function(require,module,exports){
+},{"seedrandom":154}],124:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PARALLELIZE_THRESHOLD = 30;
@@ -19613,6 +19703,196 @@ function loadWeights(manifest, filePathPrefix, weightNames) {
 exports.loadWeights = loadWeights;
 
 },{"./ops/ops":121,"./util":150}],153:[function(require,module,exports){
+/* FileSaver.js
+ * A saveAs() FileSaver implementation.
+ * 1.3.2
+ * 2016-06-16 18:25:19
+ *
+ * By Eli Grey, http://eligrey.com
+ * License: MIT
+ *   See https://github.com/eligrey/FileSaver.js/blob/master/LICENSE.md
+ */
+
+/*global self */
+/*jslint bitwise: true, indent: 4, laxbreak: true, laxcomma: true, smarttabs: true, plusplus: true */
+
+/*! @source http://purl.eligrey.com/github/FileSaver.js/blob/master/FileSaver.js */
+
+var saveAs = saveAs || (function(view) {
+	"use strict";
+	// IE <10 is explicitly unsupported
+	if (typeof view === "undefined" || typeof navigator !== "undefined" && /MSIE [1-9]\./.test(navigator.userAgent)) {
+		return;
+	}
+	var
+		  doc = view.document
+		  // only get URL when necessary in case Blob.js hasn't overridden it yet
+		, get_URL = function() {
+			return view.URL || view.webkitURL || view;
+		}
+		, save_link = doc.createElementNS("http://www.w3.org/1999/xhtml", "a")
+		, can_use_save_link = "download" in save_link
+		, click = function(node) {
+			var event = new MouseEvent("click");
+			node.dispatchEvent(event);
+		}
+		, is_safari = /constructor/i.test(view.HTMLElement) || view.safari
+		, is_chrome_ios =/CriOS\/[\d]+/.test(navigator.userAgent)
+		, throw_outside = function(ex) {
+			(view.setImmediate || view.setTimeout)(function() {
+				throw ex;
+			}, 0);
+		}
+		, force_saveable_type = "application/octet-stream"
+		// the Blob API is fundamentally broken as there is no "downloadfinished" event to subscribe to
+		, arbitrary_revoke_timeout = 1000 * 40 // in ms
+		, revoke = function(file) {
+			var revoker = function() {
+				if (typeof file === "string") { // file is an object URL
+					get_URL().revokeObjectURL(file);
+				} else { // file is a File
+					file.remove();
+				}
+			};
+			setTimeout(revoker, arbitrary_revoke_timeout);
+		}
+		, dispatch = function(filesaver, event_types, event) {
+			event_types = [].concat(event_types);
+			var i = event_types.length;
+			while (i--) {
+				var listener = filesaver["on" + event_types[i]];
+				if (typeof listener === "function") {
+					try {
+						listener.call(filesaver, event || filesaver);
+					} catch (ex) {
+						throw_outside(ex);
+					}
+				}
+			}
+		}
+		, auto_bom = function(blob) {
+			// prepend BOM for UTF-8 XML and text/* types (including HTML)
+			// note: your browser will automatically convert UTF-16 U+FEFF to EF BB BF
+			if (/^\s*(?:text\/\S*|application\/xml|\S*\/\S*\+xml)\s*;.*charset\s*=\s*utf-8/i.test(blob.type)) {
+				return new Blob([String.fromCharCode(0xFEFF), blob], {type: blob.type});
+			}
+			return blob;
+		}
+		, FileSaver = function(blob, name, no_auto_bom) {
+			if (!no_auto_bom) {
+				blob = auto_bom(blob);
+			}
+			// First try a.download, then web filesystem, then object URLs
+			var
+				  filesaver = this
+				, type = blob.type
+				, force = type === force_saveable_type
+				, object_url
+				, dispatch_all = function() {
+					dispatch(filesaver, "writestart progress write writeend".split(" "));
+				}
+				// on any filesys errors revert to saving with object URLs
+				, fs_error = function() {
+					if ((is_chrome_ios || (force && is_safari)) && view.FileReader) {
+						// Safari doesn't allow downloading of blob urls
+						var reader = new FileReader();
+						reader.onloadend = function() {
+							var url = is_chrome_ios ? reader.result : reader.result.replace(/^data:[^;]*;/, 'data:attachment/file;');
+							var popup = view.open(url, '_blank');
+							if(!popup) view.location.href = url;
+							url=undefined; // release reference before dispatching
+							filesaver.readyState = filesaver.DONE;
+							dispatch_all();
+						};
+						reader.readAsDataURL(blob);
+						filesaver.readyState = filesaver.INIT;
+						return;
+					}
+					// don't create more object URLs than needed
+					if (!object_url) {
+						object_url = get_URL().createObjectURL(blob);
+					}
+					if (force) {
+						view.location.href = object_url;
+					} else {
+						var opened = view.open(object_url, "_blank");
+						if (!opened) {
+							// Apple does not allow window.open, see https://developer.apple.com/library/safari/documentation/Tools/Conceptual/SafariExtensionGuide/WorkingwithWindowsandTabs/WorkingwithWindowsandTabs.html
+							view.location.href = object_url;
+						}
+					}
+					filesaver.readyState = filesaver.DONE;
+					dispatch_all();
+					revoke(object_url);
+				}
+			;
+			filesaver.readyState = filesaver.INIT;
+
+			if (can_use_save_link) {
+				object_url = get_URL().createObjectURL(blob);
+				setTimeout(function() {
+					save_link.href = object_url;
+					save_link.download = name;
+					click(save_link);
+					dispatch_all();
+					revoke(object_url);
+					filesaver.readyState = filesaver.DONE;
+				});
+				return;
+			}
+
+			fs_error();
+		}
+		, FS_proto = FileSaver.prototype
+		, saveAs = function(blob, name, no_auto_bom) {
+			return new FileSaver(blob, name || blob.name || "download", no_auto_bom);
+		}
+	;
+	// IE 10+ (native saveAs)
+	if (typeof navigator !== "undefined" && navigator.msSaveOrOpenBlob) {
+		return function(blob, name, no_auto_bom) {
+			name = name || blob.name || "download";
+
+			if (!no_auto_bom) {
+				blob = auto_bom(blob);
+			}
+			return navigator.msSaveOrOpenBlob(blob, name);
+		};
+	}
+
+	FS_proto.abort = function(){};
+	FS_proto.readyState = FS_proto.INIT = 0;
+	FS_proto.WRITING = 1;
+	FS_proto.DONE = 2;
+
+	FS_proto.error =
+	FS_proto.onwritestart =
+	FS_proto.onprogress =
+	FS_proto.onwrite =
+	FS_proto.onabort =
+	FS_proto.onerror =
+	FS_proto.onwriteend =
+		null;
+
+	return saveAs;
+}(
+	   typeof self !== "undefined" && self
+	|| typeof window !== "undefined" && window
+	|| this.content
+));
+// `self` is undefined in Firefox for Android content script context
+// while `this` is nsIContentFrameMessageManager
+// with an attribute `content` that corresponds to the window
+
+if (typeof module !== "undefined" && module.exports) {
+  module.exports.saveAs = saveAs;
+} else if ((typeof define !== "undefined" && define !== null) && (define.amd !== null)) {
+  define("FileSaver.js", function() {
+    return saveAs;
+  });
+}
+
+},{}],154:[function(require,module,exports){
 // A library of seedable RNGs implemented in Javascript.
 //
 // Usage:
@@ -19674,7 +19954,7 @@ sr.tychei = tychei;
 
 module.exports = sr;
 
-},{"./lib/alea":154,"./lib/tychei":155,"./lib/xor128":156,"./lib/xor4096":157,"./lib/xorshift7":158,"./lib/xorwow":159,"./seedrandom":160}],154:[function(require,module,exports){
+},{"./lib/alea":155,"./lib/tychei":156,"./lib/xor128":157,"./lib/xor4096":158,"./lib/xorshift7":159,"./lib/xorwow":160,"./seedrandom":161}],155:[function(require,module,exports){
 // A port of an algorithm by Johannes Baagøe <baagoe@baagoe.com>, 2010
 // http://baagoe.com/en/RandomMusings/javascript/
 // https://github.com/nquinlan/better-random-numbers-for-javascript-mirror
@@ -19790,7 +20070,7 @@ if (module && module.exports) {
 
 
 
-},{}],155:[function(require,module,exports){
+},{}],156:[function(require,module,exports){
 // A Javascript implementaion of the "Tyche-i" prng algorithm by
 // Samuel Neves and Filipe Araujo.
 // See https://eden.dei.uc.pt/~sneves/pubs/2011-snfa2.pdf
@@ -19895,7 +20175,7 @@ if (module && module.exports) {
 
 
 
-},{}],156:[function(require,module,exports){
+},{}],157:[function(require,module,exports){
 // A Javascript implementaion of the "xor128" prng algorithm by
 // George Marsaglia.  See http://www.jstatsoft.org/v08/i14/paper
 
@@ -19978,7 +20258,7 @@ if (module && module.exports) {
 
 
 
-},{}],157:[function(require,module,exports){
+},{}],158:[function(require,module,exports){
 // A Javascript implementaion of Richard Brent's Xorgens xor4096 algorithm.
 //
 // This fast non-cryptographic random number generator is designed for
@@ -20126,7 +20406,7 @@ if (module && module.exports) {
   (typeof define) == 'function' && define   // present with an AMD loader
 );
 
-},{}],158:[function(require,module,exports){
+},{}],159:[function(require,module,exports){
 // A Javascript implementaion of the "xorshift7" algorithm by
 // François Panneton and Pierre L'ecuyer:
 // "On the Xorgshift Random Number Generators"
@@ -20225,7 +20505,7 @@ if (module && module.exports) {
 );
 
 
-},{}],159:[function(require,module,exports){
+},{}],160:[function(require,module,exports){
 // A Javascript implementaion of the "xorwow" prng algorithm by
 // George Marsaglia.  See http://www.jstatsoft.org/v08/i14/paper
 
@@ -20313,7 +20593,7 @@ if (module && module.exports) {
 
 
 
-},{}],160:[function(require,module,exports){
+},{}],161:[function(require,module,exports){
 /*
 Copyright 2014 David Bau.
 
@@ -20562,7 +20842,7 @@ if ((typeof module) == 'object' && module.exports) {
   Math    // math: package containing random, pow, and seedrandom
 );
 
-},{"crypto":2}],161:[function(require,module,exports){
+},{"crypto":2}],162:[function(require,module,exports){
 (function (global){
 /*! https://mths.be/utf8js v2.1.2 by @mathias */
 ;(function(root) {

@@ -12,6 +12,7 @@
 
 import {KNNImageClassifier} from 'deeplearn-knn-image-classifier';
 import * as dl from 'deeplearn';
+import FileSaver from 'file-saver';
 
 // Number of classes to classify
 const NUM_CLASSES = 10;
@@ -22,10 +23,10 @@ const TOPK = 10;
 
 String.prototype.sprintf = function()
 {
-    var str = this + '';
-    var args = Array.prototype.slice.call(arguments);
+    let str = this + '';
+    const args = Array.prototype.slice.call(arguments);
 
-    var ph = true;
+    let ph = true;
     if (str.indexOf('%s', 0) != -1) {
         ph = false;
     }
@@ -37,8 +38,8 @@ String.prototype.sprintf = function()
             return str.replace(/%s/g, args[0]);
         }
     } else {
-        for (var i=0; i<args.length; i++) {
-            var n = i + 1;
+        for (let i=0; i<args.length; i++) {
+            const n = i + 1;
             if (ph) {
                 str = str.replace('%'+n+'$s', args[i]);
             } else {
@@ -59,6 +60,8 @@ const LOCALIZED_TEXT = {
     examples: "枚",
     train: '「分類%s」として学習する',
     clear: '「分類%s」をリセットする',
+    download: '学習モデルをダウンロード',
+    upload: '学習モデルをアップロード',
     help_text: "&uarr; <a href=\"http://scratchx.org/?url=https://champierre.github.io/ml2scratch/ml2scratch.js\" target=\"_blank\">拡張機能を読み込んだScratchX</a>のページを開いて、上記の接続IDを「ID: [ ]で接続する」ブロックにコピー&ペーストしてください。",
   },
   en: {
@@ -70,6 +73,8 @@ const LOCALIZED_TEXT = {
     examples: "examples",
     train: 'Train %s',
     clear: 'Clear %s',
+    download: 'Download trained model',
+    upload: 'Upload trained model',
     help_text: "&uarr; Open <a href=\"http://scratchx.org/?url=https://champierre.github.io/ml2scratch/ml2scratch.js\" target=\"_blank\">ScratchX with extension loaded</a> and use this ID when you connect.",
   }
 }
@@ -80,8 +85,8 @@ class I18n {
   }
 
   static t(key, arg = '') {
-    var lang = window.navigator.language;
-    var vars = this.getUrlVars();
+    let lang = window.navigator.language;
+    const vars = this.getUrlVars();
     if (vars['lang'] && vars['lang'].length > 0) {
       lang = vars['lang'];
     }
@@ -93,12 +98,12 @@ class I18n {
   }
 
   static getUrlVars() {
-    var vars = [], max = 0, hash = "", array = "";
-    var url = window.location.search;
+    let vars = [], max = 0, hash = "", array = "";
+    const url = window.location.search;
 
     hash  = url.slice(1).split('&');
     max = hash.length;
-    for (var i = 0; i < max; i++) {
+    for (let i = 0; i < max; i++) {
         array = hash[i].split('=');
         vars.push(array[0]);
         vars[array[0]] = array[1];
@@ -160,8 +165,34 @@ class Main {
 
     const helpDiv = document.createElement('div');
     helpDiv.style.fontSize = "14px";
+    helpDiv.style.marginBottom = '20px';
     helpDiv.innerHTML = I18n.t("help_text");
     div.appendChild(helpDiv);
+
+    const downloadButtonDiv = document.createElement('div');
+    const downloadButton = document.createElement('button');
+    downloadButton.innerText = I18n.t('download');
+    downloadButtonDiv.appendChild(downloadButton);
+    downloadButton.addEventListener('click', ()=> {
+      this.download();
+    });
+    div.appendChild(downloadButtonDiv);
+
+    const uploadButtonDiv = document.createElement('div');
+    const selectFiles = document.createElement('input');
+    selectFiles.id = "selectFiles";
+    selectFiles.type = "file";
+    uploadButtonDiv.appendChild(selectFiles);
+
+    const uploadButton = document.createElement('button');
+    uploadButton.innerText = I18n.t('upload');
+    uploadButtonDiv.appendChild(uploadButton);
+    uploadButton.addEventListener('click', ()=> {
+      this.upload();
+    });
+
+    uploadButtonDiv.style.marginBottom = '20px';
+    div.appendChild(uploadButtonDiv);
 
     // Create training buttons and info texts
     for(let i=0;i<NUM_CLASSES; i++){
@@ -274,6 +305,48 @@ class Main {
     this.ws = new WebSocket('wss://ml2scratch-helper.glitch.me/');
 
     this.connId = connId;
+  }
+
+  download() {
+    const logits = this.knn.getClassLogitsMatrices();
+    const tensors = logits.map((t) => {
+      if (t) {
+        return t.dataSync();
+      }
+      return null;
+    });
+    const fileName = name || Date.now();
+    const blob = new Blob([JSON.stringify({ logits, tensors })], {type: "application/json"});
+    FileSaver.saveAs(blob, fileName);
+  }
+
+  upload() {
+    const knn = this.knn;
+    const files = document.getElementById('selectFiles').files;
+    if (files.length <= 0) {
+      return false;
+    }
+
+    const fr = new FileReader();
+
+    fr.onload = function(e) {
+      const data = JSON.parse(e.target.result);
+
+      const tensors = data.tensors.map((tensor, i) => {
+        if (tensor) {
+          const values = Object.keys(tensor).map(v => tensor[v]);
+          return dl.tensor(values, data.logits[i].shape, data.logits[i].dtype);
+        }
+        return null;
+      });
+      knn.setClassLogitsMatrices(tensors);
+    }
+
+    fr.onloadend = function(e) {
+      document.getElementById('selectFiles').value = "";
+    }
+
+    fr.readAsText(files.item(0));
   }
 }
 
