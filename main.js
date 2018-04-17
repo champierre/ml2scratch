@@ -53,6 +53,9 @@ String.prototype.sprintf = function()
 const LOCALIZED_TEXT = {
   ja: {
     menu: "<a href=\"?lang=en\">English</a> | <a href=\"https://github.com/champierre/ml2scratch\">GitHub</a>",
+    connection: "接続",
+    trained_model: "学習モデル",
+    training: "学習",
     connect: "接続する",
     connection_id: "接続ID",
     blank_id_is_invalid: "接続IDを入力してください。",
@@ -60,12 +63,15 @@ const LOCALIZED_TEXT = {
     examples: "枚",
     train: '「分類%s」として学習する',
     clear: '「分類%s」をリセットする',
-    download: '学習モデルをダウンロード',
-    upload: '学習モデルをアップロード',
+    download: 'ダウンロード',
+    upload: 'アップロード',
     help_text: "&uarr; <a href=\"http://scratchx.org/?url=https://champierre.github.io/ml2scratch/ml2scratch.js\" target=\"_blank\">拡張機能を読み込んだScratchX</a>のページを開いて、上記の接続IDを「ID: [ ]で接続する」ブロックにコピー&ペーストしてください。",
   },
   en: {
     menu: "<a href=\"?lang=ja\">日本語</a> | <a href=\"https://github.com/champierre/ml2scratch\">GitHub</a>",
+    connection: "Connect",
+    trained_model: "Trained Model",
+    training: "Training",
     connect: "Connect",
     connection_id: "Connection ID",
     blank_id_is_invalid: "Blank ID is invalid.",
@@ -73,8 +79,8 @@ const LOCALIZED_TEXT = {
     examples: "examples",
     train: 'Train %s',
     clear: 'Clear %s',
-    download: 'Download trained model',
-    upload: 'Upload trained model',
+    download: 'Download',
+    upload: 'Upload',
     help_text: "&uarr; Open <a href=\"http://scratchx.org/?url=https://champierre.github.io/ml2scratch/ml2scratch.js\" target=\"_blank\">ScratchX with extension loaded</a> and use this ID when you connect.",
   }
 }
@@ -124,9 +130,13 @@ class Main {
     // Initiate deeplearn.js math and knn classifier objects
     this.knn = new KNNImageClassifier(NUM_CLASSES, TOPK);
 
-    const linkToOtherLangDiv = document.createElement('div');
-    linkToOtherLangDiv.innerHTML = I18n.t("menu");
-    document.body.appendChild(linkToOtherLangDiv);
+    const title = document.createElement('h1');
+    title.innerHTML = 'ML2Scratch';
+    document.body.appendChild(title);
+
+    const menuDiv = document.createElement('div');
+    menuDiv.innerHTML = I18n.t("menu");
+    document.body.appendChild(menuDiv);
 
     // Create video element that will contain the webcam image
     this.video = document.createElement('video');
@@ -137,6 +147,10 @@ class Main {
     document.body.appendChild(this.video);
 
     const div = document.createElement('div');
+
+    const connectionSection = document.createElement('h2');
+    connectionSection.innerHTML = I18n.t('connection');
+    div.appendChild(connectionSection);
 
     const textField = document.createElement('input');
     textField.type = "text";
@@ -169,6 +183,10 @@ class Main {
     helpDiv.innerHTML = I18n.t("help_text");
     div.appendChild(helpDiv);
 
+    const trainedModelSection = document.createElement('h2');
+    trainedModelSection.innerHTML = I18n.t('trained_model');
+    div.appendChild(trainedModelSection);
+
     const downloadButtonDiv = document.createElement('div');
     const downloadButton = document.createElement('button');
     downloadButton.innerText = I18n.t('download');
@@ -193,6 +211,10 @@ class Main {
 
     uploadButtonDiv.style.marginBottom = '20px';
     div.appendChild(uploadButtonDiv);
+
+    const trainingSection = document.createElement('h2');
+    trainingSection.innerHTML = I18n.t('training');
+    div.appendChild(trainingSection);
 
     // Create training buttons and info texts
     for(let i=0;i<NUM_CLASSES; i++){
