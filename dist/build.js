@@ -79,6 +79,7 @@ var LOCALIZED_TEXT = {
     examples: "枚",
     train: '「分類%s」として学習する',
     clear: '「分類%s」をリセットする',
+    clear_all: 'すべての分類をリセット',
     download: 'ダウンロード',
     upload: 'アップロード',
     help_text: "&uarr; <a href=\"http://scratchx.org/?url=https://champierre.github.io/ml2scratch/ml2scratch.js\" target=\"_blank\">拡張機能を読み込んだScratchX</a>のページを開いて、上記の接続IDを「ID: [ ]で接続する」ブロックにコピー&ペーストしてください。"
@@ -95,6 +96,7 @@ var LOCALIZED_TEXT = {
     examples: "examples",
     train: 'Train %s',
     clear: 'Clear %s',
+    clear_all: 'Clear all',
     download: 'Download',
     upload: 'Upload',
     help_text: "&uarr; Open <a href=\"http://scratchx.org/?url=https://champierre.github.io/ml2scratch/ml2scratch.js\" target=\"_blank\">ScratchX with extension loaded</a> and use this ID when you connect."
@@ -248,6 +250,13 @@ var Main = function () {
     var trainingSection = document.createElement('h2');
     trainingSection.innerHTML = I18n.t('training');
     div.appendChild(trainingSection);
+
+    var clearAllButton = document.createElement('button');
+    clearAllButton.innerText = I18n.t('clear_all');
+    div.appendChild(clearAllButton);
+    clearAllButton.addEventListener('click', function () {
+      _this.clearAll();
+    });
 
     // Create training buttons and info texts
 
@@ -426,6 +435,16 @@ var Main = function () {
       };
 
       fr.readAsText(files.item(0));
+    }
+  }, {
+    key: 'clearAll',
+    value: function clearAll() {
+      for (var i = 0; i < NUM_CLASSES; i++) {
+        this.knn.clearClass(i);
+        this.infoTexts[i].style.fontWeight = 'normal';
+        this.infoTexts[i].innerText = " " + I18n.t('no_examples_added') + " ";
+        this.infoTexts[i].style.fontSize = "14px";
+      }
     }
   }]);
 
