@@ -10,7 +10,8 @@ ML2Scratchは機械学習(TensorFlow.js)をScratchXとをつなげます。
 
 ## デモ動画
 
-https://www.youtube.com/watch?v=DkH1hwc-Gb4
+- [Webカメラでグー、チョキ、パーを判定](https://www.youtube.com/watch?v=DkH1hwc-Gb4)
+- [ジェスチャーで倒立2輪ロボットMiPを動かす](https://www.youtube.com/watch?v=GKXimEB5WQg)
 
 ## 使い方
 
