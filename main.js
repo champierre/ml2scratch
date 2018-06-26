@@ -348,7 +348,7 @@ class Main {
     });
     const fileName = name || Date.now();
     const blob = new Blob([JSON.stringify({ logits, tensors })], {type: "application/json"});
-    FileSaver.saveAs(blob, fileName);
+    FileSaver.saveAs(blob, fileName + ".json");
   }
 
   upload() {

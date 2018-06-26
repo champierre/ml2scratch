@@ -402,7 +402,7 @@ var Main = function () {
       });
       var fileName = name || Date.now();
       var blob = new Blob([JSON.stringify({ logits: logits, tensors: tensors })], { type: "application/json" });
-      _fileSaver2.default.saveAs(blob, fileName);
+      _fileSaver2.default.saveAs(blob, fileName + ".json");
     }
   }, {
     key: 'upload',
