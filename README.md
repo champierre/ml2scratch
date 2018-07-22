@@ -10,8 +10,8 @@ ML2Scratch connects Machine Learning(TensorFlow.js) to ScratchX.
 
 ## Demo Movie
 
-- [Rock/Scissors/Paper Demo](https://www.youtube.com/watch?v=DkH1hwc-Gb4)
-- [Control a toy robot, MiP, by hand gestures](https://www.youtube.com/watch?v=GKXimEB5WQg)
+- [Rock/Scissors/Paper Demo](https://s3.amazonaws.com/champierre/movies/rsp_demo.mov)
+- [Control a toy robot, MiP, by hand gestures](https://s3.amazonaws.com/champierre/movies/mip_demo.mov)
 
 ## How to use
 
