@@ -21,12 +21,13 @@ wss.on('connection', function(ws, req) {
   connections.push(ws);
 
   ws.on('close', function() {
+    console.log('Connection is closed.');
     connections = connections.filter(function (conn, i) {
       return (conn === ws) ? false : true;
     });
   });
   ws.on('message', function(json) {
-    console.log("received " + json);
+    console.log("Received " + json);
     data = JSON.parse(json);
     if (data.action == 'predict') {
       if (connections) {
@@ -35,5 +36,8 @@ wss.on('connection', function(ws, req) {
         });
       }
     }
+  });
+  ws.on('error', function(e) {
+    console.log(e);
   });
 });
