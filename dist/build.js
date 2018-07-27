@@ -187,16 +187,18 @@ var Main = function () {
     connectionSection.innerHTML = I18n.t('connection');
     div.appendChild(connectionSection);
 
-    var textField = document.createElement('input');
-    textField.type = "text";
-    textField.id = "conn_id";
-    textField.placeholder = I18n.t("connection_id");
-    textField.value = Math.random().toString(36).slice(-10);
-    textField.addEventListener('click', function () {
-      textField.select();
-      document.execCommand("Copy");
-    });
-    div.appendChild(textField);
+    if (!DEMO_MODE) {
+      var _textField = document.createElement('input');
+      _textField.type = "text";
+      _textField.id = "conn_id";
+      _textField.placeholder = I18n.t("connection_id");
+      _textField.value = Math.random().toString(36).slice(-10);
+      _textField.addEventListener('click', function () {
+        _textField.select();
+        document.execCommand("Copy");
+      });
+      div.appendChild(_textField);
+    }
 
     var connectButton = document.createElement('button');
     connectButton.innerText = I18n.t('connect');
@@ -204,48 +206,55 @@ var Main = function () {
     document.body.appendChild(div);
     div.style.marginBottom = '10px';
     connectButton.addEventListener('click', function () {
-      if (textField.value.length == 0) {
-        // alert("Blank ID is invalid.");
-        alert(I18n.t("blank_id_is_invalid"));
+      if (DEMO_MODE) {
+        _this.connect();
       } else {
-        _this.connect(textField.value);
+        if (textField.value.length == 0) {
+          alert(I18n.t("blank_id_is_invalid"));
+        } else {
+          _this.connect(textField.value);
+        }
       }
     });
 
-    var helpDiv = document.createElement('div');
-    helpDiv.style.fontSize = "14px";
-    helpDiv.style.marginBottom = '20px';
-    helpDiv.innerHTML = I18n.t("help_text");
-    div.appendChild(helpDiv);
+    if (!DEMO_MODE) {
+      var helpDiv = document.createElement('div');
+      helpDiv.style.fontSize = "14px";
+      helpDiv.style.marginBottom = '20px';
+      helpDiv.innerHTML = I18n.t("help_text");
+      div.appendChild(helpDiv);
+    }
 
-    var trainedModelSection = document.createElement('h2');
-    trainedModelSection.innerHTML = I18n.t('trained_model');
-    div.appendChild(trainedModelSection);
+    if (!DEMO_MODE) {
+      var trainedModelSection = document.createElement('h2');
+      trainedModelSection.innerHTML = I18n.t('trained_model');
+      div.appendChild(trainedModelSection);
 
-    var downloadButtonDiv = document.createElement('div');
-    var downloadButton = document.createElement('button');
-    downloadButton.innerText = I18n.t('download');
-    downloadButtonDiv.appendChild(downloadButton);
-    downloadButton.addEventListener('click', function () {
-      _this.download();
-    });
-    div.appendChild(downloadButtonDiv);
+      var downloadButtonDiv = document.createElement('div');
+      var downloadButton = document.createElement('button');
+      downloadButton.innerText = I18n.t('download');
+      downloadButtonDiv.appendChild(downloadButton);
+      downloadButton.addEventListener('click', function () {
+        _this.download();
+      });
+      div.appendChild(downloadButtonDiv);
 
-    var uploadButtonDiv = document.createElement('div');
-    var selectFiles = document.createElement('input');
-    selectFiles.id = "selectFiles";
-    selectFiles.type = "file";
-    uploadButtonDiv.appendChild(selectFiles);
+      var uploadButtonDiv = document.createElement('div');
+      var selectFiles = document.createElement('input');
+      selectFiles.id = "selectFiles";
+      selectFiles.type = "file";
+      uploadButtonDiv.appendChild(selectFiles);
 
-    var uploadButton = document.createElement('button');
-    uploadButton.innerText = I18n.t('upload');
-    uploadButtonDiv.appendChild(uploadButton);
-    uploadButton.addEventListener('click', function () {
-      _this.upload();
-    });
+      var uploadButton = document.createElement('button');
+      uploadButton.innerText = I18n.t('upload');
+      uploadButtonDiv.appendChild(uploadButton);
+      uploadButton.addEventListener('click', function () {
+        _this.upload();
+      });
 
-    uploadButtonDiv.style.marginBottom = '20px';
-    div.appendChild(uploadButtonDiv);
+      uploadButtonDiv.style.marginBottom = '20px';
+      div.appendChild(uploadButtonDiv);
+    }
 
     var trainingSection = document.createElement('h2');
     trainingSection.innerHTML = I18n.t('training');
@@ -386,9 +395,12 @@ var Main = function () {
   }, {
     key: 'connect',
     value: function connect(connId) {
-      this.ws = new WebSocket('wss://ml2scratch-helper.glitch.me/');
-
-      this.connId = connId;
+      if (DEMO_MODE) {
+        this.ws = new WebSocket('ws://localhost:8080/ml');
+      } else {
+        this.ws = new WebSocket('wss://ml2scratch-helper.glitch.me/');
+        this.connId = connId;
+      }
     }
   }, {
     key: 'download',
