@@ -68,7 +68,7 @@ String.prototype.sprintf = function () {
 
 var LOCALIZED_TEXT = {
   ja: {
-    menu: "<a href=\"?lang=en\">English</a> | <a href=\"https://github.com/champierre/ml2scratch\">GitHub</a>",
+    menu: "<a href=\"?lang=en\">English</a> | <a href=\"?lang=zh_cn\">简体中文</a> | <a href=\"https://github.com/champierre/ml2scratch\">GitHub</a>",
     connection: "接続",
     trained_model: "学習モデル",
     training: "学習",
@@ -85,7 +85,7 @@ var LOCALIZED_TEXT = {
     help_text: "&uarr; <a href=\"http://scratchx.org/?url=https://champierre.github.io/ml2scratch/ml2scratch.js\" target=\"_blank\">拡張機能を読み込んだScratchX</a>のページを開いて、上記の接続IDを「ID: [ ]で接続する」ブロックにコピー&ペーストしてください。"
   },
   en: {
-    menu: "<a href=\"?lang=ja\">日本語</a> | <a href=\"https://github.com/champierre/ml2scratch\">GitHub</a>",
+    menu: "<a href=\"?lang=ja\">日本語</a> | <a href=\"?lang=zh_cn\">简体中文</a> | <a href=\"https://github.com/champierre/ml2scratch\">GitHub</a>",
     connection: "Connect",
     trained_model: "Trained Model",
     training: "Training",
@@ -96,6 +96,23 @@ var LOCALIZED_TEXT = {
     examples: "examples",
     train: 'Train %s',
     clear: 'Clear %s',
+    clear_all: 'Clear all',
+    download: 'Download',
+    upload: 'Upload',
+    help_text: "&uarr; Open <a href=\"http://scratchx.org/?url=https://champierre.github.io/ml2scratch/ml2scratch.js\" target=\"_blank\">ScratchX with extension loaded</a> and use this ID when you connect."
+  },
+  zh_cn: {
+    menu: "<a href=\"?lang=en\">English</a> | <a href=\"?lang=ja\">日本語</a> | <a href=\"https://github.com/champierre/ml2scratch\">GitHub</a>",
+    connection: "连接",
+    trained_model: "Trained Model",
+    training: "Training",
+    connect: "连接",
+    connection_id: "Connection ID",
+    blank_id_is_invalid: "Blank ID is invalid.",
+    no_examples_added: "No examples added",
+    examples: "examples",
+    train: '学习类别 %s',
+    clear: '重置类别 %s',
     clear_all: 'Clear all',
     download: 'Download',
     upload: 'Upload',
@@ -122,6 +139,8 @@ var I18n = function () {
       }
       if (lang == 'ja') {
         return LOCALIZED_TEXT['ja'][key].sprintf(arg);
+      } else if (lang == 'zh_cn') {
+        return LOCALIZED_TEXT['zh_cn'][key].sprintf(arg);
       } else {
         return LOCALIZED_TEXT['en'][key].sprintf(arg);
       }

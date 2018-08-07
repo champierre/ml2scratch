@@ -118,7 +118,7 @@
       return class_index;
     }
 
-    var lang = ((navigator.language || navigator.userLanguage) == 'ja') ? 'ja' : 'en';
+    var lang = ((navigator.language || navigator.userLanguage) == 'ja') ? 'ja' : (((navigator.language || navigator.userLanguage) == 'zh-CN') ? 'zh_cn' : 'en');
     var locale = {
         ja: {
             connect: '接続する',
@@ -150,6 +150,21 @@
             when_received_9: 'when received label 9',
             class_index: 'class index'
         },
+        zh_cn: {
+            connect: '用ID: [ %s ]连接',
+            when_received: 'when received',
+            when_received_0: '接收到类别0时',
+            when_received_1: '接收到类别1时',
+            when_received_2: '接收到类别2时',
+            when_received_3: '接收到类别3时',
+            when_received_4: '接收到类别4时',
+            when_received_5: '接收到类别5时',
+            when_received_6: '接收到类别6时',
+            when_received_7: '接收到类别7时',
+            when_received_8: '接收到类别8时',
+            when_received_9: '接收到类别9时',
+            class_index: '类索引'
+        }
     }
 
     var descriptor = {

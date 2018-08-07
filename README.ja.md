@@ -2,7 +2,7 @@
 
 ML2Scratchは機械学習(TensorFlow.js)をScratchXとをつなげます。
 
-*Read this in other languages: [English](README.md), [日本語](README.ja.md).*
+*Read this in other languages: [English](README.md), [日本語](README.ja.md), [简体中文](README.zh-cn.md).*
 
 ## 環境
 
@@ -10,8 +10,8 @@ ML2Scratchは機械学習(TensorFlow.js)をScratchXとをつなげます。
 
 ## デモ動画
 
-- Webカメラでグー、チョキ、パーを判定 [YouTube](https://www.youtube.com/watch?v=DkH1hwc-Gb4) [.mov file](https://s3.amazonaws.com/champierre/movies/rsp_demo.mov)
-- ジェスチャーで倒立2輪ロボットMiPを動かす [YouTube](https://www.youtube.com/watch?v=GKXimEB5WQg) [.mov file](https://s3.amazonaws.com/champierre/movies/mip_demo.mov)
+- Webカメラでグー、チョキ、パーを判定 [YouTube](https://www.youtube.com/watch?v=DkH1hwc-Gb4) | [.mov file](https://s3.amazonaws.com/champierre/movies/rsp_demo.mov)
+- ジェスチャーで倒立2輪ロボットMiPを動かす [YouTube](https://www.youtube.com/watch?v=GKXimEB5WQg) | [.mov file](https://s3.amazonaws.com/champierre/movies/mip_demo.mov)
 
 ## 使い方
 
