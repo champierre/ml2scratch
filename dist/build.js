@@ -104,19 +104,19 @@ var LOCALIZED_TEXT = {
   zh_cn: {
     menu: "<a href=\"?lang=en\">English</a> | <a href=\"?lang=ja\">日本語</a> | <a href=\"https://github.com/champierre/ml2scratch\">GitHub</a>",
     connection: "连接",
-    trained_model: "Trained Model",
-    training: "Training",
+    trained_model: "学习模型",
+    training: "学习",
     connect: "连接",
-    connection_id: "Connection ID",
+    connection_id: "连接ID",
     blank_id_is_invalid: "Blank ID is invalid.",
-    no_examples_added: "No examples added",
+    no_examples_added: "尚未学习",
     examples: "examples",
     train: '学习类别 %s',
     clear: '重置类别 %s',
-    clear_all: 'Clear all',
-    download: 'Download',
-    upload: 'Upload',
-    help_text: "&uarr; Open <a href=\"http://scratchx.org/?url=https://champierre.github.io/ml2scratch/ml2scratch.js\" target=\"_blank\">ScratchX with extension loaded</a> and use this ID when you connect."
+    clear_all: '重置所有类别',
+    download: '下载',
+    upload: '上传',
+    help_text: "&uarr; 打开 <a href=\"http://scratchx.org/?url=https://champierre.github.io/ml2scratch/ml2scratch.js\" target=\"_blank\">已加入扩展功能的ScratchX</a>的页面，把上面的连接ID拷贝到[Connect with ID: []]模块的空白处。"
   }
 };
 
@@ -206,17 +206,18 @@ var Main = function () {
     connectionSection.innerHTML = I18n.t('connection');
     div.appendChild(connectionSection);
 
+    var textField = document.createElement('input');
+    textField.type = "text";
+    textField.id = "conn_id";
+    textField.placeholder = I18n.t("connection_id");
+    textField.value = Math.random().toString(36).slice(-10);
+    textField.addEventListener('click', function () {
+      textField.select();
+      document.execCommand("Copy");
+    });
+
     if (!DEMO_MODE) {
-      var _textField = document.createElement('input');
-      _textField.type = "text";
-      _textField.id = "conn_id";
-      _textField.placeholder = I18n.t("connection_id");
-      _textField.value = Math.random().toString(36).slice(-10);
-      _textField.addEventListener('click', function () {
-        _textField.select();
-        document.execCommand("Copy");
-      });
-      div.appendChild(_textField);
+      div.appendChild(textField);
     }
 
     var connectButton = document.createElement('button');
