@@ -5,6 +5,16 @@
 @import "styles/config/mixins";
 @import "styles/config/images";
 
+@import "styles/components/logo";
+@import "styles/components/icon";
+@import "styles/components/card";
+@import "styles/components/card-block";
+@import "styles/components/button";
+@import "styles/components/input";
+@import "styles/components/progress";
+@import "styles/components/header";
+@import "styles/components/title-block";
+
 // basic styles
 
 html {
@@ -32,6 +42,8 @@ p {
   @include font(.8125rem, 1.4rem);
 }
 
+// override styles
+
 .container {
   &.is-min {
     max-width: 500px;
@@ -39,245 +51,7 @@ p {
   }
 }
 
-.header {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  padding: 60px 0 40px;
-
-  &__links {
-    flex: 1 0 100%;
-    text-align: center;
-    margin-top: 40px;
-
-    ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      li {
-        display: inline-block;
-
-        &:before {
-          @include font(.75rem);
-          content: '|';
-          display: inline-block;
-          margin: 0 .2rem;
-        }
-
-        &:first-child {
-          &:before {
-            display: none;
-          }
-        }
-
-        a {
-          @include font(.875rem);
-          color: $color-black;
-          text-decoration: none;
-
-          &:hover {
-            color: $color-blue;
-            text-decoration: underline;
-          }
-        }
-      }
-    }
-  }
-}
-
-.action {
-  padding: 20px 0 0;
-  text-align: center;
-}
-
-.logo {
-  @include hide-text;
-  @include background-svg(260px, 51px, $svg-logo);
-  vertical-align: middle;
-}
-
-.icon {
-  vertical-align: middle;
-
-  &-camera {
-    @include background-svg(33px, 30px, $svg-camera);
-
-    &.is-mini {
-      @include background-svg(33px * .6, 30px * .6, $svg-camera);
-    }
-  }
-  &-dots {
-    @include background-svg(20px, 4px, $svg-dots);
-  }
-  &-dots-white {
-    @include background-svg(20px, 4px, $svg-dots-white);
-  }
-  &-photos {
-    @include background-svg(15px, 13px, $svg-photos);
-  }
-}
-
-
-.card {
-  $b: &;
-  position: relative;
-  border-style: solid;
-  border-width: (30px/2) (30px/2) (54px/2) (240px/2);
-  border-image: url('../images/bg-card.png') 30 30 54 240 fill repeat;
-  background-color: transparent;
-  box-sizing: border-box;
-  margin-bottom: -10px;
-  width: 100%;
-
-  &.is-debug {
-    min-height: 200px;
-  }
-
-  &.is-top {
-    border-width: (60px/2) (30px/2) (54px/2) (260px/2);
-    border-image: url('../images/bg-card-top.png') 60 30 54 260 fill repeat;
-
-    #{$b}__inner {
-      $p: 30px;
-      margin: (-30px+$p+10px) (-15px+$p) (-27px+$p+10px) (-130px+$p);
-    }
-  }
-
-  #{$b}__inner {
-    $p: 30px;
-    margin: (-10px+$p) (-15px+$p) (-27px+$p+15px) (-120px+$p);
-  }
-}
-
-.card-button-container {
-  margin: 0 4px;
-}
-
-.card-button {
-  $b: &;
-
-  position: relative;
-  border-style: solid;
-  border-width: (80px/2) (26px/2) 0 (236px/2);
-  border-image: url('../images/bg-card-button.png') 80 26 0 236 fill repeat;
-  display: inline-block;
-  background-color: transparent;
-  box-sizing: border-box;
-  width: 100%;
-
-  #{$b}__inner {
-    $p: 30px;
-    $p-margin: -30px;
-    margin: (-40px+$p) (-13px+$p+$p-margin) 0 (-118px+$p+$p-margin);
-    background-color: $color-orange-dark;
-    padding: 0 20px 24px;
-    border-radius: 4px;
-  }
-
-  $thickness: 4px;
-  color: #fff;
-  text-decoration: none;
-  text-align: center;
-  margin: 6px 0 0;
-  box-shadow: 0 $thickness 0 darken($color-orange-dark, 15%);
-  border-radius: 4px;
-  transform: translateY(-$thickness);
-  transition: transform .2s ease-out;
-
-  &:hover {
-    border-image: url('../images/bg-card-button-hover.png') 80 26 0 236 fill repeat;
-    color: #fff;
-    text-decoration: none;
-    box-shadow: 0 0 0 darken($color-orange-dark, 15%);
-    transform: translateY(-1px);
-
-    #{$b}__inner {
-      background-color: #D85F37;
-    }
-  }
-}
-
-.card-block-container {
-  $m: 8px;
-  display: flex;
-  overflow-x: scroll;
-  margin-left: -$m;
-  margin-right: -$m;
-  padding-bottom: $m;
-
-  > * {
-    margin-left: $m;
-    margin-right: $m;
-  }
-
-  .card-block {
-    &:nth-child(1),
-    &:nth-child(4) {
-      background-color: $color-block0;
-    }
-    &:nth-child(2),
-    &:nth-child(5) {
-      background-color: $color-block1;
-    }
-    &:nth-child(3),
-    &:nth-child(6) {
-      background-color: $color-block2;
-    }
-  }
-}
-
-.title-block {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 0 15px 0;
-
-  h3 {
-    margin: 0;
-  }
-}
-
-.card-block {
-  box-shadow: $box-shadow;
-  display: block;
-  width: 140px;
-  padding: 20px 20px 15px 20px;
-  border-radius: 10px;
-  background-color: $color-block0;
-
-  &__info {
-    @include font(.875rem);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 0 15px 0;
-    color: #fff;
-  }
-}
-
-.card-dropdown-menu {
-  background: #fff;
-  border-radius: 5px;
-  min-width: 0;
-  padding: 5px 0;
-  box-shadow: $box-shadow;
-  left: 20px !important;
-  border: 0;
-
-  .dropdown-item {
-    @include font(.875rem);
-    padding: .25rem 1.5rem;
-    text-align: center;
-
-    &:hover {
-      background: lighten($color-bg, 5%);
-    }
-  }
-}
+// dammy
 
 .dammy-photo {
   background-color: #000;
@@ -287,96 +61,5 @@ p {
 
   &.is-lg {
     height: 270px;
-  }
-}
-
-.button {
-  $emboss-size: 4px;
-
-  @include font(.9375rem, 1, 700);
-  @include button-emboss(10px 20px, $color-orange, #fff, $emboss-size, 4px)
-  vertical-align: middle;
-
-  &:hover {
-    color: #fff;
-  }
-
-  &.is-w100 {
-    width: 100px;
-  }
-}
-
-.input-group {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  .input,
-  .input-file {
-    flex: 1 0 auto;
-    margin-right: .6rem;
-  }
-}
-
-.input {
-  @include input;
-
-  &:hover {
-    background: $color-select;
-  }
-}
-
-.input-file {
-  @include input-base(0 12px);
-  @include font(.875rem, 22px);
-  color: #aaa;
-  box-shadow: $box-shadow;
-  background-color: #fff;
-  display: block;
-  border-radius: 4px;
-  vertical-align: middle;
-  cursor: pointer;
-  margin-top: -4px;
-
-  &:hover {
-    background: $color-select;
-  }
-
-  &:active {
-    transform: translateY(2px);
-    box-shadow: 0 1px 2px rgba(0, 0, 0, .1);
-  }
-
-  &.has-file {
-    color: $color-black;
-  }
-
-  input {
-    display: none;
-  }
-}
-
-.progress {
-  display: flex;
-  height: 100px;
-  border-radius: 4px;
-
-  .bar {
-    flex: 1 1 1px;
-    height: 100px;
-    transition: flex-basis .2s ease-out;
-
-    &:nth-child(1),
-    &:nth-child(4) {
-      background-color: $color-block0;
-    }
-    &:nth-child(2),
-    &:nth-child(5) {
-      background-color: $color-block1;
-    }
-    &:nth-child(3),
-    &:nth-child(6) {
-      background-color: $color-block2;
-    }
   }
 }

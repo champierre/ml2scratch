@@ -1,0 +1,49 @@
+.input-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .input,
+  .input-file {
+    flex: 1 0 auto;
+    margin-right: .6rem;
+  }
+}
+
+.input {
+  @include input;
+
+  &:hover {
+    background: $color-select;
+  }
+}
+
+.input-file {
+  @include input-base(0 12px);
+  @include font(.875rem, 22px);
+  color: #aaa;
+  box-shadow: $box-shadow;
+  background-color: #fff;
+  display: block;
+  border-radius: 4px;
+  vertical-align: middle;
+  cursor: pointer;
+  margin-top: -4px;
+
+  &:hover {
+    background: $color-select;
+  }
+
+  &:active {
+    transform: translateY(2px);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .1);
+  }
+
+  &.has-file {
+    color: $color-black;
+  }
+
+  input {
+    display: none;
+  }
+}

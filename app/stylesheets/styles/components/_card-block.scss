@@ -1,0 +1,47 @@
+.card-block {
+  box-shadow: $box-shadow;
+  display: block;
+  width: 140px;
+  padding: 20px 20px 15px 20px;
+  border-radius: 10px;
+  background-color: $color-block0;
+
+  &__info {
+    @include font(.875rem);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0 15px 0;
+    color: #fff;
+  }
+}
+
+
+.card-block-container {
+  $m: 8px;
+  display: flex;
+  overflow-x: scroll;
+  margin-left: -$m;
+  margin-right: -$m;
+  padding-bottom: $m;
+
+  > * {
+    margin-left: $m;
+    margin-right: $m;
+  }
+
+  .card-block {
+    &:nth-child(1),
+    &:nth-child(4) {
+      background-color: $color-block0;
+    }
+    &:nth-child(2),
+    &:nth-child(5) {
+      background-color: $color-block1;
+    }
+    &:nth-child(3),
+    &:nth-child(6) {
+      background-color: $color-block2;
+    }
+  }
+}

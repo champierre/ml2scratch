@@ -1,0 +1,20 @@
+.icon {
+  vertical-align: middle;
+
+  &-camera {
+    @include background-svg(33px, 30px, $svg-camera);
+
+    &.is-mini {
+      @include background-svg(33px * .6, 30px * .6, $svg-camera);
+    }
+  }
+  &-dots {
+    @include background-svg(20px, 4px, $svg-dots);
+  }
+  &-dots-white {
+    @include background-svg(20px, 4px, $svg-dots-white);
+  }
+  &-photos {
+    @include background-svg(15px, 13px, $svg-photos);
+  }
+}
