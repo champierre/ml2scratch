@@ -1,0 +1,24 @@
+.progress {
+  display: flex;
+  height: 100px;
+  border-radius: 4px;
+
+  .bar {
+    flex: 1 1 1px;
+    height: 100px;
+    transition: flex-basis .2s ease-out;
+
+    &:nth-child(1),
+    &:nth-child(4) {
+      background-color: $color-block0;
+    }
+    &:nth-child(2),
+    &:nth-child(5) {
+      background-color: $color-block1;
+    }
+    &:nth-child(3),
+    &:nth-child(6) {
+      background-color: $color-block2;
+    }
+  }
+}

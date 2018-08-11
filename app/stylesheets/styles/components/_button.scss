@@ -1,0 +1,15 @@
+.button {
+  $emboss-size: 4px;
+
+  @include font(.9375rem, 1, 700);
+  @include button-emboss(10px 20px, $color-orange, #fff, $emboss-size, 4px)
+  vertical-align: middle;
+
+  &:hover {
+    color: #fff;
+  }
+
+  &.is-w100 {
+    width: 100px;
+  }
+}

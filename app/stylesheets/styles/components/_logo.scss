@@ -1,0 +1,5 @@
+.logo {
+  @include hide-text;
+  @include background-svg(260px, 51px, $svg-logo);
+  vertical-align: middle;
+}

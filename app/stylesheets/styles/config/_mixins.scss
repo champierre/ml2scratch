@@ -1,0 +1,30 @@
+@mixin font($size: 1em, $line-height: normal, $weight: 400) {
+  font-family: 'Noto Sans', sans-serif;
+  font-size: $size;
+  font-weight: $weight;
+  line-height: $line-height;
+}
+
+@mixin input {
+  @include reset-form;
+  @include input-base(auto, 10px 10px);
+  @include font(.875rem);
+
+  $color-bg-select: #fffff2;
+
+  border: 1px solid transparent;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .2) inset;
+  background: #fff;
+  vertical-align: middle;
+  margin: 0;
+
+  &::placeholder {
+    color: #aaa;
+  }
+
+  &:focus {
+    border: 1px solid $color-orange;
+    background: $color-bg-select;
+  }
+}

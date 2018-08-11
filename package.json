@@ -3,13 +3,31 @@
   "version": "0.0.4",
   "license": "",
   "dependencies": {
+    "autoprefixer": "^8.2.0",
+    "bootstrap": "^4.0.0",
+    "css-loader": "^0.28.7",
     "deeplearn": "~0.5.0",
     "deeplearn-knn-image-classifier": "^0.4.2",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "file-saver": "^1.3.8",
-    "pre-commit": "^1.2.2"
+    "jquery": "^3.3.1",
+    "node-sass": "^4.9.2",
+    "popper.js": "^1.14.3",
+    "postcss-loader": "^2.0.10",
+    "pre-commit": "^1.2.2",
+    "sass-loader": "^6.0.6",
+    "spuit": "0.0.11",
+    "style-loader": "^0.20.3",
+    "uglifyjs-webpack-plugin": "^1.2.4",
+    "url-loader": "^1.0.1",
+    "webpack": "^4.4.1",
+    "webpack-cli": "^2.0.13",
+    "webpack-dev-server": "^3.1.1",
+    "webpack-manifest-plugin": "^2.0.0-rc.2"
   },
   "scripts": {
     "start": "budo main.js:dist/build.js --live --host localhost",
+    "dev": "open http://localhost:8080/styleguide.html && webpack-dev-server --progress --mode development --config webpack/webpack.config.js",
     "build": "browserify main.js -o dist/build.js"
   },
   "pre-commit": [

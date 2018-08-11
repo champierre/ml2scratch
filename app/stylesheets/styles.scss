@@ -1,0 +1,65 @@
+@import "~bootstrap/scss/bootstrap";
+@import "~spuit";
+
+@import "styles/config/variables";
+@import "styles/config/mixins";
+@import "styles/config/images";
+
+@import "styles/components/logo";
+@import "styles/components/icon";
+@import "styles/components/card";
+@import "styles/components/card-block";
+@import "styles/components/button";
+@import "styles/components/input";
+@import "styles/components/progress";
+@import "styles/components/header";
+@import "styles/components/title-block";
+
+// basic styles
+
+html {
+  font-size: 100%;
+  @include breakpoint-down(md) {
+    font-size: 80%;
+  }
+}
+
+body {
+  @include font(1rem);
+  color: $color-black;
+  background: $color-bg;
+  background-image: url('../images/bg-pattern.png');
+  background-size: 400px 400px;
+  background-repeat: repeat;
+}
+
+h3 {
+  @include font(1.125rem, 1.8rem, 700);
+  margin-bottom: 5px;
+}
+
+p {
+  @include font(.8125rem, 1.4rem);
+}
+
+// override styles
+
+.container {
+  &.is-min {
+    max-width: 500px;
+    // margin-left: 15px;
+  }
+}
+
+// dammy
+
+.dammy-photo {
+  background-color: #000;
+  width: 100%;
+  height: 76px;
+  border-radius: 5px;
+
+  &.is-lg {
+    height: 270px;
+  }
+}

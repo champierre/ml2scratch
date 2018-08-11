@@ -1,0 +1,103 @@
+.card {
+  $b: &;
+  position: relative;
+  border-style: solid;
+  border-width: (30px/2) (30px/2) (54px/2) (240px/2);
+  border-image: url('../images/bg-card.png') 30 30 54 240 fill repeat;
+  background-color: transparent;
+  box-sizing: border-box;
+  margin-bottom: -10px;
+  width: 100%;
+
+  &.is-debug {
+    min-height: 200px;
+  }
+
+  &.is-top {
+    border-width: (60px/2) (30px/2) (54px/2) (260px/2);
+    border-image: url('../images/bg-card-top.png') 60 30 54 260 fill repeat;
+
+    #{$b}__inner {
+      $p: 30px;
+      margin: (-30px+$p+10px) (-15px+$p) (-27px+$p+10px) (-130px+$p);
+    }
+  }
+
+  #{$b}__inner {
+    $p: 30px;
+    margin: (-10px+$p) (-15px+$p) (-27px+$p+15px) (-120px+$p);
+  }
+
+  #{$b}__action {
+    padding: 20px 0 0;
+    text-align: center;
+  }
+}
+
+.card-button-container {
+  margin: 0 4px;
+}
+
+.card-button {
+  $b: &;
+
+  position: relative;
+  border-style: solid;
+  border-width: (80px/2) (26px/2) 0 (236px/2);
+  border-image: url('../images/bg-card-button.png') 80 26 0 236 fill repeat;
+  display: inline-block;
+  background-color: transparent;
+  box-sizing: border-box;
+  width: 100%;
+
+  #{$b}__inner {
+    $p: 30px;
+    $p-margin: -30px;
+    margin: (-40px+$p) (-13px+$p+$p-margin) 0 (-118px+$p+$p-margin);
+    background-color: $color-orange-dark;
+    padding: 0 20px 24px;
+    border-radius: 4px;
+  }
+
+  $thickness: 4px;
+  color: #fff;
+  text-decoration: none;
+  text-align: center;
+  margin: 6px 0 0;
+  box-shadow: 0 $thickness 0 darken($color-orange-dark, 15%);
+  border-radius: 4px;
+  transform: translateY(-$thickness);
+  transition: transform .2s ease-out;
+
+  &:hover {
+    border-image: url('../images/bg-card-button-hover.png') 80 26 0 236 fill repeat;
+    color: #fff;
+    text-decoration: none;
+    box-shadow: 0 0 0 darken($color-orange-dark, 15%);
+    transform: translateY(-1px);
+
+    #{$b}__inner {
+      background-color: #D85F37;
+    }
+  }
+}
+
+.card-dropdown-menu {
+  background: #fff;
+  border-radius: 5px;
+  min-width: 0;
+  padding: 5px 0;
+  box-shadow: $box-shadow;
+  left: 20px !important;
+  border: 0;
+
+  .dropdown-item {
+    @include font(.875rem);
+    padding: .25rem 1.5rem;
+    text-align: center;
+
+    &:hover {
+      background: lighten($color-bg, 5%);
+    }
+  }
+}
