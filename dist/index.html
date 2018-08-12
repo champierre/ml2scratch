@@ -50,17 +50,19 @@
 						<div class="title-block">
 							<h3>入力</h3>
 						</div>
-						<div class="dummy-photo is-lg"></div>
+						<div class="is-lg">
+              <video autoplay="" playsinline="" width="410" height="270"></video>
+            </div>
 
-						<div class="card__action">
+						<!-- <div class="card__action">
 							<a href="#" class="button is-w100">
 								<i class="icon-camera"></i>
 							</a>
-						</div>
+						</div> -->
 					</div>
 				</div>
 
-				<div class="card">
+				<div class="card" id="learning">
 					<div class="card__inner">
 
 						<div class="title-block">
@@ -70,7 +72,8 @@
 									<i class="icon-dots"></i>
 								</a>
 								<div class="card-dropdown-menu dropdown-menu dropdown-menu-right">
-									<a class="dropdown-item" href="#">削除</a>
+                  <a class="dropdown-item" href="#" id="add-card">追加</a>
+                  <a class="dropdown-item" href="#" id="clear-all">すべてをリセット</a>
 								</div>
 							</div>
 						</div>
@@ -79,7 +82,7 @@
 
 							<!-- card-block -->
 							<div class="card-block">
-								<div class="dummy-photo"></div>
+								<!-- <div class="dummy-photo"></div> -->
 
 								<div class="card-block__info">
 									<span>
@@ -91,7 +94,7 @@
 											<i class="icon-dots-white"></i>
 										</a>
 										<div class="card-dropdown-menu dropdown-menu dropdown-menu-right">
-											<a class="dropdown-item" href="#">削除</a>
+											<a class="dropdown-item" href="#">リセット</a>
 										</div>
 									</div>
 								</div>
@@ -103,7 +106,7 @@
 
 							<!-- card-block -->
 							<div class="card-block">
-								<div class="dummy-photo"></div>
+								<!-- <div class="dummy-photo"></div> -->
 
 								<div class="card-block__info">
 									<span>
@@ -115,7 +118,7 @@
 											<i class="icon-dots-white"></i>
 										</a>
 										<div class="card-dropdown-menu dropdown-menu dropdown-menu-right">
-											<a class="dropdown-item" href="#">削除</a>
+											<a class="dropdown-item" href="#">リセット</a>
 										</div>
 									</div>
 								</div>
@@ -127,7 +130,7 @@
 
 							<!-- card-block -->
 							<div class="card-block">
-								<div class="dummy-photo"></div>
+								<!-- <div class="dummy-photo"></div> -->
 
 								<div class="card-block__info">
 									<span>
@@ -139,7 +142,7 @@
 											<i class="icon-dots-white"></i>
 										</a>
 										<div class="card-dropdown-menu dropdown-menu dropdown-menu-right">
-											<a class="dropdown-item" href="#">削除</a>
+											<a class="dropdown-item" href="#">リセット</a>
 										</div>
 									</div>
 								</div>
@@ -149,25 +152,6 @@
 								</a>
 							</div>
 
-						</div>
-
-					</div>
-				</div>
-
-				<div class="card">
-					<div class="card__inner">
-
-						<div class="title-block">
-							<h3>学習済みモデル</h3>
-						</div>
-						<p>学習済みのモデルをアップロードして、学習に追加で組み込みます</p>
-
-						<div class="input-group mt-4">
-							<label class="input-file">
-								<input type="file" name="" data-file />
-								<span data-file-name>Choose file...</span>
-							</label>
-							<button class="button">追 加</button>
 						</div>
 
 					</div>
@@ -196,6 +180,25 @@
 
 					</div>
 				</div>
+
+        <div class="card">
+          <div class="card__inner">
+
+            <div class="title-block">
+              <h3>学習済みモデル</h3>
+            </div>
+            <p>学習済みのモデルをアップロードして、学習に追加で組み込みます</p>
+
+            <div class="input-group mt-4">
+              <label class="input-file">
+                <input type="file" name="" data-file />
+                <span data-file-name>Choose file...</span>
+              </label>
+              <button class="button">追 加</button>
+            </div>
+
+          </div>
+        </div>
 
 				<div class="card">
 					<div class="card__inner">
