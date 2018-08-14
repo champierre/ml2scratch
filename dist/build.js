@@ -376,7 +376,6 @@ var Main = function () {
         var image = dl.fromPixels(this.video);
 
         // Train class if one of the buttons is held down
-        console.log(this.training);
         if (this.training != -1) {
           // Add current image to classifier
           this.knn.addImage(image, this.training);
