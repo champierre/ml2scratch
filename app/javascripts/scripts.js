@@ -179,6 +179,16 @@ class Main {
       button.addEventListener('mouseup', () => this.training = -1);
     }
 
+    $('.conn-id').val(Math.random().toString(36).slice(-10));
+
+    $('.connect-button').on('click', (e)=> {
+      let connId = $(e.target).closest('.input-group').find('input').val();
+      this.connect(connId);
+      return false;
+    });
+
+    $(".scratchx-link").attr('href', 'http://scratchx.org/?url=https://champierre.github.io/ml2scratch/ml2scratch.js');
+
     // Setup webcam
     navigator.mediaDevices.getUserMedia({video: true, audio: false})
     .then((stream) => {
