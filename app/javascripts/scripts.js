@@ -57,60 +57,76 @@ String.prototype.sprintf = function()
 const LOCALIZED_TEXT = {
   ja: {
     menu: "<a href=\"?lang=en\">English</a> | <a href=\"?lang=zh_cn\">简体中文</a> | <a href=\"https://github.com/champierre/ml2scratch\">GitHub</a>",
+    input: "入力",
     connection: "接続",
-    trained_model: "学習モデル",
+    trained_model: "学習済みモデル",
+    trained_model_text: "学習済みのモデルをアップロードして、これまで学習したモデルと入れ替えます。",
     training: "学習",
-    connect: "接続する",
+    connect: "接続",
     connection_id: "接続ID",
+    recognition: '認識',
     blank_id_is_invalid: "接続IDを入力してください。",
     no_examples_added: "まだ学習していません",
     examples: "枚",
     train: '「分類%s」として学習する',
-    clear: '「分類%s」をリセットする',
-    clear_all: 'すべての分類をリセット',
-    download: 'ダウンロード',
+    clear: 'リセット',
+    clear_all: 'すべてをリセット',
+    download: '学習済みモデルをダウンロード',
     upload: 'アップロード',
-    help_text: "&uarr; <a href=\"http://scratchx.org/?url=https://champierre.github.io/ml2scratch/ml2scratch.js\" target=\"_blank\">拡張機能を読み込んだScratchX</a>のページを開いて、上記の接続IDを「ID: [ ]で接続する」ブロックにコピー&ペーストしてください。"
+    help_text: "拡張機能を読み込んだScratchXのページを開いて、上記の接続IDを「ID: [ ]で接続する」ブロックにコピー&ペーストしてください。",
+    open_scratchx: 'ScratchXを開く'
   },
   en: {
     menu: "<a href=\"?lang=ja\">日本語</a> | <a href=\"?lang=zh_cn\">简体中文</a> | <a href=\"https://github.com/champierre/ml2scratch\">GitHub</a>",
+    input: "Input",
     connection: "Connect",
     trained_model: "Trained Model",
+    trained_model_text: 'Upload trained model.',
     training: "Training",
     connect: "Connect",
     connection_id: "Connection ID",
+    recognition: 'Recognition',
     blank_id_is_invalid: "Blank ID is invalid.",
     no_examples_added: "No examples added",
     examples: "examples",
     train: 'Train %s',
-    clear: 'Clear %s',
-    clear_all: 'Clear all',
-    download: 'Download',
+    clear: 'Reset',
+    clear_all: 'Reset all',
+    download: 'Download trained model',
     upload: 'Upload',
-    help_text: "&uarr; Open <a href=\"http://scratchx.org/?url=https://champierre.github.io/ml2scratch/ml2scratch.js\" target=\"_blank\">ScratchX with extension loaded</a> and use this ID when you connect."
+    help_text: "&uarr; Open <a href=\"http://scratchx.org/?url=https://champierre.github.io/ml2scratch/ml2scratch.js\" target=\"_blank\">ScratchX with extension loaded</a> and use this ID when you connect.",
+    open_scratchx: 'Open ScratchX'
   },
   zh_cn: {
     menu: "<a href=\"?lang=en\">English</a> | <a href=\"?lang=ja\">日本語</a> | <a href=\"https://github.com/champierre/ml2scratch\">GitHub</a>",
+    input: "输入",
     connection: "连接",
     trained_model: "学习模型",
+    trained_model_text: "上传学习模型",
     training: "学习",
     connect: "连接",
     connection_id: "连接ID",
+    recognition: "承认",
     blank_id_is_invalid: "Blank ID is invalid.",
     no_examples_added: "尚未学习",
     examples: "examples",
     train: '学习类别 %s',
-    clear: '重置类别 %s',
+    clear: '重置类别',
     clear_all: '重置所有类别',
     download: '下载',
     upload: '上传',
-    help_text: "&uarr; 打开 <a href=\"http://scratchx.org/?url=https://champierre.github.io/ml2scratch/ml2scratch.js\" target=\"_blank\">已加入扩展功能的ScratchX</a>的页面，把上面的连接ID拷贝到[Connect with ID: []]模块的空白处。"
+    help_text: "&uarr; 打开<a href=\"http://scratchx.org/?url=https://champierre.github.io/ml2scratch/ml2scratch.js\" target=\"_blank\">已加入扩展功能的ScratchX</a>的页面，把上面的连接ID拷贝到[Connect with ID: []]模块的空白处。",
+    open_scratchx: '打开ScratchX'
   }
 }
 
 class I18n {
   constructor(){
     window.I18n = this;
+
+    $('[data-locale]').each(function(i, el) {
+      $(el).html(I18n.t($(el).data("locale")));
+    });
   }
 
   static t(key, arg = '') {

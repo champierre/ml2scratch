@@ -33,13 +33,13 @@
 					<div class="header__links">
 						<ul>
 							<li>
-								<a href="#">日本語</a>
+								<a href="?lang=ja">日本語</a>
 							</li>
               <li>
-                <a href="#">English</a>
+                <a href="?lang=en">English</a>
               </li>
 							<li>
-								<a href="#">简体中文</a>
+								<a href="?lang=zh_cn">简体中文</a>
 							</li>
 							<li>
 								<a href="https://github.com/champierre/ml2scratch" target="_blank">GitHub</a>
@@ -51,7 +51,7 @@
 				<div class="card is-top">
 					<div class="card__inner">
 						<div class="title-block">
-							<h3>入力</h3>
+							<h3 data-locale="input"></h3>
 						</div>
 						<div class="is-lg video-container">
               <video autoplay="" playsinline="" width="227" height="227"></video>
@@ -63,13 +63,13 @@
 					<div class="card__inner">
 
 						<div class="title-block">
-							<h3>学習</h3>
+							<h3 data-locale="training"></h3>
 							<div class="dropdown">
 								<a href="#" class="link" data-toggle="dropdown">
 									<i class="icon-dots"></i>
 								</a>
 								<div class="card-dropdown-menu dropdown-menu dropdown-menu-right">
-                  <a class="dropdown-item" id="clear-all-menu" href="#">すべてをリセット</a>
+                  <a class="dropdown-item" id="clear-all-menu" href="#" data-locale="clear_all"></a>
 								</div>
 							</div>
 						</div>
@@ -90,7 +90,7 @@
 											<i class="icon-dots-white"></i>
 										</a>
 										<div class="card-dropdown-menu dropdown-menu dropdown-menu-right">
-											<a class="dropdown-item clear-menu" href="#">リセット</a>
+											<a class="dropdown-item clear-menu" href="#" data-locale="clear"></a>
 										</div>
 									</div>
 								</div>
@@ -114,7 +114,7 @@
 											<i class="icon-dots-white"></i>
 										</a>
 										<div class="card-dropdown-menu dropdown-menu dropdown-menu-right">
-											<a class="dropdown-item clear-menu" href="#">リセット</a>
+											<a class="dropdown-item clear-menu" href="#" data-locale="clear"></a>
 										</div>
 									</div>
 								</div>
@@ -138,7 +138,7 @@
 											<i class="icon-dots-white"></i>
 										</a>
 										<div class="card-dropdown-menu dropdown-menu dropdown-menu-right">
-											<a class="dropdown-item clear-menu" href="#">リセット</a>
+											<a class="dropdown-item clear-menu" href="#" data-locale="clear"></a>
 										</div>
 									</div>
 								</div>
@@ -162,7 +162,7 @@
                       <i class="icon-dots-white"></i>
                     </a>
                     <div class="card-dropdown-menu dropdown-menu dropdown-menu-right">
-                      <a class="dropdown-item clear-menu" href="#">リセット</a>
+                      <a class="dropdown-item clear-menu" href="#" data-locale="clear"></a>
                     </div>
                   </div>
                 </div>
@@ -186,7 +186,7 @@
                       <i class="icon-dots-white"></i>
                     </a>
                     <div class="card-dropdown-menu dropdown-menu dropdown-menu-right">
-                      <a class="dropdown-item clear-menu" href="#">リセット</a>
+                      <a class="dropdown-item clear-menu" href="#" data-locale="clear"></a>
                     </div>
                   </div>
                 </div>
@@ -210,7 +210,7 @@
                       <i class="icon-dots-white"></i>
                     </a>
                     <div class="card-dropdown-menu dropdown-menu dropdown-menu-right">
-                      <a class="dropdown-item clear-menu" href="#">リセット</a>
+                      <a class="dropdown-item clear-menu" href="#" data-locale="clear"></a>
                     </div>
                   </div>
                 </div>
@@ -234,7 +234,7 @@
                       <i class="icon-dots-white"></i>
                     </a>
                     <div class="card-dropdown-menu dropdown-menu dropdown-menu-right">
-                      <a class="dropdown-item clear-menu" href="#">リセット</a>
+                      <a class="dropdown-item clear-menu" href="#" data-locale="clear"></a>
                     </div>
                   </div>
                 </div>
@@ -258,7 +258,7 @@
                       <i class="icon-dots-white"></i>
                     </a>
                     <div class="card-dropdown-menu dropdown-menu dropdown-menu-right">
-                      <a class="dropdown-item clear-menu" href="#">リセット</a>
+                      <a class="dropdown-item clear-menu" href="#" data-locale="clear"></a>
                     </div>
                   </div>
                 </div>
@@ -277,13 +277,13 @@
 					<div class="card__inner">
 
 						<div class="title-block">
-							<h3>認識</h3>
+							<h3 data-locale="recognition"></h3>
 							<div class="dropdown">
 								<a href="#" class="link" data-toggle="dropdown">
 									<i class="icon-dots"></i>
 								</a>
 								<div class="card-dropdown-menu dropdown-menu dropdown-menu-right">
-									<a class="dropdown-item" id="download-button" href="#">学習済みモデルをダウンロード</a>
+									<a class="dropdown-item" id="download-button" href="#" data-locale="download"></a>
 								</div>
 							</div>
 						</div>
@@ -301,16 +301,16 @@
           <div class="card__inner">
 
             <div class="title-block">
-              <h3>学習済みモデル</h3>
+              <h3 data-locale="trained_model"></h3>
             </div>
-            <p>学習済みのモデルをアップロードして、これまで学習したモデルと入れ替えます。</p>
+            <p data-locale="trained_model_text"></p>
 
             <div class="input-group mt-4">
               <label class="input-file">
                 <input type="file" name="" id="upload-files" data-file />
                 <span data-file-name>Choose file...</span>
               </label>
-              <button class="button" id="upload-button">追 加</button>
+              <button class="button" id="upload-button" data-locale="upload"></button>
             </div>
 
           </div>
@@ -320,13 +320,13 @@
 					<div class="card__inner">
 
 						<div class="title-block">
-							<h3>接続</h3>
+							<h3 data-locale="connection"></h3>
 						</div>
-						<p>拡張機能を読み込んだScratchXのページを開いて、下記の接続IDを「ID: [ ]で接続する」ブロックにコピー&ペーストしてください。</p>
+						<p data-locale="help_text"></p>
 
 						<div class="input-group mt-4">
 							<input type="text" name="" placeholder="" class="input" id="conn-id" value="" />
-							<button class="button" id="connect-button">接 続</button>
+							<button class="button" id="connect-button" data-locale="connect"></button>
 						</div>
 
 					</div>
@@ -334,7 +334,7 @@
 
 				<div class="card-button-container">
 					<a href="#" class="card-button" id="scratchx-link" target="_blank">
-						<div class="card-button__inner">
+						<div class="card-button__inner" data-locale="open_scratchx">
 							ScratchX を開く
 						</div>
 					</a>
