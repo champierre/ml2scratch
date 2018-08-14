@@ -172,6 +172,11 @@ class Main {
 
     this.video = $('video')[0];
 
+    // Create cards. This needs to be run at the first place.
+    for(let i=0;i<NUM_CLASSES; i++){
+      this.addCard();
+    }
+
     this.infoTexts = $('#learning .info-text');
 
     $('#clear-all-menu').on('click', ()=> {
@@ -198,6 +203,8 @@ class Main {
 
     // Create training buttons and info texts
     for(let i=0;i<NUM_CLASSES; i++){
+      $('#learning .card-block__label').eq(i).html(`${i}`);
+
       let button = $('#learning button').eq(i)[0];
 
       // Listen for mouse events when clicking the button
@@ -352,9 +359,42 @@ class Main {
     });
     $('.progress').html(html);
   }
+
+  addCard() {
+    const html = `
+<!-- card-block -->
+<div class="card-block">
+  <div class="card-block__label"></div>
+  <div class="input-group none">
+    <input class="input" type="text" />
+  </div>
+  <!-- <div class="dummy-photo"></div> -->
+
+  <div class="card-block__info">
+    <span>
+      <i class="icon-photos"></i>
+      <span class="info-text">x 0</span>
+    </span>
+    <div class="dropdown">
+      <a href="#" class="link" data-toggle="dropdown">
+        <i class="icon-dots-white"></i>
+      </a>
+      <div class="card-dropdown-menu dropdown-menu dropdown-menu-right">
+        <a class="dropdown-item clear-menu" href="#" data-locale="clear"></a>
+      </div>
+    </div>
+  </div>
+
+  <button class="button is-w100 is-mini">
+    <i class="icon-camera is-mini"></i>
+  </button>
+</div>
+    `;
+    $('#learning .card-block-container').append(html);
+  }
 }
 
 window.addEventListener('load', () => {
-  new I18n();
   new Main();
+  new I18n();
 });

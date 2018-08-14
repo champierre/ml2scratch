@@ -6,6 +6,23 @@
   border-radius: 10px;
   background-color: $color-block0;
 
+  &__label {
+    @include font(1rem);
+    color: #fff;
+
+    &.none {
+      display: none;
+    }
+  }
+
+  .input-group.none {
+    display: none;
+  }
+
+  input {
+    width: 100%;
+  }
+
   &__info {
     @include font(.875rem);
     display: flex;
