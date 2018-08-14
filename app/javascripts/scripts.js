@@ -166,7 +166,14 @@ class Main {
     // this.video = document.createElement('video');
     this.video = $('video')[0];
 
-    this.infoTexts = $('#learning .info-text');
+    this.infoTexts = $('.learning .info-text');
+
+    $('.learning .clear-menu').each((i, el) => {
+      $(el).on('click', ()=> {
+        this.clear(i);
+        return false;
+      });
+    });
 
     // this.video.setAttribute('autoplay', '');
     // this.video.setAttribute('playsinline', '');
@@ -274,7 +281,7 @@ class Main {
       // button.innerText = I18n.t('train', i);
       // div.appendChild(button);
 
-      let button = $('#learning button').eq(i)[0];
+      let button = $('.learning button').eq(i)[0];
 
       // Listen for mouse events when clicking the button
       button.addEventListener('mousedown', () => this.training = i);
@@ -304,9 +311,6 @@ class Main {
     navigator.mediaDevices.getUserMedia({video: true, audio: false})
     .then((stream) => {
       this.video.srcObject = stream;
-      // this.video.width = IMAGE_SIZE;
-      // this.video.height = IMAGE_SIZE;
-
       this.video.addEventListener('playing', ()=> this.videoPlaying = true);
       this.video.addEventListener('paused', ()=> this.videoPlaying = false);
     })
@@ -345,6 +349,8 @@ class Main {
       if(Math.max(...exampleCount) > 0){
         this.knn.predictClass(image)
         .then((res)=>{
+          this.updateProgress(res.confidences);
+
           for(let i=0;i<NUM_CLASSES; i++){
             // Make the predicted class bold
             if(res.classIndex == i){
@@ -358,10 +364,8 @@ class Main {
 
             // Update info text
             if(exampleCount[i] > 0){
-              console.log("exampleCount[i]", exampleCount[i]);
               // this.infoTexts[i].innerText = ` ${exampleCount[i]} ${I18n.t('examples')} - ${res.confidences[i]*100}% `
               this.infoTexts[i].innerText = `x ${exampleCount[i]}`
-
             }
           }
         })
@@ -425,6 +429,11 @@ class Main {
     fr.readAsText(files.item(0));
   }
 
+  clear(classIndex) {
+    this.knn.clearClass(classIndex);
+    this.infoTexts[classIndex].innerText = "x 0";
+  }
+
   clearAll() {
     for(let i=0;i<NUM_CLASSES; i++){
       this.knn.clearClass(i);
@@ -432,6 +441,14 @@ class Main {
       this.infoTexts[i].innerText = " " + I18n.t('no_examples_added') + " ";
       this.infoTexts[i].style.fontSize = "14px";
     }
+  }
+
+  updateProgress(confidences) {
+    let html = '';
+    $.each(confidences, function(i, confidence) {
+      html += `<div class="bar" style="flex-basis: ${confidence * 100}%"></div>`;
+    });
+    $('.progress').html(html);
   }
 }
 

@@ -9,11 +9,13 @@
     transition: flex-basis .2s ease-out;
 
     &:nth-child(1),
-    &:nth-child(4) {
+    &:nth-child(4),
+    &:nth-child(7) {
       background-color: $color-block0;
     }
     &:nth-child(2),
-    &:nth-child(5) {
+    &:nth-child(5),
+    &:nth-child(8) {
       background-color: $color-block1;
     }
     &:nth-child(3),
