@@ -166,6 +166,8 @@ class Main {
     // this.video = document.createElement('video');
     this.video = $('video')[0];
 
+    this.infoTexts = $('#learning .info-text');
+
     // this.video.setAttribute('autoplay', '');
     // this.video.setAttribute('playsinline', '');
 
@@ -259,6 +261,8 @@ class Main {
     //   this.clearAll();
     // });
 
+
+
     // Create training buttons and info texts
     for(let i=0;i<NUM_CLASSES; i++){
       // const div = document.createElement('div');
@@ -332,10 +336,6 @@ class Main {
 
       // Train class if one of the buttons is held down
       if(this.training != -1){
-        console.log("addImage:" + this.training);
-        console.log("image:");
-        console.log(image);
-
         // Add current image to classifier
         this.knn.addImage(image, this.training)
       }
@@ -348,17 +348,20 @@ class Main {
           for(let i=0;i<NUM_CLASSES; i++){
             // Make the predicted class bold
             if(res.classIndex == i){
-              this.infoTexts[i].style.fontWeight = 'bold';
+              // this.infoTexts[i].style.fontWeight = 'bold';
               if(this.ws && this.ws.readyState === WebSocket.OPEN){
                 this.ws.send(JSON.stringify({action: 'predict', conn_id: this.connId, value: res.classIndex}));
               }
             } else {
-              this.infoTexts[i].style.fontWeight = 'normal';
+              // this.infoTexts[i].style.fontWeight = 'normal';
             }
 
             // Update info text
             if(exampleCount[i] > 0){
-              this.infoTexts[i].innerText = ` ${exampleCount[i]} ${I18n.t('examples')} - ${res.confidences[i]*100}% `
+              console.log("exampleCount[i]", exampleCount[i]);
+              // this.infoTexts[i].innerText = ` ${exampleCount[i]} ${I18n.t('examples')} - ${res.confidences[i]*100}% `
+              this.infoTexts[i].innerText = `x ${exampleCount[i]}`
+
             }
           }
         })
