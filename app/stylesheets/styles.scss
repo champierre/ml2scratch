@@ -14,6 +14,7 @@
 @import "styles/components/progress";
 @import "styles/components/header";
 @import "styles/components/title-block";
+@import "styles/components/video";
 
 // basic styles
 
@@ -53,7 +54,7 @@ p {
 
 // dammy
 
-.dammy-photo {
+.dummy-photo {
   background-color: #000;
   width: 100%;
   height: 76px;
