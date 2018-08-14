@@ -53,16 +53,10 @@
 						<div class="is-lg video-container">
               <video autoplay="" playsinline="" width="227" height="227"></video>
             </div>
-
-						<!-- <div class="card__action">
-							<a href="#" class="button is-w100">
-								<i class="icon-camera"></i>
-							</a>
-						</div> -->
 					</div>
 				</div>
 
-				<div class="card learning">
+				<div class="card" id="learning">
 					<div class="card__inner">
 
 						<div class="title-block">
@@ -72,7 +66,7 @@
 									<i class="icon-dots"></i>
 								</a>
 								<div class="card-dropdown-menu dropdown-menu dropdown-menu-right">
-                  <a class="dropdown-item clear-all-menu" href="#">すべてをリセット</a>
+                  <a class="dropdown-item" id="clear-all-menu" href="#">すべてをリセット</a>
 								</div>
 							</div>
 						</div>
@@ -286,7 +280,7 @@
 									<i class="icon-dots"></i>
 								</a>
 								<div class="card-dropdown-menu dropdown-menu dropdown-menu-right">
-									<a class="dropdown-item clear-menu" href="#">学習済みモデルをダウンロード</a>
+									<a class="dropdown-item" id="download-button" href="#">学習済みモデルをダウンロード</a>
 								</div>
 							</div>
 						</div>
@@ -310,10 +304,10 @@
 
             <div class="input-group mt-4">
               <label class="input-file">
-                <input type="file" name="" data-file />
+                <input type="file" name="" id="upload-files" data-file />
                 <span data-file-name>Choose file...</span>
               </label>
-              <button class="button">追 加</button>
+              <button class="button" id="upload-button">追 加</button>
             </div>
 
           </div>
@@ -328,15 +322,15 @@
 						<p>拡張機能を読み込んだScratchXのページを開いて、下記の接続IDを「ID: [ ]で接続する」ブロックにコピー&ペーストしてください。</p>
 
 						<div class="input-group mt-4">
-							<input type="text" name="" placeholder="" class="input conn-id" value="" />
-							<button class="button connect-button">接 続</button>
+							<input type="text" name="" placeholder="" class="input" id="conn-id" value="" />
+							<button class="button" id="connect-button">接 続</button>
 						</div>
 
 					</div>
 				</div>
 
 				<div class="card-button-container">
-					<a href="#" class="card-button scratchx-link" target="_blank">
+					<a href="#" class="card-button" id="scratchx-link" target="_blank">
 						<div class="card-button__inner">
 							ScratchX を開く
 						</div>

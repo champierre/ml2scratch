@@ -156,38 +156,48 @@ class Main {
 
     this.video = $('video')[0];
 
-    this.infoTexts = $('.learning .info-text');
+    this.infoTexts = $('#learning .info-text');
 
-    $('.learning .clear-menu').each((i, el) => {
+    $('#clear-all-menu').on('click', ()=> {
+      this.clearAll();
+      return false;
+    });
+
+    $('#learning .clear-menu').each((i, el) => {
       $(el).on('click', ()=> {
         this.clear(i);
         return false;
       });
     });
 
-    $('.learning .clear-all-menu').on('click', ()=> {
-      this.clearAll();
+    $('#download-button').on('click', ()=> {
+      this.download();
+      return false;
+    });
+
+    $('#upload-button').on('click', ()=> {
+      this.upload();
       return false;
     });
 
     // Create training buttons and info texts
     for(let i=0;i<NUM_CLASSES; i++){
-      let button = $('.learning button').eq(i)[0];
+      let button = $('#learning button').eq(i)[0];
 
       // Listen for mouse events when clicking the button
       button.addEventListener('mousedown', () => this.training = i);
       button.addEventListener('mouseup', () => this.training = -1);
     }
 
-    $('.conn-id').val(Math.random().toString(36).slice(-10));
+    $('#conn-id').val(Math.random().toString(36).slice(-10));
 
-    $('.connect-button').on('click', (e)=> {
-      let connId = $(e.target).closest('.input-group').find('input').val();
+    $('#connect-button').on('click', (e)=> {
+      let connId = $('#conn-id').val();
       this.connect(connId);
       return false;
     });
 
-    $(".scratchx-link").attr('href', 'http://scratchx.org/?url=https://champierre.github.io/ml2scratch/ml2scratch.js');
+    $("#scratchx-link").attr('href', 'http://scratchx.org/?url=https://champierre.github.io/ml2scratch/ml2scratch.js');
 
     // Setup webcam
     navigator.mediaDevices.getUserMedia({video: true, audio: false})
@@ -280,7 +290,7 @@ class Main {
 
   upload() {
     const knn = this.knn;
-    const files = document.getElementById('selectFiles').files;
+    const files = document.getElementById('upload-files').files;
     if (files.length <= 0) {
       return false;
     }
@@ -301,7 +311,7 @@ class Main {
     }
 
     fr.onloadend = function(e) {
-      document.getElementById('selectFiles').value = "";
+      document.getElementById('upload-files').value = "";
     }
 
     fr.readAsText(files.item(0));
