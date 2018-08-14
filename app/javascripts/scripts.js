@@ -69,6 +69,7 @@ const LOCALIZED_TEXT = {
     no_examples_added: "まだ学習していません",
     examples: "枚",
     train: '「分類%s」として学習する',
+    edit_label: 'ラベルを編集',
     clear: 'リセット',
     clear_all: 'すべてをリセット',
     download: '学習済みモデルをダウンロード',
@@ -90,6 +91,7 @@ const LOCALIZED_TEXT = {
     no_examples_added: "No examples added",
     examples: "examples",
     train: 'Train %s',
+    edit_label: 'Edit label',
     clear: 'Reset',
     clear_all: 'Reset all',
     download: 'Download trained model',
@@ -111,6 +113,7 @@ const LOCALIZED_TEXT = {
     no_examples_added: "尚未学习",
     examples: "examples",
     train: '学习类别 %s',
+    edit_label: 'Edit label',
     clear: '重置类别',
     clear_all: '重置所有类别',
     download: '下载',
@@ -182,6 +185,13 @@ class Main {
     $('#clear-all-menu').on('click', ()=> {
       this.clearAll();
       return false;
+    });
+
+    $('#learning .edit-label-menu').each((i, el) => {
+      $(el).on('click', ()=> {
+        this.editLabel(i);
+        return false;
+      });
     });
 
     $('#learning .clear-menu').each((i, el) => {
@@ -340,6 +350,10 @@ class Main {
     fr.readAsText(files.item(0));
   }
 
+  editLabel(i) {
+    console.log("Editing...", i);
+  }
+
   clear(i) {
     this.knn.clearClass(i);
     this.infoTexts[i].innerText = "x 0";
@@ -380,6 +394,7 @@ class Main {
         <i class="icon-dots-white"></i>
       </a>
       <div class="card-dropdown-menu dropdown-menu dropdown-menu-right">
+        <a class="dropdown-item edit-label-menu" href="#" data-locale="edit_label"></a>
         <a class="dropdown-item clear-menu" href="#" data-locale="clear"></a>
       </div>
     </div>
