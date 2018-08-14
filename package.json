@@ -28,7 +28,7 @@
   "scripts": {
     "start": "budo main.js:dist/build.js --live --host localhost",
     "dev": "open http://localhost:8080/styleguide.html && webpack-dev-server --progress --mode development --config webpack/webpack.config.js",
-    "build": "browserify main.js -o dist/build.js"
+    "build": "webpack --progress --mode production --config webpack/webpack.config.js"
   },
   "pre-commit": [
     "build"
