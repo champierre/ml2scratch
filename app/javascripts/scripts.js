@@ -394,7 +394,7 @@ class Main {
         <i class="icon-dots-white"></i>
       </a>
       <div class="card-dropdown-menu dropdown-menu dropdown-menu-right">
-        <a class="dropdown-item edit-label-menu" href="#" data-locale="edit_label"></a>
+        <!-- <a class="dropdown-item edit-label-menu" href="#" data-locale="edit_label"></a> -->
         <a class="dropdown-item clear-menu" href="#" data-locale="clear"></a>
       </div>
     </div>
