@@ -10,9 +10,16 @@ $color-blue: #3baeff;
 $color-bg: #DEE6E6;
 $color-select: #fffff2;
 
-$color-block0: #FACD1D;
-$color-block1: #BFE76B;
-$color-block2: #A4D6D7;
+$color-blocks: (
+	#FACD1D,
+	#BFE76B,
+	#A4D6D7,
+	#6593DA,
+	#8B77D2,
+	#E496D4,
+	#D97979,
+	#E6A240
+);
 
 $box-shadow: 0 2px 4px rgba(0, 0, 0, .2);
 

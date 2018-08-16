@@ -8,19 +8,12 @@
     height: 100px;
     transition: flex-basis .2s ease-out;
 
-    &:nth-child(1),
-    &:nth-child(4),
-    &:nth-child(7) {
-      background-color: $color-block0;
-    }
-    &:nth-child(2),
-    &:nth-child(5),
-    &:nth-child(8) {
-      background-color: $color-block1;
-    }
-    &:nth-child(3),
-    &:nth-child(6) {
-      background-color: $color-block2;
+    @each $i in $color-blocks {
+      $index: index($color-blocks, $i);
+      $color: nth($color-blocks, $index);
+      &:nth-child(#{$index}) {
+        background-color: $color;
+      }
     }
   }
 }
