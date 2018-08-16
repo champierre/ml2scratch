@@ -211,6 +211,10 @@ class Main {
       return false;
     });
 
+    $('#conn-id').on('click', (e)=> {
+      $(e.target).select();
+    })
+
     // Create training buttons and info texts
     for(let i=0;i<NUM_CLASSES; i++){
       $('#learning .card-block__label').eq(i).html(`${i}`);
@@ -220,6 +224,14 @@ class Main {
       // Listen for mouse events when clicking the button
       button.addEventListener('mousedown', () => this.training = i);
       button.addEventListener('mouseup', () => this.training = -1);
+
+      $('#learning .card-block .input').eq(i).on("blur", ()=>{
+        let label =  $('#learning .card-block .card-block__label').eq(i);
+        let input = $('#learning .card-block .input').eq(i);
+        label.removeClass("none");
+        input.addClass("none");
+        label.html(input.val() || i);
+      })
     }
 
     $('#conn-id').val(Math.random().toString(36).slice(-10));
@@ -280,7 +292,8 @@ class Main {
             // Make the predicted class bold
             if(res.classIndex == i){
               if(this.ws && this.ws.readyState === WebSocket.OPEN){
-                this.ws.send(JSON.stringify({action: 'predict', conn_id: this.connId, value: res.classIndex}));
+                let labelValue = $('#learning .card-block .card-block__label').eq(i).html();
+                this.ws.send(JSON.stringify({action: 'predict', conn_id: this.connId, value: labelValue}));
               }
             }
 
@@ -351,7 +364,13 @@ class Main {
   }
 
   editLabel(i) {
-    console.log("Editing...", i);
+    let label = $('.card-block .card-block__label').eq(i);
+    let input = $('.card-block .input').eq(i);
+
+    label.addClass('none');
+    input.removeClass('none');
+
+    input.val(label.html());
   }
 
   clear(i) {
@@ -379,8 +398,8 @@ class Main {
 <!-- card-block -->
 <div class="card-block">
   <div class="card-block__label"></div>
-  <div class="input-group none">
-    <input class="input" type="text" />
+  <div class="input-group">
+    <input class="input none" type="text" />
   </div>
   <!-- <div class="dummy-photo"></div> -->
 
@@ -394,7 +413,7 @@ class Main {
         <i class="icon-dots-white"></i>
       </a>
       <div class="card-dropdown-menu dropdown-menu dropdown-menu-right">
-        <!-- <a class="dropdown-item edit-label-menu" href="#" data-locale="edit_label"></a> -->
+        <a class="dropdown-item edit-label-menu" href="#" data-locale="edit_label"></a>
         <a class="dropdown-item clear-menu" href="#" data-locale="clear"></a>
       </div>
     </div>
