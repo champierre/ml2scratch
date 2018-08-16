@@ -292,7 +292,8 @@ class Main {
             // Make the predicted class bold
             if(res.classIndex == i){
               if(this.ws && this.ws.readyState === WebSocket.OPEN){
-                this.ws.send(JSON.stringify({action: 'predict', conn_id: this.connId, value: res.classIndex}));
+                let labelValue = $('#learning .card-block .card-block__label').eq(i).html();
+                this.ws.send(JSON.stringify({action: 'predict', conn_id: this.connId, value: labelValue}));
               }
             }
 

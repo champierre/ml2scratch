@@ -21,7 +21,7 @@
       ws.onmessage = function(evt) {
         data = JSON.parse(evt.data);
         if (data.action == 'predict') {
-          class_index = parseInt(data.value, 10);
+          class_index = data.value;
           when_received = true;
           when_received_arr[class_index] = true
         }
