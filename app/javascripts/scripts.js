@@ -215,6 +215,16 @@ class Main {
       $(e.target).select();
     })
 
+    // fileを選択したら名前を表示させる
+    $('[data-file]').each(function(index, el) {
+      $(el).on('change', function(e) {
+        let filename = $(e.currentTarget).val().split('\\').pop()
+        let element = $(e.currentTarget).closest('.input-file').find('[data-file-name]')[0]
+        element.innerText = filename;
+        $(e.currentTarget).closest('.input-file').addClass('has-file')
+      });
+    });
+
     // Create training buttons and info texts
     for(let i=0;i<NUM_CLASSES; i++){
       $('#learning .card-block__label').eq(i).html(`${i}`);
