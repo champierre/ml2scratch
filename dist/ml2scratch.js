@@ -4,6 +4,15 @@
     var when_received_arr = Array(10).fill(false);
     var class_index;
     var conn_id;
+    var wss_url;
+
+    var r = document.cookie.split(';');
+    r.forEach(function(value) {
+      var content = value.split('=');
+      if (content[0] == ' wss_url') {
+        wss_url = content[1] ||  "wss://ml2scratch-helper.glitch.me";
+      }
+    });
 
     ext._shutdown = function() {};
 
@@ -17,7 +26,7 @@
         return;
       }
       conn_id = _conn_id;
-      ws = new WebSocket('wss://ml2scratch-helper.glitch.me/');
+      ws = new WebSocket(wss_url + '/scratchx');
       ws.onmessage = function(evt) {
         data = JSON.parse(evt.data);
         if (data.action == 'predict') {
@@ -29,6 +38,11 @@
       ws.onopen = function(evt) {
         ws.send(JSON.stringify({action: 'connect', conn_id: conn_id}));
       }
+    }
+
+    ext.set_wss_url = function(_wss_url) {
+      wss_url = _wss_url;
+      document.cookie = "wss_url=" + wss_url + "; max-age=7776000";
     }
 
     ext.when_received = function() {
@@ -127,6 +141,7 @@
     var locale = {
         ja: {
             connect: 'ID: %s で接続する',
+            set_wss_url: '%s をWebSocketサーバーのURLに設定する',
             when_received: '分類を受け取ったとき',
             when_received_0: '「分類0」を受け取ったとき',
             when_received_1: '「分類1」を受け取ったとき',
@@ -142,6 +157,7 @@
         },
         en: {
             connect: 'Connect with ID: %s',
+            set_wss_url: 'Set %s as WebSocket Server URL',
             when_received: 'when received',
             when_received_0: 'when received label 0',
             when_received_1: 'when received label 1',
@@ -157,6 +173,7 @@
         },
         zh_cn: {
             connect: '用ID: [ %s ]连接',
+            set_wss_url: 'Set %s as WebSocket Server URL',
             when_received: '接收到类别',
             when_received_0: '接收到类别0时',
             when_received_1: '接收到类别1时',
@@ -175,6 +192,7 @@
     var descriptor = {
         blocks: [
             [' ', locale[lang].connect, 'connect', ''],
+            [' ', locale[lang].set_wss_url, 'set_wss_url', wss_url],
             ['h', locale[lang].when_received, 'when_received'],
             ['h', locale[lang].when_received_0, 'when_received_0'],
             ['h', locale[lang].when_received_1, 'when_received_1'],
