@@ -1,5 +1,5 @@
 var WebSocketServer = require('ws').Server;
-const PORT = 8080;
+const PORT = 8888;
 var wss = new WebSocketServer({port: PORT});
 var connections = [];
 
@@ -8,8 +8,8 @@ console.log("");
 console.log("Ctrl+C to stop");
 console.log("");
 console.log("Setup");
-console.log("1. Open http://localhost:8081/demo.html");
-console.log("2. Open http://scratchx.org/?url=http://localhost:8081/ml2scratch_local.js");
+console.log("1. Open https://champierre.github.io/ml2scratch/");
+console.log("2. Open https://scratchx.org/?url=https://champierre.github.io/ml2scratch/ml2scratch.js");
 console.log("");
 
 wss.on('connection', function(ws, req) {

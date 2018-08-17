@@ -1,4 +1,5 @@
 import $ from 'jquery'
+import 'jquery.cookie';
 import 'bootstrap'
 
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -62,6 +63,8 @@ const LOCALIZED_TEXT = {
     trained_model: "学習済みモデル",
     trained_model_text: "学習済みのモデルをアップロードして、これまで学習したモデルと入れ替えます。",
     training: "学習",
+    settings: "設定",
+    settings_help_text: "WebSocketサーバーのURL",
     connect: "接続",
     connection_id: "接続ID",
     recognition: '認識',
@@ -84,6 +87,8 @@ const LOCALIZED_TEXT = {
     trained_model: "Trained Model",
     trained_model_text: 'Upload trained model.',
     training: "Training",
+    settings: "Settings",
+    settings_help_text: "WebSocket Server URL",
     connect: "Connect",
     connection_id: "Connection ID",
     recognition: 'Recognition',
@@ -106,6 +111,8 @@ const LOCALIZED_TEXT = {
     trained_model: "学习模型",
     trained_model_text: "上传学习模型",
     training: "学习",
+    settings: "Settings",
+    settings_help_text: "WebSocket Server URL",
     connect: "连接",
     connection_id: "连接ID",
     recognition: "承认",
@@ -169,6 +176,7 @@ class Main {
     this.training = -1; // -1 when no class is being trained
     this.videoPlaying = false;
     this.connId = undefined;
+    this.wss_url = $.cookie('wss_url') || "wss://ml2scratch-helper.glitch.me"
 
     // Initiate deeplearn.js math and knn classifier objects
     this.knn = new KNNImageClassifier(NUM_CLASSES, TOPK);
@@ -246,13 +254,19 @@ class Main {
 
     $('#conn-id').val(Math.random().toString(36).slice(-10));
 
+    $('#wss_url').val(this.wss_url);
+    $('#wss_url').on('blur', (e)=> {
+      this.wss_url = $(e.target).val();
+      $.cookie('wss_url', this.wss_url, { expires: 90 });
+    });
+
     $('#connect-button').on('click', (e)=> {
       let connId = $('#conn-id').val();
       this.connect(connId);
       return false;
     });
 
-    $("#scratchx-link").attr('href', 'http://scratchx.org/?url=https://champierre.github.io/ml2scratch/ml2scratch.js');
+    $("#scratchx-link").attr('href', 'https://scratchx.org/?url=https://champierre.github.io/ml2scratch/ml2scratch.js');
 
     // Setup webcam
     navigator.mediaDevices.getUserMedia({video: true, audio: false})
@@ -323,12 +337,8 @@ class Main {
   }
 
   connect(connId) {
-    // if (DEMO_MODE) {
-    //   this.ws = new WebSocket('ws://localhost:8080/ml');
-    // } else {
-      this.ws = new WebSocket('wss://ml2scratch-helper.glitch.me/');
-      this.connId = connId;
-    // }
+    this.ws = new WebSocket(`${this.wss_url}/ml`);
+    this.connId = connId;
   }
 
   download() {
