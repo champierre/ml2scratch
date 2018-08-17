@@ -78,7 +78,8 @@ const LOCALIZED_TEXT = {
     download: '学習済みモデルをダウンロード',
     upload: 'アップロード',
     help_text: "拡張機能を読み込んだScratchXのページを開いて、上記の接続IDを「ID: [ ]で接続する」ブロックにコピー&ペーストしてください。",
-    open_scratchx: 'ScratchXを開く'
+    open_scratchx: 'ScratchXを開く',
+    choose_file: 'ファイルを選択...'
   },
   en: {
     menu: "<a href=\"?lang=ja\">日本語</a> | <a href=\"?lang=zh_cn\">简体中文</a> | <a href=\"https://github.com/champierre/ml2scratch\">GitHub</a>",
@@ -102,7 +103,8 @@ const LOCALIZED_TEXT = {
     download: 'Download trained model',
     upload: 'Upload',
     help_text: "&uarr; Open <a href=\"http://scratchx.org/?url=https://champierre.github.io/ml2scratch/ml2scratch.js\" target=\"_blank\">ScratchX with extension loaded</a> and use this ID when you connect.",
-    open_scratchx: 'Open ScratchX'
+    open_scratchx: 'Open ScratchX',
+    choose_file: 'Choose File...'
   },
   zh_cn: {
     menu: "<a href=\"?lang=en\">English</a> | <a href=\"?lang=ja\">日本語</a> | <a href=\"https://github.com/champierre/ml2scratch\">GitHub</a>",
@@ -111,8 +113,8 @@ const LOCALIZED_TEXT = {
     trained_model: "学习模型",
     trained_model_text: "上传学习模型",
     training: "学习",
-    settings: "Settings",
-    settings_help_text: "WebSocket Server URL",
+    settings: "设置",
+    settings_help_text: "WebSocket服务器链接",
     connect: "连接",
     connection_id: "连接ID",
     recognition: "承认",
@@ -126,7 +128,8 @@ const LOCALIZED_TEXT = {
     download: '下载',
     upload: '上传',
     help_text: "&uarr; 打开<a href=\"http://scratchx.org/?url=https://champierre.github.io/ml2scratch/ml2scratch.js\" target=\"_blank\">已加入扩展功能的ScratchX</a>的页面，把上面的连接ID拷贝到[Connect with ID: []]模块的空白处。",
-    open_scratchx: '打开ScratchX'
+    open_scratchx: '打开ScratchX',
+    choose_file: '选取文件...'
   }
 }
 
