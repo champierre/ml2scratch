@@ -4,13 +4,13 @@
     var when_received_arr = Array(10).fill(false);
     var class_index;
     var conn_id;
-    var wss_url;
+    var wss_url = "wss://ml2scratch-helper.glitch.me";
 
     var r = document.cookie.split(';');
     r.forEach(function(value) {
       var content = value.split('=');
-      if (content[0] == ' wss_url') {
-        wss_url = content[1] ||  "wss://ml2scratch-helper.glitch.me";
+      if (content[0] == ' wss_url' && content[1] != "") {
+        wss_url = content[1];
       }
     });
 
