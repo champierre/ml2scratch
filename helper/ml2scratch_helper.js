@@ -32,7 +32,7 @@ wss.on('connection', function(ws, req) {
     if (data.action == 'predict') {
       if (connections) {
         connections.forEach(function (conn, i) {
-          conn.send(JSON.stringify({action: 'predict', value: data.value}));
+          conn.send(JSON.stringify({action: 'predict', value: data.value, label: data.label}));
         });
       }
     }

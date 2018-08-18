@@ -102,7 +102,7 @@ const LOCALIZED_TEXT = {
     clear_all: 'Reset all',
     download: 'Download trained model',
     upload: 'Upload',
-    help_text: "&uarr; Open <a href=\"http://scratchx.org/?url=https://champierre.github.io/ml2scratch/ml2scratch.js\" target=\"_blank\">ScratchX with extension loaded</a> and use this ID when you connect.",
+    help_text: "Open ScratchX with extension loaded and use this ID when you connect.",
     open_scratchx: 'Open ScratchX',
     choose_file: 'Choose File...'
   },
@@ -127,7 +127,7 @@ const LOCALIZED_TEXT = {
     clear_all: '重置所有类别',
     download: '下载',
     upload: '上传',
-    help_text: "&uarr; 打开<a href=\"http://scratchx.org/?url=https://champierre.github.io/ml2scratch/ml2scratch.js\" target=\"_blank\">已加入扩展功能的ScratchX</a>的页面，把上面的连接ID拷贝到[Connect with ID: []]模块的空白处。",
+    help_text: "打开已加入扩展功能的ScratchX的页面，把上面的连接ID拷贝到[Connect with ID: []]模块的空白处。",
     open_scratchx: '打开ScratchX',
     choose_file: '选取文件...'
   }
@@ -319,8 +319,8 @@ class Main {
             // Make the predicted class bold
             if(res.classIndex == i){
               if(this.ws && this.ws.readyState === WebSocket.OPEN){
-                let labelValue = $('#learning .card-block .card-block__label').eq(i).html();
-                this.ws.send(JSON.stringify({action: 'predict', conn_id: this.connId, value: labelValue}));
+                let label = $('#learning .card-block .card-block__label').eq(i).html();
+                this.ws.send(JSON.stringify({action: 'predict', conn_id: this.connId, value: i, label: label}));
               }
             }
 

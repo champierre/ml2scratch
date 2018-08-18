@@ -3,6 +3,7 @@
     var when_received = false;
     var when_received_arr = Array(10).fill(false);
     var class_index;
+    var label;
     var conn_id;
     var wss_url = "wss://ml2scratch-helper.glitch.me";
 
@@ -31,6 +32,7 @@
         data = JSON.parse(evt.data);
         if (data.action == 'predict') {
           class_index = data.value;
+          label = data.label;
           when_received = true;
           when_received_arr[class_index] = true
         }
@@ -137,6 +139,10 @@
       return class_index;
     }
 
+    ext.label = function() {
+      return label;
+    }
+
     var lang = ((navigator.language || navigator.userLanguage) == 'ja') ? 'ja' : (((navigator.language || navigator.userLanguage) == 'zh-CN') ? 'zh_cn' : 'en');
     var locale = {
         ja: {
@@ -153,7 +159,8 @@
             when_received_7: '「分類7」を受け取ったとき',
             when_received_8: '「分類8」を受け取ったとき',
             when_received_9: '「分類9」を受け取ったとき',
-            class_index: '分類'
+            class_index: '分類',
+            label: 'ラベル'
         },
         en: {
             connect: 'Connect with ID: %s',
@@ -169,7 +176,8 @@
             when_received_7: 'when received label 7',
             when_received_8: 'when received label 8',
             when_received_9: 'when received label 9',
-            class_index: 'class index'
+            class_index: 'class index',
+            label: 'label'
         },
         zh_cn: {
             connect: '用ID: [ %s ]连接',
@@ -185,7 +193,8 @@
             when_received_7: '接收到类别7时',
             when_received_8: '接收到类别8时',
             when_received_9: '接收到类别9时',
-            class_index: '类索引'
+            class_index: '类索引',
+            label: 'label'
         }
     }
 
@@ -204,7 +213,8 @@
             ['h', locale[lang].when_received_7, 'when_received_7'],
             ['h', locale[lang].when_received_8, 'when_received_8'],
             ['h', locale[lang].when_received_9, 'when_received_9'],
-            ['r', locale[lang].class_index, 'class_index']
+            ['r', locale[lang].class_index, 'class_index'],
+            ['r', locale[lang].label, 'label']
         ]
     };
 
