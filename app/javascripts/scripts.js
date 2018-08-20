@@ -282,6 +282,10 @@ class Main {
     // Load knn model
     this.knn.load()
     .then(() => this.start());
+
+    $(window).on('beforeunload', function() {
+      return 'ページから離れようとしていますが、よろしいですか？';
+    });
   }
 
   start(){
