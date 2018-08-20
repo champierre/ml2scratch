@@ -7,6 +7,14 @@
     flex: 1 1 1px;
     height: 100px;
     transition: flex-basis .2s ease-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .label {
+      color: #fff;
+      font-size: 1rem;
+    }
 
     @each $i in $color-blocks {
       $index: index($color-blocks, $i);

@@ -414,8 +414,13 @@ class Main {
 
   updateProgress(confidences) {
     let html = '';
+    let labels = $('.card-block .card-block__label');
     $.each(confidences, function(i, confidence) {
-      html += `<div class="bar" style="flex-basis: ${confidence * 100}%"></div>`;
+      let label = "";
+      if (confidence > 0) {
+        label = labels.eq(i).html();
+      }
+      html += `<div class="bar" style="flex-basis: ${confidence * 100}%"><div class="label">${label}</div></div>`;
     });
     $('.progress').html(html);
   }
