@@ -286,6 +286,10 @@ class Main {
     $(window).on('beforeunload', function() {
       return 'ページから離れようとしていますが、よろしいですか？';
     });
+
+    $("#upload-files").change(()=>{
+      this.upload();
+    });
   }
 
   start(){
