@@ -183,6 +183,8 @@ class Main {
 
     this.video = $('video')[0];
 
+    this.isTouchDevice = 'ontouchstart' in document.documentElement;
+
     // Create cards. This needs to be run at the first place.
     for(let i=0;i<NUM_CLASSES; i++){
       this.addCard();
@@ -237,11 +239,32 @@ class Main {
     for(let i=0;i<NUM_CLASSES; i++){
       $('#learning .card-block__label').eq(i).html(`${i}`);
 
-      let button = $('#learning button').eq(i)[0];
+      let button = $('#learning button').eq(i);
 
       // Listen for mouse events when clicking the button
-      button.addEventListener('mousedown', () => this.training = i);
-      button.addEventListener('mouseup', () => this.training = -1);
+      button.mousedown(()=>{
+        if (this.isTouchDevice == false) {
+          this.training = i;
+        }
+      });
+
+      button.mouseup(()=>{
+        if (this.isTouchDevice == false) {
+          this.training = -1;
+        }
+      });
+
+      button.on('touchstart', ()=>{
+        if (this.isTouchDevice) {
+          this.training = i;
+        }
+      });
+
+      button.on('touchend', ()=>{
+        if (this.isTouchDevice) {
+          this.training = -1;
+        }
+      });
 
       $('#learning .card-block .input').eq(i).on("blur", ()=>{
         let label =  $('#learning .card-block .card-block__label').eq(i);
