@@ -200,6 +200,8 @@ class Main {
       this.images[i] = [];
     }
 
+    $('#trained-images .images').hide();
+
     $('#clear-all-menu').on('click', ()=> {
       this.clearAll();
       return false;
@@ -240,6 +242,14 @@ class Main {
         let element = $(e.currentTarget).closest('.input-file').find('[data-file-name]')[0]
         element.innerText = filename;
         $(e.currentTarget).closest('.input-file').addClass('has-file')
+      });
+    });
+
+    $('.card-block').each((i, el) => {
+      $(el).on('click', ()=> {
+        $('#trained-images .images').hide();
+        $('#trained-images .images').eq(i).show();
+        $("#trained-images .training-id").html(i);
       });
     });
 
@@ -312,7 +322,9 @@ class Main {
     .then(() => this.start());
 
     $(window).on('beforeunload', function() {
-      return 'ページから離れようとしていますが、よろしいですか？';
+      if (location.href != "http://localhost:9966/dist/") {
+        return 'ページから離れようとしていますが、よろしいですか？';
+      }
     });
 
     $("#upload-files").change(()=>{
@@ -333,12 +345,17 @@ class Main {
     cancelAnimationFrame(this.timer);
   }
 
-  capture(){
-    $( "<canvas></canvas>" ).appendTo("#trained-images");
-    let canvas = $('#trained-images canvas').last();
+  capture(index){
+    $('#trained-images .images').hide();
+    $('#trained-images .images').eq(index).show();
+
+    let div = $("#trained-images .images").eq(index)
+    div.append($("<canvas></canvas>"));
+    let canvas = div.find('canvas').last();
     canvas.attr('width', 227);
     canvas.attr('height', (227 / this.video.videoWidth) * this.video.videoHeight);
     canvas[0].getContext('2d').drawImage(this.video, 0, 0, canvas.width(), canvas.height());
+    $("#trained-images .training-id").html(index);
   }
 
   animate(){
@@ -348,7 +365,7 @@ class Main {
 
       // Train class if one of the buttons is held down
       if(this.training != -1){
-        this.capture();
+        this.capture(this.training);
         this.images[this.training].push(image);
         // Add current image to classifier
         this.knn.addImage(image, this.training)

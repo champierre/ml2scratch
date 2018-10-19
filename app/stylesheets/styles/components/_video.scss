@@ -9,3 +9,9 @@ video {
   -moz-transform:rotateY(180deg); /* Firefox */
   margin: -30px 0;
 }
+
+.images canvas {
+  transform: rotateY(180deg);
+  -webkit-transform:rotateY(180deg); /* Safari and Chrome */
+  -moz-transform:rotateY(180deg); /* Firefox */
+}
