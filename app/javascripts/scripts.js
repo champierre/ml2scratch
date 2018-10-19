@@ -57,7 +57,6 @@ String.prototype.sprintf = function()
 
 const LOCALIZED_TEXT = {
   ja: {
-    menu: "<a href=\"?lang=en\">English</a> | <a href=\"?lang=zh_cn\">简体中文</a> | <a href=\"https://github.com/champierre/ml2scratch\">GitHub</a>",
     input: "入力",
     connection: "接続",
     trained_model: "学習済みモデル",
@@ -82,7 +81,6 @@ const LOCALIZED_TEXT = {
     choose_file: 'ファイルを選択...'
   },
   en: {
-    menu: "<a href=\"?lang=ja\">日本語</a> | <a href=\"?lang=zh_cn\">简体中文</a> | <a href=\"https://github.com/champierre/ml2scratch\">GitHub</a>",
     input: "Input",
     connection: "Connect",
     trained_model: "Trained Model",
@@ -107,7 +105,6 @@ const LOCALIZED_TEXT = {
     choose_file: 'Choose File...'
   },
   zh_cn: {
-    menu: "<a href=\"?lang=en\">English</a> | <a href=\"?lang=ja\">日本語</a> | <a href=\"https://github.com/champierre/ml2scratch\">GitHub</a>",
     input: "输入",
     connection: "连接",
     trained_model: "学习模型",

@@ -51,6 +51,13 @@ ML2Scratchは機械学習(TensorFlow.js)をScratchXとをつなげます。
 
 10. ScratchXとサーバーが接続していれば、ScratchXのほうにどの分類として認識されたかの情報が送られるので、「分類1」のポーズをとったときに音が鳴るはずです。
 
+## 開発環境のセットアップ方法
+
+```
+% npm install
+% npm run start
+```
+
 ## 参考
 
 - https://js.tensorflow.org/

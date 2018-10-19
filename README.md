@@ -52,6 +52,13 @@ ML2Scratch connects Machine Learning(TensorFlow.js) to ScratchX.
 
 10. If ScratchX is connected to the server, label information is sent to ScratchX, so it should play pop sound when you do "label 1" pose.
 
+## How to develop
+
+```
+% npm install
+% npm run start
+```
+
 ## Reference
 
 - https://js.tensorflow.org/

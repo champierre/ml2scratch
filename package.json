@@ -27,7 +27,7 @@
     "webpack-manifest-plugin": "^2.0.0-rc.2"
   },
   "scripts": {
-    "start": "budo main.js:dist/build.js --live --host localhost",
+    "start": "budo app/javascripts/scripts.js:dist/javascripts/scripts.js --live --host localhost --open",
     "dev": "open http://localhost:8080/styleguide.html && webpack-dev-server --progress --mode development --config webpack/webpack.config.js",
     "build": "webpack --progress --mode production --config webpack/webpack.config.js"
   },

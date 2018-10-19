@@ -54,6 +54,13 @@ Chinese Translation by 陶旭(Tao Xu)<toukyoku@163.com>
 
 10. ScratchX连接服务器后，识别出的类别信息会传到ScratchX，所以如果识别到类别1的姿态应该就可以发出声音了。
 
+## How to develop
+
+```
+% npm install
+% npm run start
+```
+
 ## 参考链接
 
 - https://js.tensorflow.org/
