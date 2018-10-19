@@ -62,6 +62,7 @@ const LOCALIZED_TEXT = {
     trained_model: "学習済みモデル",
     trained_model_text: "学習済みのモデルをアップロードして、これまで学習したモデルと入れ替えます。",
     training: "学習",
+    trained_images: "学習済み画像",
     settings: "設定",
     settings_help_text: "WebSocketサーバーのURL",
     connect: "接続",
@@ -86,6 +87,7 @@ const LOCALIZED_TEXT = {
     trained_model: "Trained Model",
     trained_model_text: 'Upload trained model.',
     training: "Training",
+    trained_images: "Trained Images",
     settings: "Settings",
     settings_help_text: "WebSocket Server URL",
     connect: "Connect",
@@ -110,6 +112,7 @@ const LOCALIZED_TEXT = {
     trained_model: "学习模型",
     trained_model_text: "上传学习模型",
     training: "学习",
+    trained_images: "Trained Images",
     settings: "设置",
     settings_help_text: "WebSocket服务器链接",
     connect: "连接",
@@ -191,6 +194,11 @@ class Main {
     }
 
     this.infoTexts = $('#learning .info-text');
+
+    this.images = [];
+    for(let i=0;i<NUM_CLASSES; i++){
+      this.images[i] = [];
+    }
 
     $('#clear-all-menu').on('click', ()=> {
       this.clearAll();
@@ -325,6 +333,14 @@ class Main {
     cancelAnimationFrame(this.timer);
   }
 
+  capture(){
+    $( "<canvas></canvas>" ).appendTo("#trained-images");
+    let canvas = $('#trained-images canvas').last();
+    canvas.attr('width', 227);
+    canvas.attr('height', (227 / this.video.videoWidth) * this.video.videoHeight);
+    canvas[0].getContext('2d').drawImage(this.video, 0, 0, canvas.width(), canvas.height());
+  }
+
   animate(){
     if(this.videoPlaying){
       // Get image data from video element
@@ -332,6 +348,8 @@ class Main {
 
       // Train class if one of the buttons is held down
       if(this.training != -1){
+        this.capture();
+        this.images[this.training].push(image);
         // Add current image to classifier
         this.knn.addImage(image, this.training)
       }
