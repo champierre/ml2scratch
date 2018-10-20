@@ -462,12 +462,14 @@ class Main {
   clear(i) {
     this.knn.clearClass(i);
     this.infoTexts[i].innerText = "x 0";
+    $('#trained-images .images').eq(i).html("");
   }
 
   clearAll() {
     for(let i=0;i<NUM_CLASSES; i++){
       this.knn.clearClass(i);
       this.infoTexts[i].innerText = "x 0";
+      $('#trained-images .images').eq(i).html("");
     }
   }
 
