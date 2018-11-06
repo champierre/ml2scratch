@@ -58,6 +58,11 @@ ML2Scratchは機械学習(TensorFlow.js)をScratchXとをつなげます。
 % npm run start
 ```
 
+## Tシャツ
+
+ML2Scratchのロゴ入りTシャツ、こちらで販売しています ->
+https://suzuri.jp/is8r_/1251743/t-shirt/s/white
+
 ## 参考
 
 - https://js.tensorflow.org/
