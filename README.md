@@ -17,6 +17,18 @@ ML2Scratch connects Machine Learning(TensorFlow.js) to ScratchX.
 
 1. Open https://champierre.github.io/ml2scratch/. Allow the access to the webcam if you are asked for it.
 
+2. At first, you need to train the machine by giving several images. Take your first pose. For example, just sit in the front of webcam and do nothing.
+
+    <img src="images/en/neutral.png" style="width:400px;border:1px solid #999" />
+
+3. Keep clicking the camera button on the orange card-type panel(label 1) in the Training section. This action captures the sample image to be recognized as label number 1.
+
+    <img src="images/en/before_training_1.png" style="width:400px;border:1px solid #999" />
+
+    After you give about 20 images, the Recognition shows whole orange bar. This means the neutral image is now recognized as label 1 with 100% assurance.
+
+    <img src="images/en/after_training_1.png" style="width:400px;border:1px solid #999" />
+
 2. Click "Connect" button to connect to the server.
 
     <kbd><img src="images/en/1.png" style="width:500px;border:1px solid #999" /></kbd>
@@ -42,7 +54,7 @@ ML2Scratch connects Machine Learning(TensorFlow.js) to ScratchX.
 
 7. Back to the page of webcam image, keep pressing "Train 0" button to make machine learn images(about 20) to be labeled as 0. If you take a pose, it is better to shake your body a bit, so that each image is slightly different from others.
 
-    <kbd><img src="images/en/7.png" style="width:400px;border:1px solid #999" /></kbd>
+
 
 8. Next, take a different pose and keep pressing "Train 1" so that machine learn them as label 1. At this time, it is better to shake your body as well.
 
