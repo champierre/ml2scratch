@@ -13,7 +13,7 @@ ML2Scratch connects Machine Learning(TensorFlow.js) to ScratchX.
 - Rock/Scissors/Paper Demo [YouTube](https://www.youtube.com/watch?v=DkH1hwc-Gb4) | [.mov file](https://s3.amazonaws.com/champierre/movies/rsp_demo.mov)
 - Control a toy robot, MiP, by hand gestures [YouTube](https://www.youtube.com/watch?v=GKXimEB5WQg) | [.mov file](https://s3.amazonaws.com/champierre/movies/mip_demo.mov)
 
-## How to use
+## Step by step instruction about how to use
 
 1. Open https://champierre.github.io/ml2scratch/. Allow the access to the webcam if you are asked for it.
 
@@ -21,11 +21,11 @@ ML2Scratch connects Machine Learning(TensorFlow.js) to ScratchX.
 
     <img src="images/en/neutral.png" />
 
-3. Keep clicking the camera button on the orange card-type panel(label 1) in the Training section. This action captures the sample image to be recognized as label number 0.
+3. Keep clicking the camera button on the yellow card-type panel(label 0) in the Training section. This action captures the sample image to be recognized as label number 0.
 
   <img src="images/en/before_training_0.png" />
 
-  After you give about 20 images, the Recognition shows whole orange bar. This means the neutral image is now recognized as label 0 with 100% assurance.
+  After you give about 20 images, the Recognition shows whole yellow bar. This means the neutral image is now recognized as label 0 with 100% assurance.
 
   <img src="images/en/after_training_0.png" />
 
@@ -41,9 +41,9 @@ ML2Scratch connects Machine Learning(TensorFlow.js) to ScratchX.
 
   <img src="images/en/after_training_1.png" />
 
-6. Make sure that Recognition shows the label according to your pose. If you make the first neutral pose, it should show orange bar. If you make the second pose, it should switch to green bar.
+6. Make sure that Recognition shows the label according to your pose. If you make the first neutral pose, it should show yellow bar. If you make the second pose, it should switch to green bar.
 
-7. Scroll to the Connect section and click "Connect" button to connect to the WebSocket server on the cloud. In order to paste it later, copy the connection ID(characters such as "76q669zsk") next to "Connect" button.
+7. Scroll to the Connect section and copy the connection ID(characters such as "76q669zsk") next to "Connect" button. You need it later. Then, click "Connect" button to connect to the WebSocket server on the cloud.
 
   <img src="images/en/connect.png" />
 
@@ -59,8 +59,7 @@ ML2Scratch connects Machine Learning(TensorFlow.js) to ScratchX.
 
   <img src="images/en/scratchx_main.png" />
 
-  <blockquote>
-  If the warning dialog does not opened and you are still on the ScratchX top page, click "Open Extension URL".
+  Move on to 10. If the warning dialog does not opened and you are still on the ScratchX top page, click "Open Extension URL".
 
   <img src="images/en/scratchx_top.png" />
 
@@ -74,7 +73,7 @@ ML2Scratch connects Machine Learning(TensorFlow.js) to ScratchX.
 
   The main page of ScratchX will be opened.
 
-10. On ScratchX screen, drag "Connect with ID: []" block to the script area and paste the connection ID you copied(See 7) into the blank area. Once pasted, click the block to connect to the WebSocket server.
+10. On ScratchX screen, drag "Connect with ID: []" block to the script area and paste the connection ID you copied on line 7 into the blank area. Once pasted, click the block to connect to the WebSocket server.
 
   <img src="images/en/connect_block.png" />
 
@@ -84,11 +83,13 @@ ML2Scratch connects Machine Learning(TensorFlow.js) to ScratchX.
 
 12. Each time you take the pose for label 1, pop sound will be played.
 
-13. If you want to redo the training for specific label, select "Reset" on the menu for each label.
+## How to use(Advanced)
+
+1. If you want to redo the training for specific label, select "Reset" on the menu for each label.
 
   <img src="images/en/reset.png" />
 
-14. If you want to clear all the training data, select "Reset" in Training section.
+2. If you want to clear all the training data, select "Reset" in Training section.
 
   <img src="images/en/reset_all.png" />
 
