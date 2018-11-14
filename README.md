@@ -13,7 +13,7 @@ ML2Scratch connects Machine Learning(TensorFlow.js) to ScratchX.
 - Rock/Scissors/Paper Demo [YouTube](https://www.youtube.com/watch?v=DkH1hwc-Gb4) | [.mov file](https://s3.amazonaws.com/champierre/movies/rsp_demo.mov)
 - Control a toy robot, MiP, by hand gestures [YouTube](https://www.youtube.com/watch?v=GKXimEB5WQg) | [.mov file](https://s3.amazonaws.com/champierre/movies/mip_demo.mov)
 
-## Step by step instruction about how to use
+## How to use(Step by step)
 
 1. Open https://champierre.github.io/ml2scratch/. Allow the access to the webcam if you are asked for it.
 
@@ -51,7 +51,7 @@ ML2Scratch connects Machine Learning(TensorFlow.js) to ScratchX.
 
   <img src="images/en/scratchx.png" />
 
-9. ScratchX will be opened in other tab. Warning dialog appears. Click "I understand, continue" if you trust me :)
+9. ScratchX will be opened in other tab, then Warning dialog appears. Click "I understand, continue" if you trust me :)
 
   <img src="images/en/warning.png" />
 
@@ -59,7 +59,9 @@ ML2Scratch connects Machine Learning(TensorFlow.js) to ScratchX.
 
   <img src="images/en/scratchx_main.png" />
 
-  Move on to 10. If the warning dialog does not opened and you are still on the ScratchX top page, click "Open Extension URL".
+  Move on to line 10.
+
+  If the warning dialog does not opened and you are still on the ScratchX top page, click "Open Extension URL".
 
   <img src="images/en/scratchx_top.png" />
 
@@ -77,11 +79,11 @@ ML2Scratch connects Machine Learning(TensorFlow.js) to ScratchX.
 
   <img src="images/en/connect_block.png" />
 
-11. Connect blocks as follows so that "When received label 1", "play sound pop".
+11. Drag "When received label 1" block under "More Blocks" category to the script area. Drag "play sound pop" under "Sound" category to the script area and connect them as following.
 
   <img src="images/en/play_sound.png" />
 
-12. Each time you take the pose for label 1, pop sound will be played.
+12. Each time you take the pose for label 1, it is recognized as "label 1", that information is sent to ScratchX via WebSocket server, and pop sound will be played as you programmed to do so on ScratchX.
 
 ## How to use(Advanced)
 
@@ -89,7 +91,7 @@ ML2Scratch connects Machine Learning(TensorFlow.js) to ScratchX.
 
   <img src="images/en/reset.png" />
 
-2. If you want to clear all the training data, select "Reset" in Training section.
+2. If you want to clear all the training data, select "Reset all" in Training section.
 
   <img src="images/en/reset_all.png" />
 
