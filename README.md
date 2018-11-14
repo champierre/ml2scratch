@@ -2,7 +2,7 @@
 
 ML2Scratch connects Machine Learning(TensorFlow.js) to ScratchX.
 
-*Read this in other languages: [English](README.md), [日本語](README.ja.md), [简体中文](README.zh-cn.md).*
+<!-- *Read this in other languages: [English](README.md), [日本語](README.ja.md), [简体中文](README.zh-cn.md).* -->
 
 ## Requirements
 
