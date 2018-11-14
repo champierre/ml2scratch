@@ -345,18 +345,18 @@ class Main {
     cancelAnimationFrame(this.timer);
   }
 
-  capture(index){
-    $('#trained-images .images').hide();
-    $('#trained-images .images').eq(index).show();
-
-    let div = $("#trained-images .images").eq(index)
-    div.append($("<canvas></canvas>"));
-    let canvas = div.find('canvas').last();
-    canvas.attr('width', 227);
-    canvas.attr('height', (227 / this.video.videoWidth) * this.video.videoHeight);
-    canvas[0].getContext('2d').drawImage(this.video, 0, 0, canvas.width(), canvas.height());
-    $("#trained-images .training-id").html(index);
-  }
+  // capture(index){
+  //   $('#trained-images .images').hide();
+  //   $('#trained-images .images').eq(index).show();
+  //
+  //   let div = $("#trained-images .images").eq(index)
+  //   div.append($("<canvas></canvas>"));
+  //   let canvas = div.find('canvas').last();
+  //   canvas.attr('width', 227);
+  //   canvas.attr('height', (227 / this.video.videoWidth) * this.video.videoHeight);
+  //   canvas[0].getContext('2d').drawImage(this.video, 0, 0, canvas.width(), canvas.height());
+  //   $("#trained-images .training-id").html(index);
+  // }
 
   animate(){
     if(this.videoPlaying){
@@ -365,7 +365,7 @@ class Main {
 
       // Train class if one of the buttons is held down
       if(this.training != -1){
-        this.capture(this.training);
+        // this.capture(this.training);
         this.images[this.training].push(image);
         // Add current image to classifier
         this.knn.addImage(image, this.training)
