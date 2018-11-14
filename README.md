@@ -19,50 +19,78 @@ ML2Scratch connects Machine Learning(TensorFlow.js) to ScratchX.
 
 2. At first, you need to train the machine by giving several images. Take your first pose. For example, just sit in the front of webcam and do nothing.
 
-    <img src="images/en/neutral.png" style="width:400px;border:1px solid #999" />
+    <img src="images/en/neutral.png" />
 
 3. Keep clicking the camera button on the orange card-type panel(label 1) in the Training section. This action captures the sample image to be recognized as label number 1.
 
-    <img src="images/en/before_training_1.png" style="width:400px;border:1px solid #999" />
+  <img src="images/en/before_training_1.png" />
 
-    After you give about 20 images, the Recognition shows whole orange bar. This means the neutral image is now recognized as label 1 with 100% assurance.
+  After you give about 20 images, the Recognition shows whole orange bar. This means the neutral image is now recognized as label 1 with 100% assurance.
 
-    <img src="images/en/after_training_1.png" style="width:400px;border:1px solid #999" />
+  <img src="images/en/after_training_1.png" />
 
-2. Click "Connect" button to connect to the server.
+4. Next, you need to train the machine by giving images of another pose.
 
-    <kbd><img src="images/en/1.png" style="width:500px;border:1px solid #999" /></kbd>
+  <img src="images/en/gesture.png" />
 
-3. In order to paste it later, copy the connection ID(characters such as am2x6t5xrp) next to "Connect" button.
+5. Keep clicking the camera button on the light green card-type panel(label 2) in the Training section. This action captures the sample image to be recognized as label number 2.
 
-4. Click on "ScratchX with extension loaded" link to open ScratchX page. Please click "I understand, continue" in the warning dialog.
+  <img src="images/en/before_training_2.png" />
 
-    \* If you can not open ScratchX with the extension loaded, open [ScratchX](http://scratchx.org/) page, click "Open Extension URL", and paste the following URL. Click "Open".
+  After you give about 20 images, the Recognition will show whole light green bar. This means the image is now recognized as label 2 with 100% assurance(Maybe less like 80% - 90%, but it is OK if it is more than 70%).
 
-    ```
-    https://champierre.github.io/ml2scratch/ml2scratch.js
-    ```
+  <img src="images/en/after_training_2.png" />
 
-5. On ScratchX screen, drag "Connect with ID: []" block to the script area and paste the connection ID you just copied into the blank area. Once pasted, click the block to connect to the server.
+6. Make sure that Recognition shows the label according to your pose. If you make the first neutral pose, it should show orange bar. If you make the second pose, it should switch to green bar.
 
-    <img src="images/en/5.png" style="width:200px;border:1px solid #999" />
+7. Scroll to the Connect section and click "Connect" button to connect to the WebSocket server on the cloud. In order to paste it later, copy the connection ID(characters such as "76q669zsk") next to "Connect" button.
 
-6. Connect blocks as follows so that "When received label 1", "play sound pop".
+  <img src="images/en/connect.png" />
 
-    <img src="images/en/6.png" style="width:200px;border:1px solid #999" />
+8. Click "Open ScratchX" button to open ScratchX.
 
+  <img src="images/en/scratchx.png" />
 
-7. Back to the page of webcam image, keep pressing "Train 0" button to make machine learn images(about 20) to be labeled as 0. If you take a pose, it is better to shake your body a bit, so that each image is slightly different from others.
+9. ScratchX will be opened in other tab. Warning dialog appears. Click "I understand, continue" if you trust me :)
 
+  <img src="images/en/warning.png" />
 
+  The main page of ScratchX with ML2Scratch extension blocks(the dark purple blocks) will be opened.
 
-8. Next, take a different pose and keep pressing "Train 1" so that machine learn them as label 1. At this time, it is better to shake your body as well.
+  <img src="images/en/scratchx_main.png" />
 
-    <kbd><img src="images/en/8.png" style="width:400px;border:1px solid #999" /></kbd>
+  <blockquote>
+  If the warning dialog does not opened and you are still on the ScratchX top page, click "Open Extension URL".
 
-9. If you want the machine learn just 2 poses, about 20 images for each label are enough to be trained. Please confirm each pose is classified correctly. When the pose is recognized, letters for classified label becomes bold. If classification is not correct, please try to train more images or click "Clear" button to reset the training data and try the training again.
+  <img src="images/en/scratchx_top.png" />
 
-10. If ScratchX is connected to the server, label information is sent to ScratchX, so it should play pop sound when you do "label 1" pose.
+  Input the following extension URL on "Open an Extension URL" dialog and click "Open".
+
+  ```
+  https://champierre.github.io/ml2scratch/ml2scratch.js
+  ```
+
+  <img src="images/en/open_extension_url.png" />
+
+  The main page of ScratchX will be opened.
+
+10. On ScratchX screen, drag "Connect with ID: []" block to the script area and paste the connection ID you copied(See 7) into the blank area. Once pasted, click the block to connect to the WebSocket server.
+
+  <img src="images/en/connect_block.png" />
+
+11. Connect blocks as follows so that "When received label 1", "play sound pop".
+
+  <img src="images/en/play_sound.png" />
+
+12. Each time you take the pose for label 1, pop sound will be played.
+
+13. If you want to redo the training for specific label, select "Reset" on the menu for each label.
+
+  <img src="images/en/reset.png" />
+
+14. If you want to clear all the training data, select "Reset" in Training section.
+
+  <img src="images/en/reset_all.png" />
 
 ## How to develop
 
