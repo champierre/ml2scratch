@@ -31,9 +31,6 @@
     "dev": "open http://localhost:8080/styleguide.html && webpack-dev-server --progress --mode development --config webpack/webpack.config.js",
     "build": "webpack --progress --mode production --config webpack/webpack.config.js"
   },
-  "pre-commit": [
-    "build"
-  ],
   "browserify": {
     "transform": [
       [
