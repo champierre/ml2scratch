@@ -21,25 +21,25 @@ ML2Scratch connects Machine Learning(TensorFlow.js) to ScratchX.
 
     <img src="images/en/neutral.png" />
 
-3. Keep clicking the camera button on the orange card-type panel(label 1) in the Training section. This action captures the sample image to be recognized as label number 1.
+3. Keep clicking the camera button on the orange card-type panel(label 1) in the Training section. This action captures the sample image to be recognized as label number 0.
 
-  <img src="images/en/before_training_1.png" />
+  <img src="images/en/before_training_0.png" />
 
-  After you give about 20 images, the Recognition shows whole orange bar. This means the neutral image is now recognized as label 1 with 100% assurance.
+  After you give about 20 images, the Recognition shows whole orange bar. This means the neutral image is now recognized as label 0 with 100% assurance.
 
-  <img src="images/en/after_training_1.png" />
+  <img src="images/en/after_training_0.png" />
 
 4. Next, you need to train the machine by giving images of another pose.
 
   <img src="images/en/gesture.png" />
 
-5. Keep clicking the camera button on the light green card-type panel(label 2) in the Training section. This action captures the sample image to be recognized as label number 2.
+5. Keep clicking the camera button on the light green card-type panel(label 1) in the Training section. This action captures the sample image to be recognized as label number 1.
 
-  <img src="images/en/before_training_2.png" />
+  <img src="images/en/before_training_1.png" />
 
-  After you give about 20 images, the Recognition will show whole light green bar. This means the image is now recognized as label 2 with 100% assurance(Maybe less like 80% - 90%, but it is OK if it is more than 70%).
+  After you give about 20 images, the Recognition will show whole light green bar. This means the image is now recognized as label 1 with 100% assurance(Maybe less like 80% - 90%, but it is OK if it is more than 70%).
 
-  <img src="images/en/after_training_2.png" />
+  <img src="images/en/after_training_1.png" />
 
 6. Make sure that Recognition shows the label according to your pose. If you make the first neutral pose, it should show orange bar. If you make the second pose, it should switch to green bar.
 
