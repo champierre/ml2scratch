@@ -65,7 +65,7 @@ ML2Scratch connects Machine Learning(TensorFlow.js) to ScratchX.
 
   <img src="images/en/scratch3_connect_block.png" />
 
-11. Drag "When received label 1" block under "More Blocks" category to the script area. Drag "play sound pop" under "Sound" category to the script area and connect them as following.
+11. Drag "When received class index:[1]" block to the script area. Drag "start sound Pop" under "Sound" category to the script area and connect them as following.
 
   <img src="images/en/scratch3_play_sound.png" />
 
