@@ -61,6 +61,10 @@ ML2Scratch connects Machine Learning(TensorFlow.js) to ScratchX.
 
   <img src="images/en/ml2scratch_extension.png" />
 
+  "ML2Scratch" category will be added.
+
+  <img src="images/en/ml2scratch_extension_added.png" />
+
 10. Drag "Connect with ID: []" block to the script area and paste the connection ID you copied on line 7 into the blank area. Once pasted, click the block to connect to the WebSocket server.
 
   <img src="images/en/scratch3_connect_block.png" />
