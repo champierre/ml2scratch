@@ -77,8 +77,8 @@ const LOCALIZED_TEXT = {
     clear_all: 'すべてをリセット',
     download: '学習済みモデルをダウンロード',
     upload: 'アップロード',
-    help_text: "拡張機能を読み込んだScratchXのページを開いて、上記の接続IDを「ID: [ ]で接続する」ブロックにコピー&ペーストしてください。",
-    open_scratchx: 'ScratchXを開く',
+    help_text: "ML2Scratch用の拡張機能が追加されたScratchのページを開いて、上記の接続IDを「ID: [ ]で接続する」ブロックにコピー&ペーストしてください。",
+    open_scratch: 'Scratchを開く',
     choose_file: 'ファイルを選択...'
   },
   en: {
@@ -102,8 +102,8 @@ const LOCALIZED_TEXT = {
     clear_all: 'Reset all',
     download: 'Download trained model',
     upload: 'Upload',
-    help_text: "Open ScratchX with extension loaded and use this ID when you connect.",
-    open_scratchx: 'Open ScratchX',
+    help_text: "Open Scratch with ML2Scratch extension added and use this ID when you connect.",
+    open_scratch: 'Open Scratch',
     choose_file: 'Choose File...'
   },
   zh_cn: {
@@ -127,8 +127,8 @@ const LOCALIZED_TEXT = {
     clear_all: '重置所有类别',
     download: '下载',
     upload: '上传',
-    help_text: "打开已加入扩展功能的ScratchX的页面，把上面的连接ID拷贝到[Connect with ID: []]模块的空白处。",
-    open_scratchx: '打开ScratchX',
+    help_text: "打开已加入扩展功能的Scratch的页面，把上面的连接ID拷贝到[Connect with ID: []]模块的空白处。",
+    open_scratch: '打开Scratch',
     choose_file: '选取文件...'
   }
 }
@@ -307,7 +307,7 @@ class Main {
       return false;
     });
 
-    $("#scratchx-link").attr('href', 'https://scratchx.org/?url=https://champierre.github.io/ml2scratch/ml2scratch.js');
+    $("#scratch-link").attr('href', 'https://champierre.github.io/scratch/');
 
     // Setup webcam
     navigator.mediaDevices.getUserMedia({video: true, audio: false})

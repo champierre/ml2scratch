@@ -47,43 +47,29 @@ ML2Scratch connects Machine Learning(TensorFlow.js) to ScratchX.
 
   <img src="images/en/connect.png" />
 
-8. Click "Open ScratchX" button to open ScratchX.
+8. Click "Open Scratch" button to open Scratch with ML2Scratch extension added.
 
-  <img src="images/en/scratchx.png" />
+  <img src="images/en/scratch.png" />
 
-9. ScratchX will be opened in other tab, then Warning dialog appears. Click "I understand, continue" if you trust me :)
+9. Scratch will be opened in other tab.
 
-  <img src="images/en/warning.png" />
+  On the left lower corner, click the folder icon to chose an extension.
 
-  The main page of ScratchX with ML2Scratch extension blocks(the dark purple blocks) will be opened.
+  <img src="images/en/add_extension.png" />
 
-  <img src="images/en/scratchx_main.png" />
+  Then, select "ML2Scratch".
 
-  Move on to line 10.
+  <img src="images/en/ml2scratch_extension.png" />
 
-  If the warning dialog does not opened and you are still on the ScratchX top page, click "Open Extension URL".
+10. Drag "Connect with ID: []" block to the script area and paste the connection ID you copied on line 7 into the blank area. Once pasted, click the block to connect to the WebSocket server.
 
-  <img src="images/en/scratchx_top.png" />
-
-  Input the following extension URL on "Open an Extension URL" dialog and click "Open".
-
-  ```
-  https://champierre.github.io/ml2scratch/ml2scratch.js
-  ```
-
-  <img src="images/en/open_extension_url.png" />
-
-  The main page of ScratchX will be opened.
-
-10. On ScratchX screen, drag "Connect with ID: []" block to the script area and paste the connection ID you copied on line 7 into the blank area. Once pasted, click the block to connect to the WebSocket server.
-
-  <img src="images/en/connect_block.png" />
+  <img src="images/en/scratch3_connect_block.png" />
 
 11. Drag "When received label 1" block under "More Blocks" category to the script area. Drag "play sound pop" under "Sound" category to the script area and connect them as following.
 
-  <img src="images/en/play_sound.png" />
+  <img src="images/en/scratch3_play_sound.png" />
 
-12. Each time you take the pose for label 1, it is recognized as "label 1", that information is sent to ScratchX via WebSocket server, and pop sound will be played as you programmed to do so on ScratchX.
+12. Each time you take the pose for label 1, it is recognized as "label 1", that information is sent to Scratch via WebSocket server, and pop sound will be played as you programmed to do so.
 
 ## How to use(Advanced)
 
