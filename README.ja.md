@@ -41,39 +41,58 @@ ML2Scratchは機械学習(TensorFlow.js)をScratchXとをつなげます。
 
     <img src="images/ja/after_training_1.png" />
 
-6. Make sure that Recognition shows the label according to your pose. If you make the first neutral pose, it should show yellow bar. If you make the second pose, it should switch to green bar.
+6. ウェブカメラの前で取るポーズに応じて「認識」セクションに表示されるラベルの色が変化することを確認してください。もし最初の何もしていないポーズを取ったときは黄色に、次のポーズを取ったときには薄緑色に変わるはずです。
 
-7. Scroll to the Connect section and copy the connection ID(characters such as "76q669zsk") next to "Connect" button. You need it later. Then, click "Connect" button to connect to the WebSocket server on the cloud.
+7. ページの下までスクロールし、「接続」セクションに表示されている接続ID(「76q669zsk」といったランダムな文字列)をコピーします。この接続IDは後になって利用します。そして、その横の「接続」ボタンをクリックし、クラウド上にあるWebSocket(ウェブソケット)サーバーに接続します。
 
-  <img src="images/en/connect.png" />
+  <img src="images/ja/connect.png" />
 
-8. Click "Open Scratch" button to open Scratch with ML2Scratch extension added.
+8. 「Scratchを開く」ボタンをクリックして、ML2Scratchの拡張機能を利用可能な独自Scratchの画面を開きます。
 
-  <img src="images/en/scratch.png" />
+  <img src="images/ja/scratch.png" />
 
-9. Scratch will be opened in other tab.
+9. ブラウザの別タブでScratchが開き「Scratch 3.0 ベータ版にようこそ！」の画面が開きます。「試す!」をクリックします。
 
-  On the left lower corner, click the folder icon to chose an extension.
+  画面左下隅のフォルダアイコンをクリックして、「閣僚機能を選ぶ」の画面を開きます。
 
-  <img src="images/en/add_extension.png" />
+  <img src="images/ja/add_extension.png" />
 
-  Then, select "ML2Scratch".
+  最後に並んでいる「ML2Scratch」を選びます。
 
-  <img src="images/en/ml2scratch_extension.png" />
+  <img src="images/ja/ml2scratch_extension.png" />
 
-  "ML2Scratch" category will be added.
+  「ML2Scratch」カテゴリが追加されます。
 
-  <img src="images/en/ml2scratch_extension_added.png" />
+  <img src="images/ja/ml2scratch_extension_added.png" />
 
-10. Drag "Connect with ID: []" block to the script area and paste the connection ID you copied on line 7 into the blank area. Once pasted, click the block to connect to the WebSocket server.
+10. 「ID: []で接続する」ブロックをスクリプトエリアにドラッグし、7. でコピーした接続IDをブロックの空き部分にペーストします。ペーストし終わったら、ブロックをクリックして、WebSocket(ウェブソケット)サーバーに接続します。
 
-  <img src="images/en/scratch3_connect_block.png" />
+  <img src="images/ja/scratch3_connect_block.png" />
 
-11. Drag "When received class index:[1]" block to the script area. Drag "start sound Pop" under "Sound" category to the script area and connect them as following.
+11. 「分類 [1] を受け取ったとき」ブロックをスクリプトエリアにドラッグします。「音」カテゴリにある「ニャーの音を鳴らす」ブロックをスクリプトエリアにドラッグし、以下のようにつなげます。
 
-  <img src="images/en/scratch3_play_sound.png" />
+  <img src="images/ja/scratch3_play_sound.png" />
 
-12. Each time you take the pose for label 1, it is recognized as "label 1", that information is sent to Scratch via WebSocket server, and pop sound will be played as you programmed to do so.
+12. ラベル1として学習させたポーズを取るたびに、認識結果がWebSocket(ウェブソケット)サーバー経由でScratchに送られ、Scratchで組んだプログラムの通りニャーの音が鳴ります。
+
+## そのほかの使い方
+
+1. 特定のラベルに対する学習をやり直したい場合には、そのラベルのパネル上のメニュー(・・・)をクリックし、「リセット」を選びます。
+
+  <img src="images/ja/reset.png" />
+
+2. もしすべての学習データをクリアしたいときには、「学習」セクションのメニュー(・・・)をクリックし、「すべてをリセット」を選びます。
+
+  <img src="images/ja/reset_all.png" />
+
+3. 学習した結果を保存しておきたい場合には、「認識」セクションのメニュー(・・・)をクリックし、「学習済みモデルをダウンロード」を選び保存先を指定します。ファイルは「1548166739008.json」といったjsonファイルです。
+
+  <img src="images/ja/download.png" />
+
+4. 保存しておいた学習モデルをアップロードするには、「学習済みモデル」セクションの「ファイルを選択」をクリックし、あらかじめダウンロードしてあったjsonファイルを選びます。
+
+  <img src="images/ja/upload.png" />
+
 
 ## 開発環境のセットアップ方法
 

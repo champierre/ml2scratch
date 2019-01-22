@@ -77,7 +77,7 @@ const LOCALIZED_TEXT = {
     clear_all: 'すべてをリセット',
     download: '学習済みモデルをダウンロード',
     upload: 'アップロード',
-    help_text: "ML2Scratch用の拡張機能が追加されたScratchのページを開いて、上記の接続IDを「ID: [ ]で接続する」ブロックにコピー&ペーストしてください。",
+    help_text: "ML2Scratch用の拡張機能が追加されたScratchのページを開いて、下記の接続IDを「ID: [ ]で接続する」ブロックにコピー&ペーストしてください。",
     open_scratch: 'Scratchを開く',
     choose_file: 'ファイルを選択...'
   },

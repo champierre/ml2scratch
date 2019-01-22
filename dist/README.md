@@ -3,5 +3,5 @@
 ```
 % nvm use 9.8
 % npm run build
-% deploy.sh
+% sh deploy.sh
 ```

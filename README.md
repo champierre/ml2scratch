@@ -85,6 +85,14 @@ ML2Scratch connects Machine Learning(TensorFlow.js) to ScratchX.
 
   <img src="images/en/reset_all.png" />
 
+3. If you want to download training data, select "Download trained model" in Recognition section, then select the target folder. The file is JSON file, such as "1548166739008.json".
+
+  <img src="images/en/download.png" />
+
+4. If you want to upload training data, select "Choose File..." in Trained Model section. Then, select the JSON file that you downloaded previously.
+
+  <img src="images/en/upload.png" />
+
 ## How to develop
 
 ```
