@@ -15,7 +15,7 @@ ML2Scratch connects Machine Learning(TensorFlow.js) to ScratchX.
 
 ## How to use(Step by step)
 
-1. Open [https://champierre.github.io/ml2scratch/](https://champierre.github.io/ml2scratch/){:target="_blank"}. Allow the access to the webcam if you are asked for it.
+1. Open <a href="https://champierre.github.io/ml2scratch/" target="_blank">https://champierre.github.io/ml2scratch/</a>. Allow the access to the webcam if you are asked for it.
 
 2. At first, you need to train the machine by giving several images. Take your first pose. For example, just sit in the front of webcam and do nothing.
 

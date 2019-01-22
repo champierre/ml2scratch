@@ -15,7 +15,7 @@ ML2Scratchは機械学習(TensorFlow.js)をScratchXとをつなげます。
 
 ## 使い方
 
-1. [https://champierre.github.io/ml2scratch/](https://champierre.github.io/ml2scratch/){:target="_blank"} を開きます。ウェブカメラへのアクセスを求められたら、許可します。
+1. <a href="https://champierre.github.io/ml2scratch/" target="_blank">https://champierre.github.io/ml2scratch/</a>を開きます。ウェブカメラへのアクセスを求められたら、許可します。
 
 2. まず最初に学習用の画像を数枚用意します。たとえば、ウェブカメラに顔が映るように座り、何もしていない状態を撮ります。
 

@@ -79,7 +79,9 @@ const LOCALIZED_TEXT = {
     upload: 'アップロード',
     help_text: "ML2Scratch用の拡張機能が追加されたScratchのページを開いて、下記の接続IDを「ID: [ ]で接続する」ブロックにコピー&ペーストしてください。",
     open_scratch: 'Scratchを開く',
-    choose_file: 'ファイルを選択...'
+    choose_file: 'ファイルを選択...',
+    readme: "README(説明)",
+    readme_url: "https://github.com/champierre/ml2scratch/blob/master/README.ja.md"
   },
   en: {
     input: "Input",
@@ -104,7 +106,9 @@ const LOCALIZED_TEXT = {
     upload: 'Upload',
     help_text: "Open Scratch with ML2Scratch extension added and use this ID when you connect.",
     open_scratch: 'Open Scratch',
-    choose_file: 'Choose File...'
+    choose_file: 'Choose File...',
+    readme: 'README',
+    readme_url: "https://github.com/champierre/ml2scratch/blob/master/README.md"
   },
   zh_cn: {
     input: "输入",
@@ -129,7 +133,9 @@ const LOCALIZED_TEXT = {
     upload: '上传',
     help_text: "打开已加入扩展功能的Scratch的页面，把上面的连接ID拷贝到[Connect with ID: []]模块的空白处。",
     open_scratch: '打开Scratch',
-    choose_file: '选取文件...'
+    choose_file: '选取文件...',
+    readme: 'README',
+    readme_url: "https://github.com/champierre/ml2scratch/blob/master/README.zh-cn.md"
   }
 }
 
@@ -199,6 +205,9 @@ class Main {
     for(let i=0;i<NUM_CLASSES; i++){
       this.images[i] = [];
     }
+
+    // Replace readme href
+    $('#readme').attr("href", I18n.t("readme_url"));
 
     $('#trained-images .images').hide();
 
