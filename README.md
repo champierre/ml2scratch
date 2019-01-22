@@ -2,7 +2,7 @@
 
 ML2Scratch connects Machine Learning(TensorFlow.js) to ScratchX.
 
-<!-- *Read this in other languages: [English](README.md), [日本語](README.ja.md), [简体中文](README.zh-cn.md).* -->
+*Read this in other languages: [English](README.md), [日本語](README.ja.md), [简体中文](README.zh-cn.md).*
 
 ## Requirements
 
@@ -19,7 +19,7 @@ ML2Scratch connects Machine Learning(TensorFlow.js) to ScratchX.
 
 2. At first, you need to train the machine by giving several images. Take your first pose. For example, just sit in the front of webcam and do nothing.
 
-    <img src="images/en/neutral.png" />
+  <img src="images/en/neutral.png" />
 
 3. Keep clicking the camera button on the yellow card-type panel(label 0) in the Training section. This action captures the sample image to be recognized as label number 0.
 
