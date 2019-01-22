@@ -51,9 +51,9 @@ ML2Scratch connects Machine Learning(TensorFlow.js) to ScratchX.
 
     <img src="images/en/scratch.png" />
 
-9. Scratch will be opened in other tab.
+9. Scratch will be opened in other tab. Under "Welcome to the Scratch 3.0 Beta" message, click "Try It!" button.
 
-    On the left lower corner, click the folder icon to chose an extension.
+    On the left lower corner, click the folder icon to choose an extension.
 
     <img src="images/en/add_extension.png" />
 
