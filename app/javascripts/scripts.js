@@ -14,8 +14,8 @@ import 'bootstrap'
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {KNNImageClassifier} from 'deeplearn-knn-image-classifier';
-import * as dl from 'deeplearn';
+// import {KNNImageClassifier} from 'deeplearn-knn-image-classifier';
+// import * as dl from 'deeplearn';
 import FileSaver from 'file-saver';
 
 // Number of classes to classify
@@ -24,7 +24,7 @@ const NUM_CLASSES = 8;
 // const IMAGE_SIZE = 227;
 
 // K value for KNN
-const TOPK = 10;
+// const TOPK = 10;
 
 String.prototype.sprintf = function()
 {
@@ -188,11 +188,18 @@ class Main {
     this.wss_url = $.cookie('wss_url') || "wss://ml2scratch-helper.glitch.me"
 
     // Initiate deeplearn.js math and knn classifier objects
-    this.knn = new KNNImageClassifier(NUM_CLASSES, TOPK);
+    // this.knn = new KNNImageClassifier(NUM_CLASSES, TOPK);
 
     this.video = $('video')[0];
 
     this.isTouchDevice = 'ontouchstart' in document.documentElement;
+
+    this.knnClassifier = ml5.KNNClassifier();
+    this.featureExtractor = ml5.featureExtractor('MobileNet', () => {
+      console.log('FeatureExtractor(mobileNet model) Loaded');
+      this.start();
+    });
+    this.ready = false;
 
     // Create cards. This needs to be run at the first place.
     for(let i=0;i<NUM_CLASSES; i++){
@@ -327,8 +334,8 @@ class Main {
     })
 
     // Load knn model
-    this.knn.load()
-    .then(() => this.start());
+    // this.knn.load()
+    // .then(() => this.start());
 
     $(window).on('beforeunload', function() {
       if (location.href != "http://localhost:9966/dist/") {
@@ -341,7 +348,7 @@ class Main {
     });
   }
 
-  start(){
+  start() {
     if (this.timer) {
       this.stop();
     }
@@ -349,7 +356,7 @@ class Main {
     this.timer = requestAnimationFrame(this.animate.bind(this));
   }
 
-  stop(){
+  stop() {
     this.video.pause();
     cancelAnimationFrame(this.timer);
   }
@@ -367,46 +374,75 @@ class Main {
   //   $("#trained-images .training-id").html(index);
   // }
 
-  animate(){
+  classify() {
+    const features = this.featureExtractor.infer(this.video);
+    this.knnClassifier.classify(features, (err, result) => {
+      // Display any error
+      if (err) {
+        console.error(err);
+      } else {
+        this.classify();
+        console.log(result);
+      }
+    });
+  }
+
+  animate() {
     if(this.videoPlaying){
       // Get image data from video element
-      const image = dl.fromPixels(this.video);
+      // const image = dl.fromPixels(this.video);
+
+      const numLabels = this.knnClassifier.getNumLabels();
+      if (!this.ready && numLabels > 0) {
+        this.ready = true;
+        this.classify();
+      }
 
       // Train class if one of the buttons is held down
       if(this.training != -1){
+        const features = this.featureExtractor.infer(this.video);
+        this.knnClassifier.addExample(features, String(this.training));
+        const counts = this.knnClassifier.getCountByLabel();
+
+        // Update info text
+        if(counts[String(this.training)] > 0){
+          this.infoTexts[this.training].innerText = `x ${counts[String(this.training)]}`
+        }
+
         // this.capture(this.training);
-        this.images[this.training].push(image);
-        // Add current image to classifier
-        this.knn.addImage(image, this.training)
+        // this.images[this.training].push(image);
+        // // Add current image to classifier
+        // this.knn.addImage(image, this.training)
       }
 
       // If any examples have been added, run predict
-      const exampleCount = this.knn.getClassExampleCount();
-      if(Math.max(...exampleCount) > 0){
-        this.knn.predictClass(image)
-        .then((res)=>{
-          this.updateProgress(res.confidences);
-
-          for(let i=0;i<NUM_CLASSES; i++){
-            // Make the predicted class bold
-            if(res.classIndex == i){
-              if(this.ws && this.ws.readyState === WebSocket.OPEN){
-                let label = $('#learning .card-block .card-block__label').eq(i).html();
-                this.ws.send(JSON.stringify({action: 'predict', conn_id: this.connId, value: i, label: label}));
-              }
-            }
-
-            // Update info text
-            if(exampleCount[i] > 0){
-              this.infoTexts[i].innerText = `x ${exampleCount[i]}`
-            }
-          }
-        })
-        // Dispose image when done
-        .then(()=> image.dispose())
-      } else {
-        image.dispose()
-      }
+      // const exampleCount = this.knn.getClassExampleCount();
+      //
+      // if(Math.max(...exampleCount) > 0){
+      //   this.knn.predictClass(image)
+      //   .then((res)=>{
+      //     this.updateProgress(res.confidences);
+      //
+      //     for(let i=0;i<NUM_CLASSES; i++){
+      //       // Make the predicted class bold
+      //       if(res.classIndex == i){
+      //         if(this.ws && this.ws.readyState === WebSocket.OPEN){
+      //           let label = $('#learning .card-block .card-block__label').eq(i).html();
+      //           this.ws.send(JSON.stringify({action: 'predict', conn_id: this.connId, value: i, label: label}));
+      //         }
+      //       }
+      //
+      //       // Update info text
+      //       if(exampleCount[i] > 0){
+      //         this.infoTexts[i].innerText = `x ${exampleCount[i]}`
+      //       }
+      //     }
+      //   })
+      //   // Dispose image when done
+      //   .then(()=> image.dispose())
+      // } else {
+      //   image.dispose()
+      // }
     }
     this.timer = requestAnimationFrame(this.animate.bind(this));
   }
@@ -469,14 +505,15 @@ class Main {
   }
 
   clear(i) {
-    this.knn.clearClass(i);
+    this.knnClassifier.clearLabel(String(i));
     this.infoTexts[i].innerText = "x 0";
     $('#trained-images .images').eq(i).html("");
   }
 
   clearAll() {
+    this.knnClassifier.clearAllLabels()
     for(let i=0;i<NUM_CLASSES; i++){
-      this.knn.clearClass(i);
+      // this.knn.clearClass(i);
       this.infoTexts[i].innerText = "x 0";
       $('#trained-images .images').eq(i).html("");
     }
