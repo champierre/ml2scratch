@@ -1,7 +1,3 @@
-import $ from 'jquery'
-import 'jquery.cookie';
-import 'bootstrap'
-
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
@@ -14,17 +10,13 @@ import 'bootstrap'
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// import {KNNImageClassifier} from 'deeplearn-knn-image-classifier';
-// import * as dl from 'deeplearn';
+import $ from 'jquery'
+import 'jquery.cookie';
+import 'bootstrap'
 import FileSaver from 'file-saver';
 
 // Number of classes to classify
 const NUM_CLASSES = 8;
-// Webcam Image size. Must be 227.
-// const IMAGE_SIZE = 227;
-
-// K value for KNN
-// const TOPK = 10;
 
 String.prototype.sprintf = function()
 {
@@ -186,20 +178,13 @@ class Main {
     this.videoPlaying = false;
     this.connId = undefined;
     this.wss_url = $.cookie('wss_url') || "wss://ml2scratch-helper.glitch.me"
-
-    // Initiate deeplearn.js math and knn classifier objects
-    // this.knn = new KNNImageClassifier(NUM_CLASSES, TOPK);
-
     this.video = $('video')[0];
-
     this.isTouchDevice = 'ontouchstart' in document.documentElement;
-
     this.knnClassifier = ml5.KNNClassifier();
     this.featureExtractor = ml5.featureExtractor('MobileNet', () => {
-      console.log('FeatureExtractor(mobileNet model) Loaded');
       this.start();
     });
-    this.ready = false;
+    this.ready = true;
 
     // Create cards. This needs to be run at the first place.
     for(let i=0;i<NUM_CLASSES; i++){
@@ -333,10 +318,6 @@ class Main {
       this.video.addEventListener('paused', ()=> this.videoPlaying = false);
     })
 
-    // Load knn model
-    // this.knn.load()
-    // .then(() => this.start());
-
     $(window).on('beforeunload', function() {
       if (location.href != "http://localhost:9966/dist/") {
         return 'ページから離れようとしていますが、よろしいですか？';
@@ -361,40 +342,27 @@ class Main {
     cancelAnimationFrame(this.timer);
   }
 
-  // capture(index){
-  //   $('#trained-images .images').hide();
-  //   $('#trained-images .images').eq(index).show();
-  //
-  //   let div = $("#trained-images .images").eq(index)
-  //   div.append($("<canvas></canvas>"));
-  //   let canvas = div.find('canvas').last();
-  //   canvas.attr('width', 227);
-  //   canvas.attr('height', (227 / this.video.videoWidth) * this.video.videoHeight);
-  //   canvas[0].getContext('2d').drawImage(this.video, 0, 0, canvas.width(), canvas.height());
-  //   $("#trained-images .training-id").html(index);
-  // }
-
   classify() {
     const features = this.featureExtractor.infer(this.video);
     this.knnClassifier.classify(features, (err, result) => {
-      // Display any error
       if (err) {
         console.error(err);
       } else {
+        if(this.ws && this.ws.readyState === WebSocket.OPEN){
+          let label = $('#learning .card-block .card-block__label').eq(result.classIndex).html();
+          this.ws.send(JSON.stringify({action: 'predict', conn_id: this.connId, value: result.classIndex, label: label}));
+        }
+        this.updateProgress(result.confidences);
         this.classify();
-        console.log(result);
       }
     });
   }
 
   animate() {
     if(this.videoPlaying){
-      // Get image data from video element
-      // const image = dl.fromPixels(this.video);
-
       const numLabels = this.knnClassifier.getNumLabels();
-      if (!this.ready && numLabels > 0) {
-        this.ready = true;
+      if (this.ready && numLabels > 0) {
+        this.ready = false;
         this.classify();
       }
 
@@ -408,41 +376,7 @@ class Main {
         if(counts[String(this.training)] > 0){
           this.infoTexts[this.training].innerText = `x ${counts[String(this.training)]}`
         }
-
-        // this.capture(this.training);
-        // this.images[this.training].push(image);
-        // // Add current image to classifier
-        // this.knn.addImage(image, this.training)
       }
-
-      // If any examples have been added, run predict
-      // const exampleCount = this.knn.getClassExampleCount();
-      //
-      // if(Math.max(...exampleCount) > 0){
-      //   this.knn.predictClass(image)
-      //   .then((res)=>{
-      //     this.updateProgress(res.confidences);
-      //
-      //     for(let i=0;i<NUM_CLASSES; i++){
-      //       // Make the predicted class bold
-      //       if(res.classIndex == i){
-      //         if(this.ws && this.ws.readyState === WebSocket.OPEN){
-      //           let label = $('#learning .card-block .card-block__label').eq(i).html();
-      //           this.ws.send(JSON.stringify({action: 'predict', conn_id: this.connId, value: i, label: label}));
-      //         }
-      //       }
-      //
-      //       // Update info text
-      //       if(exampleCount[i] > 0){
-      //         this.infoTexts[i].innerText = `x ${exampleCount[i]}`
-      //       }
-      //     }
-      //   })
-      //   // Dispose image when done
-      //   .then(()=> image.dispose())
-      // } else {
-      //   image.dispose()
-      // }
     }
     this.timer = requestAnimationFrame(this.animate.bind(this));
   }
@@ -453,20 +387,11 @@ class Main {
   }
 
   download() {
-    const logits = this.knn.getClassLogitsMatrices();
-    const tensors = logits.map((t) => {
-      if (t) {
-        return t.dataSync();
-      }
-      return null;
-    });
-    const fileName = name || Date.now();
-    const blob = new Blob([JSON.stringify({ logits, tensors })], {type: "application/json"});
-    FileSaver.saveAs(blob, fileName + ".json");
+    const fileName = String(Date.now());
+    this.knnClassifier.save(fileName);
   }
 
   upload() {
-    const knn = this.knn;
     const files = document.getElementById('upload-files').files;
     if (files.length <= 0) {
       return false;
@@ -480,11 +405,11 @@ class Main {
       const tensors = data.tensors.map((tensor, i) => {
         if (tensor) {
           const values = Object.keys(tensor).map(v => tensor[v]);
-          return dl.tensor(values, data.logits[i].shape, data.logits[i].dtype);
+          return tf.tensor(values, data.logits[i].shape, data.logits[i].dtype);
         }
         return null;
       });
-      knn.setClassLogitsMatrices(tensors);
+      this.knnClassifier.setClassLogitsMatrices(tensors);
     }
 
     fr.onloadend = function(e) {
@@ -513,10 +438,10 @@ class Main {
   clearAll() {
     this.knnClassifier.clearAllLabels()
     for(let i=0;i<NUM_CLASSES; i++){
-      // this.knn.clearClass(i);
       this.infoTexts[i].innerText = "x 0";
       $('#trained-images .images').eq(i).html("");
     }
+    this.ready = true;
   }
 
   updateProgress(confidences) {
