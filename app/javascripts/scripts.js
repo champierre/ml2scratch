@@ -184,7 +184,6 @@ class Main {
     this.featureExtractor = ml5.featureExtractor('MobileNet', () => {
       this.start();
     });
-    this.ready = true;
 
     // Create cards. This needs to be run at the first place.
     for(let i=0;i<NUM_CLASSES; i++){
@@ -231,7 +230,7 @@ class Main {
       $(e.target).select();
     })
 
-    // fileを選択したら名前を表示させる
+    // fileを選択したら名前を表示する
     $('[data-file]').each(function(index, el) {
       $(el).on('change', function(e) {
         let filename = $(e.currentTarget).val().split('\\').pop()
@@ -239,6 +238,10 @@ class Main {
         element.innerText = filename;
         $(e.currentTarget).closest('.input-file').addClass('has-file')
       });
+    });
+
+    $("#upload-files").change(()=>{
+      this.upload();
     });
 
     $('.card-block').each((i, el) => {
@@ -318,10 +321,6 @@ class Main {
         return 'ページから離れようとしていますが、よろしいですか？';
       }
     });
-
-    $("#upload-files").change(()=>{
-      this.upload();
-    });
   }
 
   start() {
@@ -338,6 +337,9 @@ class Main {
   }
 
   classify() {
+    const numLabels = this.knnClassifier.getNumLabels();
+    if (numLabels == 0) return;
+
     const features = this.featureExtractor.infer(this.video);
     this.knnClassifier.classify(features, (err, result) => {
       if (err) {
@@ -348,29 +350,19 @@ class Main {
           this.ws.send(JSON.stringify({action: 'predict', conn_id: this.connId, value: result.classIndex, label: label}));
         }
         this.updateProgress(result.confidences);
-        this.classify();
       }
     });
   }
 
   animate() {
     if(this.videoPlaying){
-      const numLabels = this.knnClassifier.getNumLabels();
-      if (this.ready && numLabels > 0) {
-        this.ready = false;
-        this.classify();
-      }
+      this.classify();
 
       // Train class if one of the buttons is held down
       if(this.training != -1){
         const features = this.featureExtractor.infer(this.video);
         this.knnClassifier.addExample(features, String(this.training));
-        const counts = this.knnClassifier.getCountByLabel();
-
-        // Update info text
-        if(counts[String(this.training)] > 0){
-          this.infoTexts[this.training].innerText = `x ${counts[String(this.training)]}`
-        }
+        this.updateCounts();
       }
     }
     this.timer = requestAnimationFrame(this.animate.bind(this));
@@ -396,9 +388,9 @@ class Main {
 
     fr.onload = (e) => {
       const data = JSON.parse(e.target.result);
-      this.knnClassifier.loadData(data, function(){
-        console.log("uploaded");
-      })
+      this.knnClassifier.loadData(data, () => {
+        this.updateCounts();
+      });
     }
 
     fr.onloadend = (e) => {
@@ -420,17 +412,12 @@ class Main {
 
   clear(i) {
     this.knnClassifier.clearLabel(String(i));
-    this.infoTexts[i].innerText = "x 0";
-    $('#trained-images .images').eq(i).html("");
+    this.updateCounts();
   }
 
   clearAll() {
     this.knnClassifier.clearAllLabels()
-    for(let i=0;i<NUM_CLASSES; i++){
-      this.infoTexts[i].innerText = "x 0";
-      $('#trained-images .images').eq(i).html("");
-    }
-    this.ready = true;
+    this.updateCounts();
   }
 
   updateProgress(confidences) {
@@ -478,6 +465,13 @@ class Main {
 </div>
     `;
     $('#learning .card-block-container').append(html);
+  }
+
+  updateCounts() {
+    const counts = this.knnClassifier.getCountByLabel();
+    for(let i=0;i<NUM_CLASSES; i++){
+      this.infoTexts[i].innerText = `x ${counts[String(i)] || 0}`
+    }
   }
 }
 
