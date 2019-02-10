@@ -227,11 +227,6 @@ class Main {
       return false;
     });
 
-    $('#upload-button').on('click', ()=> {
-      this.upload();
-      return false;
-    });
-
     $('#conn-id').on('click', (e)=> {
       $(e.target).select();
     })
@@ -399,20 +394,14 @@ class Main {
 
     const fr = new FileReader();
 
-    fr.onload = function(e) {
+    fr.onload = (e) => {
       const data = JSON.parse(e.target.result);
-
-      const tensors = data.tensors.map((tensor, i) => {
-        if (tensor) {
-          const values = Object.keys(tensor).map(v => tensor[v]);
-          return tf.tensor(values, data.logits[i].shape, data.logits[i].dtype);
-        }
-        return null;
-      });
-      this.knnClassifier.setClassLogitsMatrices(tensors);
+      this.knnClassifier.loadData(data, function(){
+        console.log("uploaded");
+      })
     }
 
-    fr.onloadend = function(e) {
+    fr.onloadend = (e) => {
       document.getElementById('upload-files').value = "";
     }
 
