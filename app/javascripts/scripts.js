@@ -185,6 +185,10 @@ class Main {
       this.start();
     });
 
+    let params = new URLSearchParams(window.location.search);
+    let connId = params.get('conn_id');
+    this.connect(connId);
+
     // Create cards. This needs to be run at the first place.
     for(let i=0;i<NUM_CLASSES; i++){
       this.addCard();
