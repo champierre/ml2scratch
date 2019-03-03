@@ -186,8 +186,13 @@ class Main {
     });
 
     let params = new URLSearchParams(window.location.search);
-    let connId = params.get('conn_id');
-    this.connect(connId);
+    if (params.get('conn_id')) {
+      this.connId = params.get('conn_id');
+    } else {
+      this.connId = Math.floor(Math.random(100000000) * 100000000)
+    }
+    $('#conn-id').val(this.connId);
+    this.connect(this.connId);
 
     // Create cards. This needs to be run at the first place.
     for(let i=0;i<NUM_CLASSES; i++){
@@ -295,8 +300,6 @@ class Main {
         label.html(input.val() || i);
       })
     }
-
-    $('#conn-id').val(Math.random().toString(36).slice(-10));
 
     $('#wss_url').val(this.wss_url);
     $('#wss_url').on('blur', (e)=> {
