@@ -395,7 +395,7 @@ class Main {
 
     fr.onload = (e) => {
       const data = JSON.parse(e.target.result);
-      this.knnClassifier.loadData(data, () => {
+      this.knnClassifier.load(data, () => {
         this.updateCounts();
       });
     }
