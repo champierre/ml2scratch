@@ -51,7 +51,7 @@ ML2Scratchは機械学習(TensorFlow.js)をScratchとをつなげます。
 
     <img src="images/ja/scratch.png" />
 
-    <span style="color:red;">【注意】ML2ScratchとScratchは以下のキャプチャ画面のように、それぞれ別ウィンドウで開き、並べるようにしてください。同じウィンドウの異なるタブで開くと、うまく動作しません。</span>
+    【注意❗】ML2ScratchとScratchは以下のキャプチャ画面のように、それぞれ別ウィンドウで開き、並べるようにしてください。同じウィンドウの異なるタブで開くと、うまく動作しません。
 
     <img src="images/ja/windows.png" />
 

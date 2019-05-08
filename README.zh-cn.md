@@ -53,7 +53,7 @@ Chinese Translation by 陶旭(Tao Xu)&lt;toukyoku@163.com&gt;
 
     <img src="images/zh-cn/scratch.png" />
 
-    <span style="color:red;">[Caution] Please open ML2Scratch and Scratch on different windows as shown in the following capture screen. If you open them in different tabs of the same window, they will not work.</span>
+    [Caution❗] Please open ML2Scratch and Scratch on different windows as shown in the following capture screen. If you open them in different tabs of the same window, they will not work.
 
     <img src="images/zh-cn/windows.png" />
 
