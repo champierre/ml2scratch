@@ -53,6 +53,10 @@ Chinese Translation by 陶旭(Tao Xu)&lt;toukyoku@163.com&gt;
 
     <img src="images/zh-cn/scratch.png" />
 
+    <span style="color:red;">[Caution] Please open ML2Scratch and Scratch on different windows as shown in the following capture screen. If you open them in different tabs of the same window, they will not work.</span>
+
+    <img src="images/zh-cn/windows.png" />
+
 9. 这时在浏览器的新的选项卡中打开了Scratch的"欢迎来到Scratch 3.0 Beta版"页面，在这里点选"试用！"。点击窗口左下方的文件夹图标即可打开"选择一个扩展"的页面。
 
     <img src="images/zh-cn/add_extension.png" />

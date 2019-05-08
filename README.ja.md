@@ -51,6 +51,10 @@ ML2Scratchは機械学習(TensorFlow.js)をScratchとをつなげます。
 
     <img src="images/ja/scratch.png" />
 
+    <span style="color:red;">【注意】ML2ScratchとScratchは以下のキャプチャ画面のように、それぞれ別ウィンドウで開き、並べるようにしてください。同じウィンドウの異なるタブで開くと、うまく動作しません。</span>
+
+    <img src="images/ja/windows.png" />
+
 9. ブラウザの別タブでScratchが開き「Scratch 3.0 ベータ版にようこそ！」の画面が開きます。「試す!」をクリックします。
 
     画面左下隅のフォルダアイコンをクリックして、「拡張機能を選ぶ」の画面を開きます。
