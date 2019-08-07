@@ -8,7 +8,7 @@ ML2Scratchは機械学習(TensorFlow.js)をScratchとをつなげます。
 
 - https://champierre.github.io/scratch3/
 
-    <img src="images/ml2scratch.gif" width="600" />
+    <img src="images/ml2scratch.gif" width="900" />
 
 ## 環境
 

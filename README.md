@@ -8,7 +8,7 @@ ML2Scratch connects Machine Learning(TensorFlow.js) to Scratch.
 
 - https://champierre.github.io/scratch3/
 
-    <img src="images/ml2scratch.gif" width="600" />
+    <img src="images/ml2scratch.gif" width="900" />
 
 ## Requirements
 
