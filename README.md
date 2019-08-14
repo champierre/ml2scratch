@@ -4,20 +4,16 @@ ML2Scratch connects Machine Learning(TensorFlow.js) to Scratch.
 
 *Read this in other languages: [English](README.md), [日本語](README.ja.md), [简体中文](README.zh-cn.md).*
 
-## New Version(Beta)
-
-- https://champierre.github.io/scratch3/
+## Demo Movie
 
     <img src="images/ml2scratch.gif" width="900" />
+
+- Rock/Scissors/Paper Demo [YouTube](https://www.youtube.com/watch?v=DkH1hwc-Gb4) | [.mov file](https://s3.amazonaws.com/champierre/movies/rsp_demo.mov)
+- Control a toy robot, MiP, by hand gestures [YouTube](https://www.youtube.com/watch?v=GKXimEB5WQg) | [.mov file](https://s3.amazonaws.com/champierre/movies/mip_demo.mov)
 
 ## Requirements
 
 - Chrome browser
-
-## Demo Movie
-
-- Rock/Scissors/Paper Demo [YouTube](https://www.youtube.com/watch?v=DkH1hwc-Gb4) | [.mov file](https://s3.amazonaws.com/champierre/movies/rsp_demo.mov)
-- Control a toy robot, MiP, by hand gestures [YouTube](https://www.youtube.com/watch?v=GKXimEB5WQg) | [.mov file](https://s3.amazonaws.com/champierre/movies/mip_demo.mov)
 
 ## How to use(Step by step)
 
