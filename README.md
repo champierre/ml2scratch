@@ -21,94 +21,39 @@ ML2Scratch connects Machine Learning(TensorFlow.js) to Scratch.
 
 ## How to use(Step by step)
 
-1. Open https://champierre.github.io/ml2scratch/. Allow the access to the webcam if you are asked for it.
+### Setup
 
-2. At first, you need to train the machine by giving several images. Take your first pose. For example, just sit in the front of webcam and do nothing.
+1. Open https://champierre.github.io/scratch3/.
 
-    <img src="images/en/neutral.png" />
+2. Open "Choose an Extension" window and select "ML2Scratch".
 
-3. Keep clicking the camera button on the yellow card-type panel(label 0) in the Training section. This action captures the sample image to be recognized as label number 0.
+    <img src="images/en/ml2scratch.png" />
 
-    <img src="images/en/before_training_0.png" />
+3. Chrome asks you to allow the access to Camera, then click "Allow".
 
-    After you give about 20 images, the Recognition shows whole yellow bar. This means the neutral image is now recognized as label 0 with 100% assurance.
+4. Check the checkboxes besides "label", "counts of label 1", "counts of label 2" and "counts of label 3" blocks.
 
-    <img src="images/en/after_training_0.png" />
+    <img src="images/en/check_blocks.png" />
 
-4. Next, you need to train the machine by giving images of another pose.
+### Training
 
-    <img src="images/en/gesture.png" />
+5. Show "rock" hand sign to the camera and click "train label 1" block. This is to train the machine to recognize "rock" sign as label 1.
 
-5. Keep clicking the camera button on the light green card-type panel(label 1) in the Training section. This action captures the sample image to be recognized as label number 1.
+    <img src="images/en/rock.png" />
 
-    <img src="images/en/before_training_1.png" />
+6. Keep clicking the button until you capture about 20 images. The number of images captured is displayed in "counts of label 1" field in Stage window.
 
-    After you give about 20 images, the Recognition will show whole light green bar. This means the image is now recognized as label 1 with 100% assurance(Maybe less like 80% - 90%, but it is OK if it is more than 70%).
+7. Show "paper" hand sign to the camera and keep clicking "train label 2" block until you get 20 as "counts of label 2".
 
-    <img src="images/en/after_training_1.png" />
+8. Show "scissors" hand sign to the camera and keep clicking "train label 3" block until you get 20 as "counts of label 3".
 
-6. Make sure that Recognition shows the label according to your pose. If you make the first neutral pose, it should show yellow bar. If you make the second pose, it should switch to green bar.
+9. After training, the recognition result shows in the "label" field in Stage area. If you show "rock", the "label" should show "1", if you show "paper", the "label" should show "2" and if you show "scissors", the "label" should show "3".
 
-7. Scroll to the Connect section and copy the connection ID(characters such as "76q669zsk") next to "Connect" button. You need it later. Then, click "Connect" button to connect to the WebSocket server on the cloud.
+    <img src="images/en/recognition.png" />
 
-    <img src="images/en/connect.png" />
+10. You can use "when received label #" blocks and create a sample program like this:
 
-8. Click "Open Scratch" button to open Scratch with ML2Scratch extension added.
-
-    <img src="images/en/scratch.png" />
-
-    [Caution❗] Please open ML2Scratch and Scratch on different windows as shown in the following capture screen. If you open them in different tabs of the same window, they will not work.
-
-    <img src="images/en/windows.png" />
-
-9. Scratch will be opened in other tab. Under "Welcome to the Scratch 3.0 Beta" message, click "Try It!" button.
-
-    On the left lower corner, click the folder icon to choose an extension.
-
-    <img src="images/en/add_extension.png" />
-
-    Then, select "ML2Scratch".
-
-    <img src="images/en/ml2scratch_extension.png" />
-
-    "ML2Scratch" category will be added.
-
-    <img src="images/en/ml2scratch_extension_added.png" />
-
-10. Drag "Connect with ID: []" block to the script area and paste the connection ID you copied on line 7 into the blank area. Once pasted, click the block to connect to the WebSocket server.
-
-    <img src="images/en/scratch3_connect_block.png" />
-
-11. Drag "When received class index:[1]" block to the script area. Drag "start sound Pop" under "Sound" category to the script area and connect them as following.
-
-    <img src="images/en/scratch3_play_sound.png" />
-
-12. Each time you take the pose for label 1, it is recognized as "label 1", that information is sent to Scratch via WebSocket server, and pop sound will be played as you programmed to do so.
-
-## How to use(Advanced)
-
-1. If you want to redo the training for specific label, select "Reset" on the menu for each label.
-
-    <img src="images/en/reset.png" />
-
-2. If you want to clear all the training data, select "Reset all" in Training section.
-
-    <img src="images/en/reset_all.png" />
-
-3. If you want to download training data, select "Download trained model" in Recognition section, then select the target folder. The file is JSON file, such as "1548166739008.json".
-
-    <img src="images/en/download.png" />
-
-4. If you want to upload training data, select "Choose File..." in Trained Model section. Then, select the JSON file that you downloaded previously.
-
-    <img src="images/en/upload.png" />
-
-## How to develop
-
-```
-% npm install
-% npm run start
-```
+    <img src="images/en/scratch_program.png" />
 
 ## Reference
 
