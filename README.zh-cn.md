@@ -2,7 +2,7 @@
 
 使用ML2Scratch可以将机器学习 (TensorFlow.js)与Scratch连接起来。
 
-*其他语言说明页: [English](README.md), [日本語](README.ja.md), [简体中文](README.zh-cn.md).*
+*其他语言说明页: [English](README.en.md), [日本語](README.md), [简体中文](README.zh-cn.md).*
 
 Chinese Translation by 陶旭(Tao Xu)&lt;toukyoku@163.com&gt;
 

@@ -1,57 +1,65 @@
 # ML2Scratch(Scratch2ML)
 
-ML2Scratch connects Machine Learning(TensorFlow.js) to Scratch.
+ML2Scratchは機械学習(TensorFlow.js)をScratchとをつなげます。
 
-*Read this in other languages: [English](README.md), [日本語](README.ja.md), [简体中文](README.zh-cn.md).*
+*他の言語で読む: [English](README.en.md), [日本語](README.md), [简体中文](README.zh-cn.md).*
 
-## Demo Movie
+
+## デモ動画
 
   <img src="images/ml2scratch.gif" width="900" />
 
-- Rock/Scissors/Paper Demo [YouTube](https://www.youtube.com/watch?v=DkH1hwc-Gb4) | [.mov file](https://s3.amazonaws.com/champierre/movies/rsp_demo.mov)
-- Control a toy robot, MiP, by hand gestures [YouTube](https://www.youtube.com/watch?v=GKXimEB5WQg) | [.mov file](https://s3.amazonaws.com/champierre/movies/mip_demo.mov)
+- Webカメラでグー、チョキ、パーを判定 [YouTube](https://www.youtube.com/watch?v=DkH1hwc-Gb4) | [.mov file](https://s3.amazonaws.com/champierre/movies/rsp_demo.mov)
+- ジェスチャーで倒立2輪ロボットMiPを動かす [YouTube](https://www.youtube.com/watch?v=GKXimEB5WQg) | [.mov file](https://s3.amazonaws.com/champierre/movies/mip_demo.mov)
 
-## Requirements
+## 環境
 
-- Chrome browser
+- Chromeブラウザ
 
-## How to use(Step by step)
+## 使い方
 
-### Setup
+### 準備
 
-1. Open https://champierre.github.io/scratch3/.
+1. https://champierre.github.io/scratch3/ をChromeで開きます。
 
-2. Open "Choose an Extension" window and select "ML2Scratch".
+2. 「拡張機能を選ぶ」画面を開き、「ML2Scratch」を選びます。
 
-    <img src="images/en/ml2scratch.png" />
+    <img src="images/ja/ml2scratch.png" />
 
-3. Chrome asks you to allow the access to Camera, then click "Allow".
+3. Chromeがカメラの使用の許可を求めるダイアログが表示されるので、「許可」をクリックします。
 
-4. Check the checkboxes besides "label", "counts of label 1", "counts of label 2" and "counts of label 3" blocks.
+4. 「ラベル」、「ラベル1の枚数」、「ラベル2の枚数」、「ラベル3の枚数」の横のチェックボックスにチェックを入れます。
 
-    <img src="images/en/check_blocks.png" />
+    <img src="images/ja/check_blocks.png" />
 
-### Training
+### 学習
 
-5. Show "rock" hand sign to the camera and click "train label 1" block. This is to train the machine to recognize "rock" sign as label 1.
+5. ジャンケンの「グー」のサインをカメラに映し、「ラベル1を学習する」ブロックをクリックします。この操作で、「グー」をラベル1として機械に学習させます。
 
     <img src="images/en/rock.png" />
 
-6. Keep clicking the button until you capture about 20 images. The number of images captured is displayed in "counts of label 1" field in Stage window.
+6. 撮った写真の枚数が20枚になるまで「ラベル1を学習する」ブロックをクリックし続けます。撮った写真の枚数はステージ上の「ラベル1の枚数」に表示されています。
 
-7. Show "paper" hand sign to the camera and keep clicking "train label 2" block until you get 20 as "counts of label 2".
+7. 次に「パー」をカメラに映し、同様に「ラベル2の枚数」が20になるまで、「ラベル2を学習する」ブロックをクリックし続けます。
 
-8. Show "scissors" hand sign to the camera and keep clicking "train label 3" block until you get 20 as "counts of label 3".
+8. 「チョキ」をカメラに映し、「ラベル3の枚数」が20になるまで、「ラベル3を学習する」ブロックをクリックし続けます。
 
-9. After training, the recognition result shows in the "label" field in Stage area. If you show "rock", the "label" should show "1", if you show "paper", the "label" should show "2" and if you show "scissors", the "label" should show "3".
+### 認識
+
+9. 学習を終えると、認識結果が常にステージ上の「ラベル」に表示されるようになります。「グー」を見せれば「1」に、「パー」を見せれば「2」に、「チョキ」を見せれば「3」と表示されます。
 
     <img src="images/en/recognition.png" />
 
-10. You can use "when received label #" blocks and create a sample program like this:
+10. 「ラベル◯◯を受け取ったとき」ブロックを使って、以下のようなサンプルプログラムを作ることができます。
 
     <img src="images/en/scratch_program.png" />
 
-## Reference
+## Tシャツ
+
+ML2Scratchのロゴ入りTシャツ、こちらで販売しています ->
+https://suzuri.jp/is8r_/1251743/t-shirt/s/white
+
+## 参考
 
 - https://js.tensorflow.org/
 - https://github.com/googlecreativelab/teachable-machine-boilerplate
