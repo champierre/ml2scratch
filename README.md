@@ -15,7 +15,8 @@ ML2Scratchは機械学習(TensorFlow.js)をScratchとをつなげます。
 ## 推奨環境
 
 - OS
-  - Windows
+  - Windows 8
+  - Windows 10
   - MacOS
 - ブラウザ
   - Chrome
