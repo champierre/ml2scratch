@@ -6,7 +6,7 @@ ML2Scratch connects Machine Learning with Scratch.
 
 ## Demo Movie
 
-  <img src="images/ml2scratch.gif" width="900" />
+  <img src="images/en/ml2scratch.gif" width="900" />
 
 - Rock/Scissors/Paper Demo [YouTube](https://www.youtube.com/watch?v=DkH1hwc-Gb4) | [.mov file](https://s3.amazonaws.com/champierre/movies/rsp_demo.mov)
 - Control a toy robot, MiP, by hand gestures [YouTube](https://www.youtube.com/watch?v=GKXimEB5WQg) | [.mov file](https://s3.amazonaws.com/champierre/movies/mip_demo.mov)
