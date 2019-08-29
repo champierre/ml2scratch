@@ -13,7 +13,12 @@ ML2Scratch connects Machine Learning with Scratch.
 
 ## Requirements
 
-- Chrome browser
+- OS
+  - Windows 8
+  - Windows 10
+  - MacOS
+- Browser
+  - Chrome
 
 ## How to use(Step by step)
 
