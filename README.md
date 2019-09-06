@@ -7,7 +7,7 @@ ML2Scratchは機械学習(TensorFlow.js)をScratchとをつなげます。
 旧バージョンをお使いの場合はこちら↓
 
 - [学習パート](https://champierre.github.io/ml2scratch/)
-- [分類パート(Scratch)](https://champierre.github.io/scratch3/)
+- [分類パート(Scratch)](https://champierre.github.io/scratch/)
 
 学習パートと分類パート(Scratch)とに分かれています。
 

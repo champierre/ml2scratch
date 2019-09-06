@@ -7,7 +7,7 @@ ML2Scratch connects Machine Learning with Scratch.
 Old versions:
 
 - [Learning part](https://champierre.github.io/ml2scratch/)
-- [Classification part(Scratch)](https://champierre.github.io/scratch3/)
+- [Classification part(Scratch)](https://champierre.github.io/scratch/)
 
 ## Demo Movie
 
