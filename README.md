@@ -4,6 +4,8 @@ ML2Scratchは機械学習(TensorFlow.js)をScratchとをつなげます。
 
 *他の言語で読む: [English](README.en.md), [日本語](README.md), [简体中文](README.zh-cn.md).*
 
+*[GitHub](https://github.com/champierre/ml2scratch)*
+
 ## デモ動画
 
   <img src="images/ja/ml2scratch.gif" width="900" />
@@ -24,7 +26,7 @@ ML2Scratchは機械学習(TensorFlow.js)をScratchとをつなげます。
 
 ### 準備
 
-1. https://champierre.github.io/scratch3/ をChromeで開きます。
+1. [https://champierre.github.io/scratch3/](https://champierre.github.io/scratch3/) をChromeで開きます。
 
 2. 「拡張機能を選ぶ」画面を開き、「ML2Scratch」を選びます。
 
@@ -70,7 +72,7 @@ ML2Scratchは機械学習(TensorFlow.js)をScratchとをつなげます。
 
 2. Copy this repos' scratch-vm/src/extensions/scratch3_ml2scratch folder to scratch-gui/node_modules/scratch-vm/src/extensions/.
 
-3. Download https://unpkg.com/ml5@0.3.1/dist/ml5.min.js and move the file(ml5.min.js) to scratch-gui/node_modules/scratch-vm/src/extensions/.
+3. Download [https://unpkg.com/ml5@0.3.1/dist/ml5.min.js](https://unpkg.com/ml5@0.3.1/dist/ml5.min.js) and move the file(ml5.min.js) to scratch-gui/node_modules/scratch-vm/src/extensions/.
 
 4. Edit scratch-gui/node_modules/scratch-vm/src/extension-support/extension-manager.js, add "ml2scratch" entry to builtinExtensions constant as follows:
 
@@ -117,9 +119,9 @@ const builtinExtensions = {
 ## Tシャツ
 
 ML2Scratchのロゴ入りTシャツ、こちらで販売しています ->
-https://suzuri.jp/is8r_/1251743/t-shirt/s/white
+[https://suzuri.jp/is8r_/1251743/t-shirt/s/white](https://suzuri.jp/is8r_/1251743/t-shirt/s/white)
 
 ## 参考
 
-- https://js.tensorflow.org/
-- https://github.com/googlecreativelab/teachable-machine-boilerplate
+- [https://js.tensorflow.org/](https://js.tensorflow.org/)
+- [https://github.com/googlecreativelab/teachable-machine-boilerplate](https://github.com/googlecreativelab/teachable-machine-boilerplate)

@@ -2,6 +2,8 @@
 
 ML2Scratch connects Machine Learning with Scratch.
 
+*[GitHub](https://github.com/champierre/ml2scratch)*
+
 *Read this in other languages: [English](README.en.md), [日本語](README.md), [简体中文](README.zh-cn.md).*
 
 ## Demo Movie
@@ -24,7 +26,7 @@ ML2Scratch connects Machine Learning with Scratch.
 
 ### Setup
 
-1. Open https://champierre.github.io/scratch3/.
+1. Open [https://champierre.github.io/scratch3/](https://champierre.github.io/scratch3/).
 
 2. Open "Choose an Extension" window and select "ML2Scratch".
 
@@ -70,7 +72,7 @@ ML2Scratch connects Machine Learning with Scratch.
 
 2. Copy this repos' scratch-vm/src/extensions/scratch3_ml2scratch folder to scratch-gui/node_modules/scratch-vm/src/extensions/.
 
-3. Download https://unpkg.com/ml5@0.3.1/dist/ml5.min.js and move the file(ml5.min.js) to scratch-gui/node_modules/scratch-vm/src/extensions/.
+3. Download [https://unpkg.com/ml5@0.3.1/dist/ml5.min.js](https://unpkg.com/ml5@0.3.1/dist/ml5.min.js) and move the file(ml5.min.js) to scratch-gui/node_modules/scratch-vm/src/extensions/.
 
 4. Edit scratch-gui/node_modules/scratch-vm/src/extension-support/extension-manager.js, add "ml2scratch" entry to builtinExtensions constant as follows:
 
@@ -116,5 +118,5 @@ const builtinExtensions = {
 
 ## Reference
 
-- https://js.tensorflow.org/
-- https://github.com/googlecreativelab/teachable-machine-boilerplate
+- [https://js.tensorflow.org/](https://js.tensorflow.org/)
+- [https://github.com/googlecreativelab/teachable-machine-boilerplate](https://github.com/googlecreativelab/teachable-machine-boilerplate)
