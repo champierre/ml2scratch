@@ -4,16 +4,14 @@ ML2Scratchは機械学習(TensorFlow.js)をScratchとをつなげます。
 
 *他の言語で読む: [English](README.en.md), [日本語](README.md), [简体中文](README.zh-cn.md).*
 
-*[GitHub](https://github.com/champierre/ml2scratch)*
-
-## デモ動画
+## Demo Movie(デモ動画)
 
   <img src="images/ja/ml2scratch.gif" width="900" />
 
 - Webカメラでグー、チョキ、パーを判定 [YouTube](https://www.youtube.com/watch?v=DkH1hwc-Gb4) | [.mov file](https://s3.amazonaws.com/champierre/movies/rsp_demo.mov)
 - ジェスチャーで倒立2輪ロボットMiPを動かす [YouTube](https://www.youtube.com/watch?v=GKXimEB5WQg) | [.mov file](https://s3.amazonaws.com/champierre/movies/mip_demo.mov)
 
-## 推奨環境
+## Requirements(推奨環境)
 
 - OS
   - Windows 8
@@ -22,9 +20,9 @@ ML2Scratchは機械学習(TensorFlow.js)をScratchとをつなげます。
 - ブラウザ
   - Chrome
 
-## 使い方
+## How to use(使い方)
 
-### 準備
+### Setup(準備)
 
 1. [https://champierre.github.io/scratch3/](https://champierre.github.io/scratch3/) をChromeで開きます。
 
@@ -38,7 +36,7 @@ ML2Scratchは機械学習(TensorFlow.js)をScratchとをつなげます。
 
     <img src="images/ja/check_blocks.png" />
 
-### 学習
+### Training(学習)
 
 5. ジャンケンの「グー」のサインをカメラに映し、「ラベル1を学習する」ブロックをクリックします。この操作で、「グー」をラベル1として機械に学習させます。
 
@@ -50,7 +48,7 @@ ML2Scratchは機械学習(TensorFlow.js)をScratchとをつなげます。
 
 8. 「チョキ」をカメラに映し、「ラベル3の枚数」が20になるまで、「ラベル3を学習する」ブロックをクリックし続けます。
 
-### 認識
+### Recognition(認識)
 
 9. 学習を終えると、認識結果が常にステージ上の「ラベル」に表示されるようになります。「グー」を見せれば「1」に、「パー」を見せれば「2」に、「チョキ」を見せれば「3」と表示されます。
 
@@ -121,7 +119,7 @@ const builtinExtensions = {
 ML2Scratchのロゴ入りTシャツ、こちらで販売しています ->
 [https://suzuri.jp/is8r_/1251743/t-shirt/s/white](https://suzuri.jp/is8r_/1251743/t-shirt/s/white)
 
-## 参考
+## Reference(参考)
 
 - [https://js.tensorflow.org/](https://js.tensorflow.org/)
 - [https://github.com/googlecreativelab/teachable-machine-boilerplate](https://github.com/googlecreativelab/teachable-machine-boilerplate)

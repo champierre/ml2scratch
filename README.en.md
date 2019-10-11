@@ -2,8 +2,6 @@
 
 ML2Scratch connects Machine Learning with Scratch.
 
-*[GitHub](https://github.com/champierre/ml2scratch)*
-
 *Read this in other languages: [English](README.en.md), [日本語](README.md), [简体中文](README.zh-cn.md).*
 
 ## Demo Movie
