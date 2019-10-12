@@ -4,111 +4,119 @@
 
 *其他语言说明页: [English](README.en.md), [日本語](README.md), [简体中文](README.zh-cn.md).*
 
-Chinese Translation by 陶旭(Tao Xu)&lt;toukyoku@163.com&gt;
-
-## 运行环境
-
-- Chrome浏览器
-
 ## 演示视频
 
 - 用电脑摄像头判别石头剪子布 [.mov file](https://s3.amazonaws.com/champierre/movies/rsp_demo.mov) | [YouTube](https://www.youtube.com/watch?v=DkH1hwc-Gb4)
 - 用手势指挥倒立两轮机器人MiP [.mov file](https://s3.amazonaws.com/champierre/movies/mip_demo.mov) | [YouTube](https://www.youtube.com/watch?v=GKXimEB5WQg)
 
+## 运行环境
+
+- OS
+  - Windows 8
+  - Windows 10
+  - MacOS
+- Browser
+  - Chrome
+
 ## 用法
 
-1. 打开 https://champierre.github.io/ml2scratch/ 。允许调用摄像头。
+### 设定
 
-2. 实际开始前先来准备多张图片。例如坐在摄像头前，拍下可以看到脸但没有做动作的姿态。
+1. 打开 [https://champierre.github.io/scratch3/](https://champierre.github.io/scratch3/)。
 
-    <img src="images/en/neutral.png" />
+2. 打开“选择扩展”窗口，然后选择“ML2Scratch”。
 
-3. 在“学习”一栏中，连续点击黄色板块上的照相机图标按钮，拍摄标签编号为0的识别图片。
+    <img src="images/en/ml2scratch.png" />
 
-    <img src="images/zh-cn/before_training_0.png" />
+3. Chrome要求您允许访问相机，然后单击“允许”。
 
-    拍摄20张左右后，在“识别”栏中的状态条变为黄色。这表示没有做动作的姿态已经以100%的精度识别为标签0了。
+4. 选中“标签”，“标签1的计数”，“标签2的计数”和“标签3的计数”块旁边的复选框。
 
-    <img src="images/zh-cn/after_training_0.png" />
+    <img src="images/en/check_blocks.png" />
 
-4. 下面开始准备另一个姿态的图片。
+### 训练
 
-    <img src="images/en/gesture.png" />
+5. 向摄像机显示“摇滚”手势，然后单击“火车标签1”块。 这是为了训练机器将“岩石”符号识别为标签1。
 
-5. 这时在"学习"栏中，连续点击浅绿色面板上的照相机图标的按钮，拍摄识别为标签编号1的图片。
+    <img src="images/en/rock.png" />
 
-    <img src="images/zh-cn/before_training_1.png" />
+6. 持续单击该按钮，直到捕获约20张图像。 捕获的图像数量显示在“阶段”窗口的“标签数量1”字段中。
 
-    拍摄20张左右时，在“识别”栏中的状态条变为浅绿色。说明这个姿态的图片已经以100%的精度识别为标签1。（有可能是呈80%-90%的状态，但只要是超过70%就没有问题）
+7. 在相机上显示“纸”手势，并继续单击“火车标签2”块，直到获得20作为“标签2的数量”。
 
-    <img src="images/zh-cn/after_training_1.png" />
+8. 在相机上显示“剪刀”手势，并继续单击“火车标签3”块，直到获得20作为“标签3的数量”。
 
-6. 这时应该可以看到"识别"栏中的颜色会对应于摄像头拍到的每个姿态发生变化。如果拍到第一个姿态则为黄色，如果是第二个姿态则会变成浅绿色了。
+### 承认
 
-7. 滚动到页面最下方，复制"连接"栏中显示的连接ID（类似"76q669zsk"的随机字符串）。这个连接ID之后会用到。点击旁边的"连接"按钮，连接云端的WebSocket服务器。
+9. 训练后，识别结果将显示在“阶段”区域的“标签”字段中。 如果显示“ rock”，则“ label”应显示“ 1”，如果显示“ paper”，则“ label”应显示“ 2”，如果显示“ scissorsors”，则“ label”应显示“ 3” 。
 
-    <img src="images/zh-cn/connect.png" />
+    <img src="images/en/recognition.png" />
 
-8. 点击"打开Scratch"按钮，打开可以使用ML2Scratch的扩展功能的专用Scratch页面。
+10. 您可以使用“何时收到标签＃”块并创建一个示例程序，如下所示：
 
-    <img src="images/zh-cn/scratch.png" />
+    <img src="images/en/scratch_program.png" />
 
-    [Caution❗] Please open ML2Scratch and Scratch on different windows as shown in the following capture screen. If you open them in different tabs of the same window, they will not work.
+## For Developers - How to add ML2Scratch extension to your (customized) Scratch
 
-    <img src="images/zh-cn/windows.png" />
-
-9. 这时在浏览器的新的选项卡中打开了Scratch的"欢迎来到Scratch 3.0 Beta版"页面，在这里点选"试用！"。点击窗口左下方的文件夹图标即可打开"选择一个扩展"的页面。
-
-    <img src="images/zh-cn/add_extension.png" />
-
-    选择最后面的"ML2Scratch"一项。
-
-    <img src="images/en/ml2scratch_extension.png" />
-
-    这样就加好了"ML2Scratch"分类。
-
-    <img src="images/zh-cn/ml2scratch_extension_added.png" />
-
-10. 把"用ID: []连接"积木拖到代码区域中，并把第7步中复制的连接ID粘贴在这里的空栏处。粘贴好以后可以点击积木，连接WebSocket服务器。
-
-    <img src="images/zh-cn/scratch3_connect_block.png" />
-
-11. 把"接收到类别[1]时"积木拖到代码区域中。把"声音"分类中的"播放声音[喵]"拖到代码区域中，按照下图的方式拼接起来。
-
-    <img src="images/zh-cn/scratch3_play_sound.png" />
-
-12. 每当读取到作为标签1而学习的姿态，则识别结果经由WebSocket服务器送达Scratch，按照Scratch中编的程序而发出喵的声音。
-
-## 其他用法
-
-1. 如果想修改针对某个标签的学习，则可以点击这个标签面板上的菜单（・・・），选择"重置"。
-
-    <img src="images/zh-cn/reset.png" />
-
-2. 如果想要把所有类别都清空，则可以点击“学习”栏的菜单（・・・）选择"重置所有类别"。
-
-    <img src="images/zh-cn/reset_all.png" />
-
-3. 如果想要保存学习的结果，可以在“识别”栏点击菜单（・・・）选择“下载”，指定保存路径。保存的文件为类似“1548166739008.json”的.json文件。
-
-    <img src="images/zh-cn/download.png" />
-
-4. 如果想要上传已经保存的学习模型，则在"学习模型"栏点击"选取文件"，可以选择已经下载的.json文件。
-
-    <img src="images/zh-cn/upload.png" />
-
-## 开发环境设置
+1. Prepare LLK/scratch-gui on your local machine.
 
 ```
+% git clone git@github.com:LLK/scratch-gui.git
+% cd scratch-gui
 % npm install
-% npm run start
+```
+
+2. Copy this repos' scratch-vm/src/extensions/scratch3_ml2scratch folder to scratch-gui/node_modules/scratch-vm/src/extensions/.
+
+3. Download [https://unpkg.com/ml5@0.3.1/dist/ml5.min.js](https://unpkg.com/ml5@0.3.1/dist/ml5.min.js) and move the file(ml5.min.js) to scratch-gui/node_modules/scratch-vm/src/extensions/.
+
+4. Edit scratch-gui/node_modules/scratch-vm/src/extension-support/extension-manager.js, add "ml2scratch" entry to builtinExtensions constant as follows:
+
+```
+const builtinExtensions = {
+    // This is an example that isn't loaded with the other core blocks,
+    // but serves as a reference for loading core blocks as extensions.
+    coreExample: () => require('../blocks/scratch3_core_example'),
+    // These are the non-core built-in extensions.
+    pen: () => require('../extensions/scratch3_pen'),
+    wedo2: () => require('../extensions/scratch3_wedo2'),
+    music: () => require('../extensions/scratch3_music'),
+    microbit: () => require('../extensions/scratch3_microbit'),
+    text2speech: () => require('../extensions/scratch3_text2speech'),
+    translate: () => require('../extensions/scratch3_translate'),
+    videoSensing: () => require('../extensions/scratch3_video_sensing'),
+    ev3: () => require('../extensions/scratch3_ev3'),
+    makeymakey: () => require('../extensions/scratch3_makeymakey'),
+    boost: () => require('../extensions/scratch3_boost'),
+    gdxfor: () => require('../extensions/scratch3_gdx_for'), // <= add comma
+    ml2scratch: () => require('../extensions/scratch3_ml2scratch') // <= add this line
+};
+```
+
+5. Edit scratch-gui/src/lib/libraries/extensions/index.jsx, add the following lines at the end of the file.
+
+```
+        ),
+        helpLink: 'https://scratch.mit.edu/vernier'
+    }, // <= add comma
+    {                              // <= add this
+        name: 'ML2Scratch',        // <= add this
+        extensionId: 'ml2scratch'  // <= add this
+    }
+];
+```
+
+6. Run Scratch, then go to http://localhost:8601/.
+
+```
+% npm start
 ```
 
 ## 文化衫
 
-这里销售印有ML2Scratch标志的文化衫 -> https://suzuri.jp/is8r_/1251743/t-shirt/s/white
+这里销售印有ML2Scratch标志的文化衫 -> [https://suzuri.jp/is8r_/1251743/t-shirt/s/white](https://suzuri.jp/is8r_/1251743/t-shirt/s/white)
 
 ## 参考链接
 
-- https://js.tensorflow.org/
-- https://github.com/googlecreativelab/teachable-machine-boilerplate
+- [https://js.tensorflow.org/](https://js.tensorflow.org/)
+- [https://github.com/googlecreativelab/teachable-machine-boilerplate](https://github.com/googlecreativelab/teachable-machine-boilerplate)
