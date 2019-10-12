@@ -4,12 +4,14 @@
 
 *其他语言说明页: [English](README.en.md), [日本語](README.md), [简体中文](README.zh-cn.md).*
 
-## 演示视频
+## Demo Movie(演示视频)
+
+  <img src="images/en/ml2scratch.gif" width="900" />
 
 - 用电脑摄像头判别石头剪子布 [.mov file](https://s3.amazonaws.com/champierre/movies/rsp_demo.mov) | [YouTube](https://www.youtube.com/watch?v=DkH1hwc-Gb4)
 - 用手势指挥倒立两轮机器人MiP [.mov file](https://s3.amazonaws.com/champierre/movies/mip_demo.mov) | [YouTube](https://www.youtube.com/watch?v=GKXimEB5WQg)
 
-## 运行环境
+## Requirements(运行环境)
 
 - OS
   - Windows 8
@@ -18,9 +20,9 @@
 - Browser
   - Chrome
 
-## 用法
+## How to use(用法)
 
-### 设定
+### Setup(设定)
 
 1. 打开 [https://champierre.github.io/scratch3/](https://champierre.github.io/scratch3/)。
 
@@ -32,9 +34,9 @@
 
 4. 选中“标签”，“标签1的计数”，“标签2的计数”和“标签3的计数”块旁边的复选框。
 
-    <img src="images/en/check_blocks.png" />
+    <img src="images/zh-cn/check_blocks.png" />
 
-### 训练
+### Training(训练)
 
 5. 向摄像机显示“摇滚”手势，然后单击“火车标签1”块。 这是为了训练机器将“岩石”符号识别为标签1。
 
@@ -46,7 +48,7 @@
 
 8. 在相机上显示“剪刀”手势，并继续单击“火车标签3”块，直到获得20作为“标签3的数量”。
 
-### 承认
+### Recognition(承认)
 
 9. 训练后，识别结果将显示在“阶段”区域的“标签”字段中。 如果显示“ rock”，则“ label”应显示“ 1”，如果显示“ paper”，则“ label”应显示“ 2”，如果显示“ scissorsors”，则“ label”应显示“ 3” 。
 
@@ -112,11 +114,11 @@ const builtinExtensions = {
 % npm start
 ```
 
-## 文化衫
+## T-Shirt(文化衫)
 
 这里销售印有ML2Scratch标志的文化衫 -> [https://suzuri.jp/is8r_/1251743/t-shirt/s/white](https://suzuri.jp/is8r_/1251743/t-shirt/s/white)
 
-## 参考链接
+## Reference(参考链接)
 
 - [https://js.tensorflow.org/](https://js.tensorflow.org/)
 - [https://github.com/googlecreativelab/teachable-machine-boilerplate](https://github.com/googlecreativelab/teachable-machine-boilerplate)
