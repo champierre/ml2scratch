@@ -4,6 +4,8 @@ ML2Scratch connects Machine Learning with Scratch.
 
 *Read this in other languages: [English](README.en.md), [日本語](README.md), [简体中文](README.zh-cn.md).*
 
+[ML2Scratch Website](https://champierre.github.io/ml2scratch/)
+
 <img src="images/qrcode.png" />
 
 ## Demo Movie
