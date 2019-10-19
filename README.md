@@ -4,6 +4,8 @@ ML2Scratchは機械学習(TensorFlow.js)をScratchとをつなげます。
 
 *他の言語で読む: [English](README.en.md), [日本語](README.md), [简体中文](README.zh-cn.md).*
 
+<img src="images/qrcode.png" />
+
 ## Demo Movie(デモ動画)
 
   <img src="images/ja/ml2scratch.gif" width="900" />
