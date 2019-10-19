@@ -4,6 +4,8 @@
 
 *其他语言说明页: [English](README.en.md), [日本語](README.md), [简体中文](README.zh-cn.md).*
 
+<img src="images/qrcode.png" />
+
 ## Demo Movie(演示视频)
 
   <img src="images/en/ml2scratch.gif" width="900" />
