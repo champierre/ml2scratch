@@ -7,5 +7,6 @@ include:
   - README.md
   - README.en.md
   - README.zh-cn.md
+  - LICENSE
 
 theme: jekyll-theme-leap-day
