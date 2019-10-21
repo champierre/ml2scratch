@@ -31,6 +31,7 @@ ML2Scratchは機械学習(TensorFlow.js)をScratchとをつなげます。
 
 ## Examples of use(活用例)
 
+- [小学生が作った「未来のゴミ箱」は自律走行＆機械学習でゴミ分別　IoTセンサーで外の環境を検知！JJPC 全国小中学生プログラミング大会レポート](https://robotstart.info/2019/10/20/jjpc-4thprog-competition.html)
 - [Scratchとmicro:bitでコイン選別AIロボットを作る](http://make-lab.sakura.ne.jp/wordpress/2019/10/12/scratch%e3%81%a8microbit%e3%81%a7%e3%82%b3%e3%82%a4%e3%83%b3%e9%81%b8%e5%88%a5ai%e3%83%ad%e3%83%9c%e3%83%83%e3%83%88%e3%82%92%e4%bd%9c%e3%82%8b/)
 - [ジャスミンボトルで前進、缶コーヒーで後進(動画)](https://www.facebook.com/groups/visualprogramming.jp/permalink/531024724134426/)
 - [ML2Scratchで本棚整理チェック(動画)](https://www.youtube.com/watch?v=ZQ88E6HSUdg)

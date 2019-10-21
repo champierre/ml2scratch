@@ -31,6 +31,7 @@
 
 ## Examples of use(使用例)
 
+- [智能垃圾箱](日文)](https://robotstart.info/2019/10/20/jjpc-4thprog-competition.html)
 - [使用Scratch和micro:bit制作硬币分类AI机器人](http://make-lab.sakura.ne.jp/wordpress/2019/10/12/making-a-coin-sorting-ai-robot-with-scratch-and-micro-bit/)
 - [用茉莉花瓶向前走，用罐装咖啡向后走(电影)](https://www.facebook.com/groups/visualprogramming.jp/permalink/531024724134426/)
 - [ML2Scratch书架排列检查(电影)](https://www.youtube.com/watch?v=ZQ88E6HSUdg)
