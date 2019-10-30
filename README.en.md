@@ -30,6 +30,7 @@ ML2Scratch connects Machine Learning with Scratch.
     <img src="images/wechat.jpg" />
 
 ## Examples of use
+- [Control Wagara-saurus(Japanese style dinosaur) using ML2Scratch](https://www.facebook.com/azusa.amino/videos/2408305165934138/)
 - [Control an electric fan with illustration](https://www.facebook.com/groups/scratch.microbit/permalink/704715526600743/)
 - [Smart Trash Box](Japanese　)](https://robotstart.info/2019/10/20/jjpc-4thprog-competition.html)
 - [Making a coin sorting AI robot with Scratch and micro:bit](http://make-lab.sakura.ne.jp/wordpress/2019/10/12/making-a-coin-sorting-ai-robot-with-scratch-and-micro-bit/)
