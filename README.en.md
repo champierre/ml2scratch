@@ -2,6 +2,8 @@
 
 ML2Scratch connects Machine Learning with Scratch.
 
+If you take a few images with a webcam, label them, and learn them, you can classify similar new images based on the learning results. The captured images are not sent to the server, and all learning and classification are performed in the browser. (However, a network connection is required to load the application at startup and to download the learning model.)
+
 *Read this in other languages: [English](README.en.md), [日本語](README.md), [简体中文](README.zh-cn.md).*
 
 [ML2Scratch Website](https://champierre.github.io/ml2scratch/)
