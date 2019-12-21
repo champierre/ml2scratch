@@ -33,6 +33,7 @@
 
 ## Examples of use(使用例)
 
+- [使用ML2Scratch控制Wagara-saurus（日式恐龙）](https://www.facebook.com/azusa.amino/videos/2408305165934138/)
 - [用插图控制电风扇]((https://www.facebook.com/groups/scratch.microbit/permalink/704715526600743/))
 - [智能垃圾箱](日文)](https://robotstart.info/2019/10/20/jjpc-4thprog-competition.html)
 - [使用Scratch和micro:bit制作硬币分类AI机器人](http://make-lab.sakura.ne.jp/wordpress/2019/10/12/making-a-coin-sorting-ai-robot-with-scratch-and-micro-bit/)
