@@ -207,7 +207,6 @@ class Scratch3ML2ScratchBlocks {
     this.video.style.display = "none";
 
     this.blockClickedAt = null;
-    this.alertOpened = false;
 
     this.counts = null;
     this.firstTraining = true;
@@ -225,7 +224,7 @@ class Scratch3ML2ScratchBlocks {
 
     this.knnClassifier = ml5.KNNClassifier();
     this.featureExtractor = ml5.featureExtractor('MobileNet', () => {
-      console.log('Model Loaded!');
+      console.log('[featureExtractor] Model Loaded!');
       this.timer = setInterval(() => {
         this.classify();
       }, this.interval);
@@ -518,20 +517,22 @@ class Scratch3ML2ScratchBlocks {
   reset(args) {
     if (this.actionRepeated()) { return };
 
-    let result = confirm(Message.confirm_reset[this.locale]);
-    if (result) {
-      if (args.LABEL == 'all') {
-        this.knnClassifier.clearAllLabels();
-        for(let i = 1; i <= 8; i++) {
-          this.counts[i] = 0;
-        }
-      } else {
-        if (this.counts[args.LABEL] > 0) {
-          this.knnClassifier.clearLabel(args.LABEL);
-          this.counts[args.LABEL] = 0;
+    setTimeout(() => {
+      let result = confirm(Message.confirm_reset[this.locale]);
+      if (result) {
+        if (args.LABEL == 'all') {
+          this.knnClassifier.clearAllLabels();
+          for(let i = 1; i <= 8; i++) {
+            this.counts[i] = 0;
+          }
+        } else {
+          if (this.counts[args.LABEL] > 0) {
+            this.knnClassifier.clearLabel(args.LABEL);
+            this.counts[args.LABEL] = 0;
+          }
         }
       }
-    }
+    }, 1000);
   }
 
   download() {
