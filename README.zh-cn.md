@@ -98,47 +98,13 @@
     % npm install
     ```
 
-2. Copy this repos' scratch-vm/src/extensions/scratch3_ml2scratch folder to scratch-gui/node_modules/scratch-vm/src/extensions/.
-
-3. Download [https://unpkg.com/ml5@0.3.1/dist/ml5.min.js](https://unpkg.com/ml5@0.3.1/dist/ml5.min.js) and move the file(ml5.min.js) to scratch-gui/node_modules/scratch-vm/src/extensions/.
-
-4. Edit scratch-gui/node_modules/scratch-vm/src/extension-support/extension-manager.js, add "ml2scratch" entry to builtinExtensions constant as follows:
+2. Run the install script.
 
     ```
-    const builtinExtensions = {
-        // This is an example that isn't loaded with the other core blocks,
-        // but serves as a reference for loading core blocks as extensions.
-        coreExample: () => require('../blocks/scratch3_core_example'),
-        // These are the non-core built-in extensions.
-        pen: () => require('../extensions/scratch3_pen'),
-        wedo2: () => require('../extensions/scratch3_wedo2'),
-        music: () => require('../extensions/scratch3_music'),
-        microbit: () => require('../extensions/scratch3_microbit'),
-        text2speech: () => require('../extensions/scratch3_text2speech'),
-        translate: () => require('../extensions/scratch3_translate'),
-        videoSensing: () => require('../extensions/scratch3_video_sensing'),
-        ev3: () => require('../extensions/scratch3_ev3'),
-        makeymakey: () => require('../extensions/scratch3_makeymakey'),
-        boost: () => require('../extensions/scratch3_boost'),
-        gdxfor: () => require('../extensions/scratch3_gdx_for'), // <= add comma
-        ml2scratch: () => require('../extensions/scratch3_ml2scratch') // <= add this line
-    };
+    % curl https://raw.githubusercontent.com/champierre/ml2scratch/master/install.sh | sh
     ```
 
-5. Edit scratch-gui/src/lib/libraries/extensions/index.jsx, add the following lines at the end of the file.
-
-    ```
-            ),
-            helpLink: 'https://scratch.mit.edu/vernier'
-        }, // <= add comma
-        {                              // <= add this
-            name: 'ML2Scratch',        // <= add this
-            extensionId: 'ml2scratch'  // <= add this
-        }
-    ];
-    ```
-
-6. Run Scratch, then go to http://localhost:8601/.
+3. Run Scratch, then go to http://localhost:8601/.
 
     ```
     % npm start
