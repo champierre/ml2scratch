@@ -32,6 +32,8 @@ If you take a few images with a webcam, label them, and learn them, you can clas
     <img src="images/wechat.jpg" />
 
 ## Examples of use
+
+- [Try to avoid obstacles with machine learning # ML2Scratch # ev3(Google Translated)](https://translate.google.com/translate?hl=&sl=auto&tl=en&u=https%3A%2F%2Fwww.ogaworks.com%2Farchives%2F11301&sandbox=1)
 - [Control Wagara-saurus(Japanese style dinosaur) using ML2Scratch](https://www.facebook.com/azusa.amino/videos/2408305165934138/)
 - [Control an electric fan with illustration](https://www.facebook.com/groups/scratch.microbit/permalink/704715526600743/)
 - [Smart Trash Box](Japanese　)](https://robotstart.info/2019/10/20/jjpc-4thprog-competition.html)

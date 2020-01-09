@@ -33,6 +33,7 @@ Webカメラでいくつかの画像を撮り、ラベルを付けて学習す�
 
 ## Examples of use(活用例)
 
+- [機械学習で障害物を避けてみる #ML2Scratch #ev3](https://www.ogaworks.com/archives/11301)
 - [ML2Scratchでワガラサウルスを動かしてみました！](https://www.facebook.com/azusa.amino/videos/2408305165934138/)
 - [イラストで扇風機をコントロール](https://www.facebook.com/groups/scratch.microbit/permalink/704715526600743/)
 - [小学生が作った「未来のゴミ箱」は自律走行＆機械学習でゴミ分別　IoTセンサーで外の環境を検知！JJPC 全国小中学生プログラミング大会レポート](https://robotstart.info/2019/10/20/jjpc-4thprog-competition.html)
