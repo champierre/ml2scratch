@@ -51,6 +51,8 @@
 - Browser
   - Chrome
 
+由于某些Chrome扩展程序，ML2Scratch有时不起作用。 在这种情况下，请切换到访客模式。
+
 ## How to use(用法)
 
 ### Setup(设定)

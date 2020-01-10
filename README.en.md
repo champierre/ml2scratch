@@ -51,6 +51,8 @@ If you take a few images with a webcam, label them, and learn them, you can clas
 - Browser
   - Chrome
 
+ML2Scratch sometimes does not work because of some Chrome extensions. Plese switch to Guest Mode in such cases.
+
 ## How to use(Step by step)
 
 ### Setup
