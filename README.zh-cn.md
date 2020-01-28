@@ -1,6 +1,6 @@
 # ML2Scratch(Scratch2ML)
 
-使用ML2Scratch可以将机器学习 (TensorFlow.js)与Scratch连接起来。
+使用ML2Scratch可以将机器学习 ([TensorFlow.js](https://www.tensorflow.org/js))与Scratch连接起来。
 
 如果使用网络摄像头拍摄一些图像，对其进行标记并进行学习，则可以根据学习结果对相似的新图像进行分类。捕获的图像不会发送到服务器，并且所有学习和分类都在浏览器中执行。 （但是，需要网络连接才能在启动时加载应用程序并下载学习模型。）
 
