@@ -91,6 +91,24 @@ ML2Scratch sometimes does not work because of some Chrome extensions. Plese swit
 
     <img src="images/en/scratch_program.png" />
 
+### Download/Upload
+
+With ML2Scratch, you can download and save the trained model on your PC by using the "Download training data" block.
+
+    <img src="images/en/download.png" />
+
+Click, specify the file download destination, and press the "Save" button. The learning data will be saved as a file &lt;numerical string&gt;.json.
+
+The saved learning data can be uploaded in the "Upload learning data" block.
+
+    <img src="images/en/upload.png" />
+
+When you click, a window called "Upload learning data" opens, so click the "Select file" button, select the training data file (&lt;numerical sequence&gt;.json), and press Click.
+
+    <img src="images/en/upload_dialog.png" />
+
+At this time, be aware that the data that has been learned will be overwritten.
+
 ## For Developers - How to add ML2Scratch extension to your (customized) Scratch
 
 1. Prepare LLK/scratch-gui on your local machine.

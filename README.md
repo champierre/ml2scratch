@@ -91,6 +91,24 @@ Chrome の拡張機能を使用している場合に、正常に動作しない�
 
     <img src="images/en/scratch_program.png" />
 
+### Download/Upload(学習データのダウンロード/アップロード)
+
+ML2Scratch では、学習したモデルを「学習データをダウンロード」ブロックを使うことで、PC上にダウンロードして保存しておくことができます。
+
+    <img src="images/ja/download.png" />
+
+をクリックし、ファイルのダウンロード先を指定して「保存」ボタンを押すと <数字の列>.json というファイルとして学習データが保存されます。
+
+保存しておいた学習データは、「学習データをアップロード」ブロックでアップロードすることができます。
+
+    <img src="images/ja/upload.png" />
+
+をクリックすると、「学習データをアップロード」というウィンドウが開くので、「ファイルを選択」ボタンをクリックして、学習データのファイル(<数字の列>.json)を選んだあと、「アップロード」ボタンをクリックします。
+
+    <img src="images/ja/upload_dialog.png" />
+
+このとき、いままで学習していたデータは上書きされてしまうので注意してください。
+
 ## For Developers - How to add ML2Scratch extension to your (customized) Scratch
 
 1. Prepare LLK/scratch-gui on your local machine.
