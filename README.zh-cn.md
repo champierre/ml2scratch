@@ -99,6 +99,10 @@ With ML2Scratch, you can download and save the trained model on your PC by using
 
 Click, specify the file download destination, and press the "Save" button. The learning data will be saved as a file &lt;numerical string&gt;.json.
 
+The project itself is not saved automatically like a normal Scratch, so select "File" > "Save to your computer" and save it on your PC as a .sb3 file.
+
+To reopen a saved project, choose "File" > "Load from your computer" and select the saved .sb3 file. After that, upload the learning data.
+
 The saved learning data can be uploaded in the "upload learning data" block.
 
 <img src="images/en/upload.png" />
