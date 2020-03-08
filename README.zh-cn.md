@@ -101,7 +101,11 @@ Click, specify the file download destination, and press the "Save" button. The l
 
 The project itself is not saved automatically like a normal Scratch, so select "File" > "Save to your computer" and save it on your PC as a .sb3 file.
 
+<img src="images/en/save_project.png" />
+
 To reopen a saved project, choose "File" > "Load from your computer" and select the saved .sb3 file. After that, upload the learning data.
+
+<img src="images/en/load_project.png" />
 
 The saved learning data can be uploaded in the "upload learning data" block.
 
