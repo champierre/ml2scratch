@@ -117,9 +117,9 @@ When you click, a window called "upload learning data" opens, so click the "Sele
 
 At this time, be aware that the data that has been learned will be overwritten.
 
-## For Developers - How to add ML2Scratch extension to your (customized) Scratch
+## For Developers - How to run ML2Scratch extension on your computer
 
-1. Prepare LLK/scratch-gui on your local machine.
+1. Setup LLK/scratch-gui on your computer.
 
     ```
     % git clone git@github.com:LLK/scratch-gui.git
@@ -127,13 +127,19 @@ At this time, be aware that the data that has been learned will be overwritten.
     % npm install
     ```
 
-2. Run the install script.
+2. In scratch-gui folder, clone ML2Scratch. You will have ml2scratch folder under scratch-gui.
 
     ```
-    % curl https://raw.githubusercontent.com/champierre/ml2scratch/master/install.sh | sh
+    % git clone git@github.com:champierre/ml2scratch.git
     ```
 
-3. Run Scratch, then go to http://localhost:8601/.
+3. Run the install script.
+
+    ```
+    % sh ml2scratch/install.sh
+    ```
+
+4. Run Scratch, then go to http://localhost:8601/.
 
     ```
     % npm start

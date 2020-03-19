@@ -2,7 +2,7 @@ const ArgumentType = require('../../extension-support/argument-type');
 const BlockType = require('../../extension-support/block-type');
 const Cast = require('../../util/cast');
 const log = require('../../util/log');
-const ml5 = require('../ml5.min.js');
+const ml5 = require('ml5');
 const formatMessage = require('format-message');
 
 const HAT_TIMEOUT = 100;
