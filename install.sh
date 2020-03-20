@@ -20,7 +20,7 @@ mkdir -p src/lib/libraries/extensions/${EXTENSION_ID}
 cp ${EXTENSION_ID}/scratch-gui/src/lib/libraries/extensions/${EXTENSION_ID}/${EXTENSION_ID}.png src/lib/libraries/extensions/${EXTENSION_ID}/
 cp ${EXTENSION_ID}/scratch-gui/src/lib/libraries/extensions/${EXTENSION_ID}/${EXTENSION_ID}-small.png src/lib/libraries/extensions/${EXTENSION_ID}/
 mv src/lib/libraries/extensions/index.jsx src/lib/libraries/extensions/index.jsx_orig
-ML2SCRATCH="\
+DESCRIPTION="\
     {${LF}\
         name: '${EXTENSION_NAME}',${LF}\
         extensionId: '${EXTENSION_ID}',${LF}\
@@ -39,4 +39,4 @@ ML2SCRATCH="\
         internetConnectionRequired: true,${LF}\
         bluetoothRequired: false${LF}\
     },"
-sed -e "s|^export default \[$|import ${EXTENSION_ID}IconURL from './${EXTENSION_ID}/${EXTENSION_ID}.png';${LF}import ${EXTENSION_ID}InsetIconURL from './ml2scratch/ml2scratch-small.png';${LF}${LF}export default [${LF}${ML2SCRATCH}|g" src/lib/libraries/extensions/index.jsx_orig > src/lib/libraries/extensions/index.jsx
+sed -e "s|^export default \[$|import ${EXTENSION_ID}IconURL from './${EXTENSION_ID}/${EXTENSION_ID}.png';${LF}import ${EXTENSION_ID}InsetIconURL from './ml2scratch/ml2scratch-small.png';${LF}${LF}export default [${LF}${DESCRIPTION}|g" src/lib/libraries/extensions/index.jsx_orig > src/lib/libraries/extensions/index.jsx
