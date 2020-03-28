@@ -108,13 +108,13 @@ You can switch the images to be learned/classified.
 
 By default, Scratch's stage image is used for learning/classification.
 
-    <img src="images/en/stage.png" />
+<img src="images/en/stage.png" />
 
 If there is a webcam image on the stage, it learns/classified the webcam image, or if the "Turn off video" block stops showing the webcam image and shows a game or animation screen, etc., it uses that screen for learning/classfication.
 
 If you want to learn/classify only the webcam's image, you can use
 
-    <img src="images/en/webcam.png" />
+<img src="images/en/webcam.png" />
 
 It can be switch to a webcam image for learning/classification. If you want to move the character by gestures on the camera image, I think this is a more accurate way to judge.
 
