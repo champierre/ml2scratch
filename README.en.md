@@ -21,7 +21,7 @@ If you take a few images with a webcam, label them, and learn them, you can clas
 
 ### Learn/Classify Scratch webcam images
 
-  <img src="images/en/ml2scratch.gif" width="900" />
+  <img src="images/en/ml2scratch.gif" width="600" />
 
 #### Other samples
 
