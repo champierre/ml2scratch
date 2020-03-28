@@ -12,7 +12,18 @@ Webカメラでいくつかの画像を撮り、ラベルを付けて学習す�
 
 ## Demo Movie(デモ動画)
 
-  <img src="images/ja/ml2scratch.gif" width="900" />
+### ステージの画像を学習
+
+  <img src="images/1or2.gif" width="600" />
+
+- [手書き数字(1or2)認識 サンプルプロジェクト](https://github.com/champierre/ml2scratch/blob/master/sample_projects/1or2.sb3?raw=true)
+- [手書き数字(1or2)認識 学習データ](https://github.com/champierre/ml2scratch/blob/master/sample_projects/1or2.json?raw=true)
+
+### Webカメラの画像を学習
+
+  <img src="images/ja/ml2scratch.gif" width="600" />
+
+#### その他のデモ動画
 
 - Webカメラでグー、チョキ、パーを判定 [YouTube](https://www.youtube.com/watch?v=DkH1hwc-Gb4) | [.mov file](https://s3.amazonaws.com/champierre/movies/rsp_demo.mov)
 - ジェスチャーで倒立2輪ロボットMiPを動かす [YouTube](https://www.youtube.com/watch?v=GKXimEB5WQg) | [.mov file](https://s3.amazonaws.com/champierre/movies/mip_demo.mov)
@@ -90,6 +101,22 @@ Chrome の拡張機能を使用している場合に、正常に動作しない�
 10. 「ラベル◯◯を受け取ったとき」ブロックを使って、以下のようなサンプルプログラムを作ることができます。
 
     <img src="images/en/scratch_program.png" />
+
+### 学習/判定する画像の切り替え
+
+学習/判定する画像を切り替えることができます。
+
+デフォルトではScratchのステージ画像を学習/判定に使っています。
+
+    <img src="images/ja/stage.png" />
+
+ステージにWebカメラの画像を映していれば、Webカメラの画像を学習/判定しますし、「ビデオを切にする」ブロックでWebカメラの画像を映すのをやめて、ゲームやアニメーションの画面などを表示した場合は、その画面を学習/判定に使用します。
+
+「ビデオを入にする」でWebカメラの画像を映すと同時に、ゲームやアニメーションのキャラクターも表示しているのだけれども、Webカメラの画像だけを学習/判定したい場合には、
+
+    <img src="images/ja/webcam.png" />
+
+で学習/判定する画像をWebカメラの画像に切り替えることができます。カメラの画像に映ったジェスチャーでキャラクターを動かしたいという場合は、こちらの方が精度良く判定できると思います。
 
 ### Download/Upload(学習データとプロジェクトのダウンロード/アップロード)
 

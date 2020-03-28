@@ -12,7 +12,18 @@ If you take a few images with a webcam, label them, and learn them, you can clas
 
 ## Demo Movie
 
+### Learn/Classify Scratch stage images
+
+  <img src="images/1or2.gif" width="600" />
+
+- [handwriting(1or2) recognition sample project](https://github.com/champierre/ml2scratch/blob/master/sample_projects/1or2.sb3?raw=true)
+- [handwriting(1or2) recognition learning data](https://github.com/champierre/ml2scratch/blob/master/sample_projects/1or2.json?raw=true)
+
+### Learn/Classify Scratch webcam images
+
   <img src="images/en/ml2scratch.gif" width="900" />
+
+#### Other samples
 
 - Rock/Scissors/Paper Demo [YouTube](https://www.youtube.com/watch?v=DkH1hwc-Gb4) | [.mov file](https://s3.amazonaws.com/champierre/movies/rsp_demo.mov)
 - Control a toy robot, MiP, by hand gestures [YouTube](https://www.youtube.com/watch?v=GKXimEB5WQg) | [.mov file](https://s3.amazonaws.com/champierre/movies/mip_demo.mov)
@@ -90,6 +101,23 @@ ML2Scratch sometimes does not work because of some Chrome extensions. Plese swit
 10. You can use "when received label #" blocks and create a sample program like this:
 
     <img src="images/en/scratch_program.png" />
+
+### Switching between images to be learned/classified
+
+You can switch the images to be learned/classified.
+
+By default, Scratch's stage image is used for learning/classification.
+
+    <img src="images/en/stage.png" />
+
+If there is a webcam image on the stage, it learns/classified the webcam image, or if the "Turn off video" block stops showing the webcam image and shows a game or animation screen, etc., it uses that screen for learning/classfication.
+
+If you want to learn/classify only the webcam's image, you can use
+
+    <img src="images/en/webcam.png" />
+
+It can be switch to a webcam image for learning/classification. If you want to move the character by gestures on the camera image, I think this is a more accurate way to judge.
+
 
 ### Download/Upload
 
