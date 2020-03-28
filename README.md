@@ -177,6 +177,12 @@ ML2Scratch では、学習したモデルを「学習データをダウンロー
 ML2Scratchのロゴ入りTシャツ、こちらで販売しています ->
 [https://suzuri.jp/is8r_/1251743/t-shirt/s/white](https://suzuri.jp/is8r_/1251743/t-shirt/s/white)
 
+## Release Notes
+
+- 1.0.0 2018/04/09 ScratchXバージョン
+- 2.0.0 2019/01/20 Scratch3バージョン
+- 3.0.0 2020/03/28 Scratchのステージ画像を学習/判定できるようにした。
+
 ## Reference(参考)
 
 - [https://js.tensorflow.org/](https://js.tensorflow.org/)
