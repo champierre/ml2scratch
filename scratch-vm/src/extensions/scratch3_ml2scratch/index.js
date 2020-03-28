@@ -166,6 +166,12 @@ const Message = {
     'en': 'turn video [VIDEO_STATE]',
     'zh-cn': '[VIDEO_STATE]摄像头'
   },
+  set_input: {
+    'ja': '[INPUT]の画像を学習/判定する',
+    'ja-Hira': '[INPUT]のがぞうをがくしゅう/はんていする',
+    'en': 'Learn/Classify [INPUT] image',
+    'zh-cn': '学习/分类[INPUT]图像'
+  },
   on: {
     'ja': '入',
     'ja-Hira': 'いり',
@@ -183,6 +189,18 @@ const Message = {
     'ja-Hira': 'さゆうはんてん',
     'en': 'on flipped',
     'zh-cn': '镜像开启'
+  },
+  webcam: {
+    'ja': 'カメラ',
+    'ja-Hira': 'カメラ',
+    'en': 'webcam',
+    'zh-cn': '网络摄像头'
+  },
+  stage: {
+    'ja': 'ステージ',
+    'ja-Hira': 'ステージ',
+    'en': 'stage',
+    'zh-cn': '舞台'
   },
   first_training_warning: {
     'ja': '最初の学習にはしばらく時間がかかるので、何度もクリックしないで下さい。',
@@ -223,6 +241,10 @@ class Scratch3ML2ScratchBlocks {
     media.then((stream) => {
       this.video.srcObject = stream;
     });
+
+    this.canvas = document.querySelector('canvas');
+
+    this.input =  this.canvas;
 
     this.knnClassifier = ml5.KNNClassifier();
     this.featureExtractor = ml5.featureExtractor('MobileNet', () => {
@@ -384,7 +406,20 @@ class Scratch3ML2ScratchBlocks {
               defaultValue: 'off'
             }
           }
+        },
+        {
+          opcode: 'setInput',
+          text: Message.set_input[this.locale],
+          blockType: BlockType.COMMAND,
+          arguments: {
+            INPUT: {
+              type: ArgumentType.STRING,
+              menu: 'input_menu',
+              defaultValue: 'stage'
+            }
+          }
         }
+
       ],
       menus: {
         received_menu: this.getMenu('received'),
@@ -392,7 +427,8 @@ class Scratch3ML2ScratchBlocks {
         train_menu: this.getTrainMenu(),
         video_menu: this.getVideoMenu(),
         classification_interval_menu: this.getClassificationIntervalMenu(),
-        classification_menu: this.getClassificationMenu()
+        classification_menu: this.getClassificationMenu(),
+        input_menu: this.getInputMenu()
       }
     };
   }
@@ -400,7 +436,7 @@ class Scratch3ML2ScratchBlocks {
   addExample1() {
     if (this.actionRepeated()) { return };
     this.firstTrainingWarning();
-    let features = this.featureExtractor.infer(this.video);
+    let features = this.featureExtractor.infer(this.input);
     this.knnClassifier.addExample(features, '1');
     this.updateCounts();
   }
@@ -408,7 +444,7 @@ class Scratch3ML2ScratchBlocks {
   addExample2() {
     if (this.actionRepeated()) { return };
     this.firstTrainingWarning();
-    let features = this.featureExtractor.infer(this.video);
+    let features = this.featureExtractor.infer(this.input);
     this.knnClassifier.addExample(features, '2');
     this.updateCounts();
   }
@@ -416,7 +452,7 @@ class Scratch3ML2ScratchBlocks {
   addExample3() {
     if (this.actionRepeated()) { return };
     this.firstTrainingWarning();
-    let features = this.featureExtractor.infer(this.video);
+    let features = this.featureExtractor.infer(this.input);
     this.knnClassifier.addExample(features, '3');
     this.updateCounts();
   }
@@ -424,7 +460,7 @@ class Scratch3ML2ScratchBlocks {
   train(args) {
     if (this.actionRepeated()) { return };
     this.firstTrainingWarning();
-    let features = this.featureExtractor.infer(this.video);
+    let features = this.featureExtractor.infer(this.input);
     this.knnClassifier.addExample(features, args.LABEL);
     this.updateCounts();
   }
@@ -605,6 +641,17 @@ class Scratch3ML2ScratchBlocks {
     }
   }
 
+  setInput (args) {
+    if (this.actionRepeated()) { return };
+    let input = args.INPUT;
+    if (input === 'webcam') {
+      this.input = this.video;
+    } else {
+      this.input = this.canvas;
+    }
+    console.log(this.input);
+  }
+
   uploadButtonClicked(uploadWindow) {
     let files = uploadWindow.document.getElementById('upload-files').files;
 
@@ -637,7 +684,7 @@ class Scratch3ML2ScratchBlocks {
     let numLabels = this.knnClassifier.getNumLabels();
     if (numLabels == 0) return;
 
-    let features = this.featureExtractor.infer(this.video);
+    let features = this.featureExtractor.infer(this.input);
     this.knnClassifier.classify(features, (err, result) => {
       if (err) {
         console.error(err);
@@ -707,6 +754,19 @@ class Scratch3ML2ScratchBlocks {
       {
         text: Message.video_on_flipped[this.locale],
         value: 'on-flipped'
+      }
+    ]
+  }
+
+  getInputMenu() {
+    return [
+      {
+        text: Message.stage[this.locale],
+        value: 'stage'
+      },
+      {
+        text: Message.webcam[this.locale],
+        value: 'webcam'
       }
     ]
   }
