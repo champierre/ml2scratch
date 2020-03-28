@@ -649,7 +649,6 @@ class Scratch3ML2ScratchBlocks {
     } else {
       this.input = this.canvas;
     }
-    console.log(this.input);
   }
 
   uploadButtonClicked(uploadWindow) {
@@ -689,11 +688,24 @@ class Scratch3ML2ScratchBlocks {
       if (err) {
         console.error(err);
       } else {
-        this.label = result.label;
+        this.label = this.getTopConfidenceLabel(result.confidencesByLabel);
         this.when_received = true;
-        this.when_received_arr[result.label] = true
+        this.when_received_arr[this.label] = true
       }
     });
+  }
+
+  getTopConfidenceLabel(confidences) {
+    let topConfidenceLabel;
+    let topConfidence = 0;
+
+    for (let label in confidences) {
+      if (confidences[label] > topConfidence) {
+        topConfidenceLabel = label;
+      }
+    }
+
+    return topConfidenceLabel;
   }
 
   updateCounts() {
