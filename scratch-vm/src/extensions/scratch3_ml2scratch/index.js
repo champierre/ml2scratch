@@ -94,6 +94,24 @@ const Message = {
     'en': 'counts of label 8',
     'zh-cn': '标签数量8'
   },
+  counts_label_9: {
+    'ja': 'ラベル9の枚数',
+    'ja-Hira': 'ラベル9のまいすう',
+    'en': 'counts of label 9',
+    'zh-cn': '标签数量9'
+  },
+  counts_label_10: {
+    'ja': 'ラベル10の枚数',
+    'ja-Hira': 'ラベル10のまいすう',
+    'en': 'counts of label 10',
+    'zh-cn': '标签数量10'
+  },
+  counts_label: {
+    'ja': 'ラベル[LABEL]の枚数',
+    'ja-Hira': 'ラベル[LABEL]のまいすう',
+    'en': 'counts of label [LABEL]',
+    'zh-cn': '标签数量[LABEL]'
+  },
   any: {
     'ja': 'のどれか',
     'ja-Hira': 'のどれか',
@@ -244,7 +262,7 @@ class Scratch3ML2ScratchBlocks {
 
     this.canvas = document.querySelector('canvas');
 
-    this.input =  this.canvas;
+    this.input =  this.video;
 
     this.knnClassifier = ml5.KNNClassifier();
     this.featureExtractor = ml5.featureExtractor('MobileNet', () => {
@@ -293,6 +311,17 @@ class Scratch3ML2ScratchBlocks {
           }
         },
         {
+          opcode: 'trainAny',
+          text: Message.train[this.locale],
+          blockType: BlockType.COMMAND,
+          arguments: {
+            LABEL: {
+              type: ArgumentType.STRING,
+              defaultValue: '11'
+            }
+          }
+        },
+        {
           opcode: 'getLabel',
           text: Message.label_block[this.locale],
           blockType: BlockType.REPORTER
@@ -306,6 +335,17 @@ class Scratch3ML2ScratchBlocks {
               type: ArgumentType.STRING,
               menu: 'received_menu',
               defaultValue: 'any'
+            }
+          }
+        },
+        {
+          opcode: 'whenReceivedAny',
+          text: Message.when_received_block[this.locale],
+          blockType: BlockType.HAT,
+          arguments: {
+            LABEL: {
+              type: ArgumentType.STRING,
+              defaultValue: '11'
             }
           }
         },
@@ -350,6 +390,27 @@ class Scratch3ML2ScratchBlocks {
           blockType: BlockType.REPORTER
         },
         {
+          opcode: 'getCountByLabel9',
+          text: Message.counts_label_9[this.locale],
+          blockType: BlockType.REPORTER
+        },
+        {
+          opcode: 'getCountByLabel10',
+          text: Message.counts_label_10[this.locale],
+          blockType: BlockType.REPORTER
+        },
+        {
+          opcode: 'getCountByLabel',
+          text: Message.counts_label[this.locale],
+          blockType: BlockType.REPORTER,
+          arguments: {
+            LABEL: {
+              type: ArgumentType.STRING,
+              defaultValue: '11'
+            }
+          }
+        },
+        {
           opcode: 'reset',
           blockType: BlockType.COMMAND,
           text: Message.reset[this.locale],
@@ -358,6 +419,17 @@ class Scratch3ML2ScratchBlocks {
               type: ArgumentType.STRING,
               menu: 'reset_menu',
               defaultValue: 'all'
+            }
+          }
+        },
+        {
+          opcode: 'resetAny',
+          blockType: BlockType.COMMAND,
+          text: Message.reset[this.locale],
+          arguments: {
+            LABEL: {
+              type: ArgumentType.STRING,
+              defaultValue: '11'
             }
           }
         },
@@ -415,16 +487,25 @@ class Scratch3ML2ScratchBlocks {
             INPUT: {
               type: ArgumentType.STRING,
               menu: 'input_menu',
-              defaultValue: 'stage'
+              defaultValue: 'webcam'
             }
           }
         }
 
       ],
       menus: {
-        received_menu: this.getMenu('received'),
-        reset_menu: this.getMenu('reset'),
-        train_menu: this.getTrainMenu(),
+        received_menu: {
+          items: this.getMenu('received')
+        },
+        reset_menu: {
+          items: this.getMenu('reset')
+        },
+        train_menu: {
+          items: this.getTrainMenu()
+        },
+        count_menu: {
+          items: this.getTrainMenu()
+        },
         video_menu: this.getVideoMenu(),
         classification_interval_menu: this.getClassificationIntervalMenu(),
         classification_menu: this.getClassificationMenu(),
@@ -465,6 +546,10 @@ class Scratch3ML2ScratchBlocks {
     this.updateCounts();
   }
 
+  trainAny(args) {
+    this.train(args);
+  }
+
   getLabel() {
     return this.label;
   }
@@ -487,6 +572,10 @@ class Scratch3ML2ScratchBlocks {
       }
       return false;
     }
+  }
+
+  whenReceivedAny(args) {
+    return this.whenReceived(args);
   }
 
   getCountByLabel1() {
@@ -553,6 +642,30 @@ class Scratch3ML2ScratchBlocks {
     }
   }
 
+  getCountByLabel9() {
+    if (this.counts) {
+      return this.counts['9'];
+    } else {
+      return 0;
+    }
+  }
+
+  getCountByLabel10() {
+    if (this.counts) {
+      return this.counts['10'];
+    } else {
+      return 0;
+    }
+  }
+
+  getCountByLabel(args) {
+    if (this.counts[args.LABEL]) {
+      return this.counts[args.LABEL];
+    } else {
+      return 0;
+    }
+  }
+
   reset(args) {
     if (this.actionRepeated()) { return };
 
@@ -561,8 +674,8 @@ class Scratch3ML2ScratchBlocks {
       if (result) {
         if (args.LABEL == 'all') {
           this.knnClassifier.clearAllLabels();
-          for(let i = 1; i <= 8; i++) {
-            this.counts[i] = 0;
+          for (let label in this.counts) {
+            this.counts[label] = 0;
           }
         } else {
           if (this.counts[args.LABEL] > 0) {
@@ -572,6 +685,10 @@ class Scratch3ML2ScratchBlocks {
         }
       }
     }, 1000);
+  }
+
+  resetAny(args) {
+    this.reset(args);
   }
 
   download() {
@@ -710,6 +827,7 @@ class Scratch3ML2ScratchBlocks {
 
   updateCounts() {
     this.counts = this.knnClassifier.getCountByLabel();
+    console.debug(this.counts);
   }
 
   actionRepeated() {
@@ -733,7 +851,7 @@ class Scratch3ML2ScratchBlocks {
       text = Message.all[this.locale];
     }
     arr.push({text: text, value: defaultValue});
-    for(let i = 1; i <= 8; i++) {
+    for(let i = 1; i <= 10; i++) {
       let obj = {};
       obj.text = i.toString(10);
       obj.value = i.toString(10);
@@ -744,7 +862,7 @@ class Scratch3ML2ScratchBlocks {
 
   getTrainMenu() {
     let arr = [];
-    for(let i = 4; i <= 8; i++) {
+    for(let i = 4; i <= 10; i++) {
       let obj = {};
       obj.text = i.toString(10);
       obj.value = i.toString(10);
@@ -773,12 +891,12 @@ class Scratch3ML2ScratchBlocks {
   getInputMenu() {
     return [
       {
-        text: Message.stage[this.locale],
-        value: 'stage'
-      },
-      {
         text: Message.webcam[this.locale],
         value: 'webcam'
+      },
+      {
+        text: Message.stage[this.locale],
+        value: 'stage'
       }
     ]
   }
