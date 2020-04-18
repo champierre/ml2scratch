@@ -507,7 +507,10 @@ class Scratch3ML2ScratchBlocks {
           items: this.getTrainMenu()
         },
         video_menu: this.getVideoMenu(),
-        classification_interval_menu: this.getClassificationIntervalMenu(),
+        classification_interval_menu: {
+          acceptReporters: true,
+          items: this.getClassificationIntervalMenu()
+        },
         classification_menu: this.getClassificationMenu(),
         input_menu: this.getInputMenu()
       }
@@ -515,7 +518,6 @@ class Scratch3ML2ScratchBlocks {
   }
 
   addExample1() {
-    if (this.actionRepeated()) { return };
     this.firstTrainingWarning();
     let features = this.featureExtractor.infer(this.input);
     this.knnClassifier.addExample(features, '1');
@@ -523,7 +525,6 @@ class Scratch3ML2ScratchBlocks {
   }
 
   addExample2() {
-    if (this.actionRepeated()) { return };
     this.firstTrainingWarning();
     let features = this.featureExtractor.infer(this.input);
     this.knnClassifier.addExample(features, '2');
@@ -531,7 +532,6 @@ class Scratch3ML2ScratchBlocks {
   }
 
   addExample3() {
-    if (this.actionRepeated()) { return };
     this.firstTrainingWarning();
     let features = this.featureExtractor.infer(this.input);
     this.knnClassifier.addExample(features, '3');
@@ -539,7 +539,6 @@ class Scratch3ML2ScratchBlocks {
   }
 
   train(args) {
-    if (this.actionRepeated()) { return };
     this.firstTrainingWarning();
     let features = this.featureExtractor.infer(this.input);
     this.knnClassifier.addExample(features, args.LABEL);
@@ -720,8 +719,6 @@ class Scratch3ML2ScratchBlocks {
   }
 
   toggleClassification (args) {
-    if (this.actionRepeated()) { return };
-
     let state = args.CLASSIFICATION_STATE;
     if (this.timer) {
       clearTimeout(this.timer);
@@ -734,8 +731,6 @@ class Scratch3ML2ScratchBlocks {
   }
 
   setClassificationInterval (args) {
-    if (this.actionRepeated()) { return };
-
     if (this.timer) {
       clearTimeout(this.timer);
     }
@@ -747,8 +742,6 @@ class Scratch3ML2ScratchBlocks {
   }
 
   videoToggle (args) {
-    if (this.actionRepeated()) { return };
-
     let state = args.VIDEO_STATE;
     if (state === 'off') {
       this.runtime.ioDevices.video.disableVideo();
@@ -759,7 +752,6 @@ class Scratch3ML2ScratchBlocks {
   }
 
   setInput (args) {
-    if (this.actionRepeated()) { return };
     let input = args.INPUT;
     if (input === 'webcam') {
       this.input = this.video;
