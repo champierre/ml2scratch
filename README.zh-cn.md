@@ -21,7 +21,7 @@
 
 ### Learn/Classify Scratch webcam images
 
-  <img src="images/en/ml2scratch.gif" width="600" />
+  <img src="images/zh-cn/ml2scratch.gif" width="600" />
 
 #### Other samples
 
