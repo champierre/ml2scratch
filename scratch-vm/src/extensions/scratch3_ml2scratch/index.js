@@ -2,10 +2,12 @@ const ArgumentType = require('../../extension-support/argument-type');
 const BlockType = require('../../extension-support/block-type');
 const Cast = require('../../util/cast');
 const log = require('../../util/log');
-const ml5 = require('../ml5.min.js');
+const ml5 = require('ml5');
 const formatMessage = require('format-message');
 
 const HAT_TIMEOUT = 100;
+
+const blockIconURI = 'data:image/png;base64,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';
 
 const Message = {
   train_label_1: {
@@ -92,6 +94,24 @@ const Message = {
     'en': 'counts of label 8',
     'zh-cn': '标签数量8'
   },
+  counts_label_9: {
+    'ja': 'ラベル9の枚数',
+    'ja-Hira': 'ラベル9のまいすう',
+    'en': 'counts of label 9',
+    'zh-cn': '标签数量9'
+  },
+  counts_label_10: {
+    'ja': 'ラベル10の枚数',
+    'ja-Hira': 'ラベル10のまいすう',
+    'en': 'counts of label 10',
+    'zh-cn': '标签数量10'
+  },
+  counts_label: {
+    'ja': 'ラベル[LABEL]の枚数',
+    'ja-Hira': 'ラベル[LABEL]のまいすう',
+    'en': 'counts of label [LABEL]',
+    'zh-cn': '标签数量[LABEL]'
+  },
   any: {
     'ja': 'のどれか',
     'ja-Hira': 'のどれか',
@@ -164,6 +184,12 @@ const Message = {
     'en': 'turn video [VIDEO_STATE]',
     'zh-cn': '[VIDEO_STATE]摄像头'
   },
+  set_input: {
+    'ja': '[INPUT]の画像を学習/判定する',
+    'ja-Hira': '[INPUT]のがぞうをがくしゅう/はんていする',
+    'en': 'Learn/Classify [INPUT] image',
+    'zh-cn': '学习/分类[INPUT]图像'
+  },
   on: {
     'ja': '入',
     'ja-Hira': 'いり',
@@ -181,6 +207,18 @@ const Message = {
     'ja-Hira': 'さゆうはんてん',
     'en': 'on flipped',
     'zh-cn': '镜像开启'
+  },
+  webcam: {
+    'ja': 'カメラ',
+    'ja-Hira': 'カメラ',
+    'en': 'webcam',
+    'zh-cn': '网络摄像头'
+  },
+  stage: {
+    'ja': 'ステージ',
+    'ja-Hira': 'ステージ',
+    'en': 'stage',
+    'zh-cn': '舞台'
   },
   first_training_warning: {
     'ja': '最初の学習にはしばらく時間がかかるので、何度もクリックしないで下さい。',
@@ -222,6 +260,10 @@ class Scratch3ML2ScratchBlocks {
       this.video.srcObject = stream;
     });
 
+    this.canvas = document.querySelector('canvas');
+
+    this.input =  this.video;
+
     this.knnClassifier = ml5.KNNClassifier();
     this.featureExtractor = ml5.featureExtractor('MobileNet', () => {
       console.log('[featureExtractor] Model Loaded!');
@@ -239,6 +281,7 @@ class Scratch3ML2ScratchBlocks {
     return {
       id: 'ml2scratch',
       name: 'ML2Scratch',
+      blockIconURI: blockIconURI,
       blocks: [
         {
           opcode: 'addExample1',
@@ -268,6 +311,17 @@ class Scratch3ML2ScratchBlocks {
           }
         },
         {
+          opcode: 'trainAny',
+          text: Message.train[this.locale],
+          blockType: BlockType.COMMAND,
+          arguments: {
+            LABEL: {
+              type: ArgumentType.STRING,
+              defaultValue: '11'
+            }
+          }
+        },
+        {
           opcode: 'getLabel',
           text: Message.label_block[this.locale],
           blockType: BlockType.REPORTER
@@ -281,6 +335,17 @@ class Scratch3ML2ScratchBlocks {
               type: ArgumentType.STRING,
               menu: 'received_menu',
               defaultValue: 'any'
+            }
+          }
+        },
+        {
+          opcode: 'whenReceivedAny',
+          text: Message.when_received_block[this.locale],
+          blockType: BlockType.HAT,
+          arguments: {
+            LABEL: {
+              type: ArgumentType.STRING,
+              defaultValue: '11'
             }
           }
         },
@@ -325,6 +390,27 @@ class Scratch3ML2ScratchBlocks {
           blockType: BlockType.REPORTER
         },
         {
+          opcode: 'getCountByLabel9',
+          text: Message.counts_label_9[this.locale],
+          blockType: BlockType.REPORTER
+        },
+        {
+          opcode: 'getCountByLabel10',
+          text: Message.counts_label_10[this.locale],
+          blockType: BlockType.REPORTER
+        },
+        {
+          opcode: 'getCountByLabel',
+          text: Message.counts_label[this.locale],
+          blockType: BlockType.REPORTER,
+          arguments: {
+            LABEL: {
+              type: ArgumentType.STRING,
+              defaultValue: '11'
+            }
+          }
+        },
+        {
           opcode: 'reset',
           blockType: BlockType.COMMAND,
           text: Message.reset[this.locale],
@@ -333,6 +419,17 @@ class Scratch3ML2ScratchBlocks {
               type: ArgumentType.STRING,
               menu: 'reset_menu',
               defaultValue: 'all'
+            }
+          }
+        },
+        {
+          opcode: 'resetAny',
+          blockType: BlockType.COMMAND,
+          text: Message.reset[this.locale],
+          arguments: {
+            LABEL: {
+              type: ArgumentType.STRING,
+              defaultValue: '11'
             }
           }
         },
@@ -381,49 +478,75 @@ class Scratch3ML2ScratchBlocks {
               defaultValue: 'off'
             }
           }
+        },
+        {
+          opcode: 'setInput',
+          text: Message.set_input[this.locale],
+          blockType: BlockType.COMMAND,
+          arguments: {
+            INPUT: {
+              type: ArgumentType.STRING,
+              menu: 'input_menu',
+              defaultValue: 'webcam'
+            }
+          }
         }
+
       ],
       menus: {
-        received_menu: this.getMenu('received'),
-        reset_menu: this.getMenu('reset'),
-        train_menu: this.getTrainMenu(),
+        received_menu: {
+          items: this.getMenu('received')
+        },
+        reset_menu: {
+          items: this.getMenu('reset')
+        },
+        train_menu: {
+          items: this.getTrainMenu()
+        },
+        count_menu: {
+          items: this.getTrainMenu()
+        },
         video_menu: this.getVideoMenu(),
-        classification_interval_menu: this.getClassificationIntervalMenu(),
-        classification_menu: this.getClassificationMenu()
+        classification_interval_menu: {
+          acceptReporters: true,
+          items: this.getClassificationIntervalMenu()
+        },
+        classification_menu: this.getClassificationMenu(),
+        input_menu: this.getInputMenu()
       }
     };
   }
 
   addExample1() {
-    if (this.actionRepeated()) { return };
     this.firstTrainingWarning();
-    let features = this.featureExtractor.infer(this.video);
+    let features = this.featureExtractor.infer(this.input);
     this.knnClassifier.addExample(features, '1');
     this.updateCounts();
   }
 
   addExample2() {
-    if (this.actionRepeated()) { return };
     this.firstTrainingWarning();
-    let features = this.featureExtractor.infer(this.video);
+    let features = this.featureExtractor.infer(this.input);
     this.knnClassifier.addExample(features, '2');
     this.updateCounts();
   }
 
   addExample3() {
-    if (this.actionRepeated()) { return };
     this.firstTrainingWarning();
-    let features = this.featureExtractor.infer(this.video);
+    let features = this.featureExtractor.infer(this.input);
     this.knnClassifier.addExample(features, '3');
     this.updateCounts();
   }
 
   train(args) {
-    if (this.actionRepeated()) { return };
     this.firstTrainingWarning();
-    let features = this.featureExtractor.infer(this.video);
+    let features = this.featureExtractor.infer(this.input);
     this.knnClassifier.addExample(features, args.LABEL);
     this.updateCounts();
+  }
+
+  trainAny(args) {
+    this.train(args);
   }
 
   getLabel() {
@@ -448,6 +571,10 @@ class Scratch3ML2ScratchBlocks {
       }
       return false;
     }
+  }
+
+  whenReceivedAny(args) {
+    return this.whenReceived(args);
   }
 
   getCountByLabel1() {
@@ -514,6 +641,30 @@ class Scratch3ML2ScratchBlocks {
     }
   }
 
+  getCountByLabel9() {
+    if (this.counts) {
+      return this.counts['9'];
+    } else {
+      return 0;
+    }
+  }
+
+  getCountByLabel10() {
+    if (this.counts) {
+      return this.counts['10'];
+    } else {
+      return 0;
+    }
+  }
+
+  getCountByLabel(args) {
+    if (this.counts[args.LABEL]) {
+      return this.counts[args.LABEL];
+    } else {
+      return 0;
+    }
+  }
+
   reset(args) {
     if (this.actionRepeated()) { return };
 
@@ -522,8 +673,8 @@ class Scratch3ML2ScratchBlocks {
       if (result) {
         if (args.LABEL == 'all') {
           this.knnClassifier.clearAllLabels();
-          for(let i = 1; i <= 8; i++) {
-            this.counts[i] = 0;
+          for (let label in this.counts) {
+            this.counts[label] = 0;
           }
         } else {
           if (this.counts[args.LABEL] > 0) {
@@ -533,6 +684,10 @@ class Scratch3ML2ScratchBlocks {
         }
       }
     }, 1000);
+  }
+
+  resetAny(args) {
+    this.reset(args);
   }
 
   download() {
@@ -564,8 +719,6 @@ class Scratch3ML2ScratchBlocks {
   }
 
   toggleClassification (args) {
-    if (this.actionRepeated()) { return };
-
     let state = args.CLASSIFICATION_STATE;
     if (this.timer) {
       clearTimeout(this.timer);
@@ -578,8 +731,6 @@ class Scratch3ML2ScratchBlocks {
   }
 
   setClassificationInterval (args) {
-    if (this.actionRepeated()) { return };
-
     if (this.timer) {
       clearTimeout(this.timer);
     }
@@ -591,14 +742,21 @@ class Scratch3ML2ScratchBlocks {
   }
 
   videoToggle (args) {
-    if (this.actionRepeated()) { return };
-
     let state = args.VIDEO_STATE;
     if (state === 'off') {
       this.runtime.ioDevices.video.disableVideo();
     } else {
       this.runtime.ioDevices.video.enableVideo();
       this.runtime.ioDevices.video.mirror = state === "on";
+    }
+  }
+
+  setInput (args) {
+    let input = args.INPUT;
+    if (input === 'webcam') {
+      this.input = this.video;
+    } else {
+      this.input = this.canvas;
     }
   }
 
@@ -634,20 +792,34 @@ class Scratch3ML2ScratchBlocks {
     let numLabels = this.knnClassifier.getNumLabels();
     if (numLabels == 0) return;
 
-    let features = this.featureExtractor.infer(this.video);
+    let features = this.featureExtractor.infer(this.input);
     this.knnClassifier.classify(features, (err, result) => {
       if (err) {
         console.error(err);
       } else {
-        this.label = result.label;
+        this.label = this.getTopConfidenceLabel(result.confidencesByLabel);
         this.when_received = true;
-        this.when_received_arr[result.label] = true
+        this.when_received_arr[this.label] = true
       }
     });
   }
 
+  getTopConfidenceLabel(confidences) {
+    let topConfidenceLabel;
+    let topConfidence = 0;
+
+    for (let label in confidences) {
+      if (confidences[label] > topConfidence) {
+        topConfidenceLabel = label;
+      }
+    }
+
+    return topConfidenceLabel;
+  }
+
   updateCounts() {
     this.counts = this.knnClassifier.getCountByLabel();
+    console.debug(this.counts);
   }
 
   actionRepeated() {
@@ -671,7 +843,7 @@ class Scratch3ML2ScratchBlocks {
       text = Message.all[this.locale];
     }
     arr.push({text: text, value: defaultValue});
-    for(let i = 1; i <= 8; i++) {
+    for(let i = 1; i <= 10; i++) {
       let obj = {};
       obj.text = i.toString(10);
       obj.value = i.toString(10);
@@ -682,7 +854,7 @@ class Scratch3ML2ScratchBlocks {
 
   getTrainMenu() {
     let arr = [];
-    for(let i = 4; i <= 8; i++) {
+    for(let i = 4; i <= 10; i++) {
       let obj = {};
       obj.text = i.toString(10);
       obj.value = i.toString(10);
@@ -704,6 +876,19 @@ class Scratch3ML2ScratchBlocks {
       {
         text: Message.video_on_flipped[this.locale],
         value: 'on-flipped'
+      }
+    ]
+  }
+
+  getInputMenu() {
+    return [
+      {
+        text: Message.webcam[this.locale],
+        value: 'webcam'
+      },
+      {
+        text: Message.stage[this.locale],
+        value: 'stage'
       }
     ]
   }

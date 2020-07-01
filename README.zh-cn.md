@@ -12,14 +12,25 @@
 
 ## Demo Movie(演示视频)
 
-  <img src="images/en/ml2scratch.gif" width="900" />
+### Learn/Classify Scratch stage images
+
+  <img src="images/1or2.gif" width="600" />
+
+- [handwriting(1or2) recognition sample project](https://github.com/champierre/ml2scratch/blob/master/sample_projects/1or2.sb3?raw=true)
+- [handwriting(1or2) recognition learning data](https://github.com/champierre/ml2scratch/blob/master/sample_projects/1or2.json?raw=true)
+
+### Learn/Classify Scratch webcam images
+
+  <img src="images/zh-cn/ml2scratch.gif" width="600" />
+
+#### Other samples
 
 - 用电脑摄像头判别石头剪子布 [.mov file](https://s3.amazonaws.com/champierre/movies/rsp_demo.mov) | [YouTube](https://www.youtube.com/watch?v=DkH1hwc-Gb4)
 - 用手势指挥倒立两轮机器人MiP [.mov file](https://s3.amazonaws.com/champierre/movies/mip_demo.mov) | [YouTube](https://www.youtube.com/watch?v=GKXimEB5WQg)
 
 ## License(许可证)
 
-- ML2Scratch受 [Apache 2.0许可](./LICENSE.md) 的保护，是开源的，任何人均可免费使用。您可以在您的课堂，讲习班上使用它。商业用途也被接受。如果您或您的学生使用ML2Scratch创建了一些很棒的东西，请使用 #ml2scratch 标签在SNS上分享，或者让我知道这些联系人中的任何一个。有趣的项目将添加到“使用例”中。
+- ML2Scratch受 [BSD 3-Clause License](./LICENSE.md) 的保护，是开源的，任何人均可免费使用。您可以在您的课堂，讲习班上使用它。商业用途也被接受。如果您或您的学生使用ML2Scratch创建了一些很棒的东西，请使用 #ml2scratch 标签在SNS上分享，或者让我知道这些联系人中的任何一个。有趣的项目将添加到“使用例”中。
 
 ## Contacts(联络人)
 
@@ -91,9 +102,51 @@
 
     <img src="images/en/scratch_program.png" />
 
-## For Developers - How to add ML2Scratch extension to your (customized) Scratch
+### Switching between images to be learned/classified
 
-1. Prepare LLK/scratch-gui on your local machine.
+You can switch the images to be learned/classified.
+
+By default, Scratch's stage image is used for learning/classification.
+
+<img src="images/en/stage.png" />
+
+If there is a webcam image on the stage, it learns/classified the webcam image, or if the "Turn off video" block stops showing the webcam image and shows a game or animation screen, etc., it uses that screen for learning/classfication.
+
+If you want to learn/classify only the webcam's image, you can use
+
+<img src="images/en/webcam.png" />
+
+It can be switch to a webcam image for learning/classification. If you want to move the character by gestures on the camera image, I think this is a more accurate way to judge.
+
+### Download/Upload
+
+With ML2Scratch, you can download and save the trained model on your PC by using the "download learning data" block.
+
+<img src="images/en/download.png" />
+
+Click, specify the file download destination, and press the "Save" button. The learning data will be saved as a file &lt;numerical string&gt;.json.
+
+The project itself is not saved automatically like a normal Scratch, so select "File" > "Save to your computer" and save it on your PC as a .sb3 file.
+
+<img src="images/en/save_project.png" />
+
+To reopen a saved project, choose "File" > "Load from your computer" and select the saved .sb3 file. After that, upload the learning data.
+
+<img src="images/en/load_project.png" />
+
+The saved learning data can be uploaded in the "upload learning data" block.
+
+<img src="images/en/upload.png" />
+
+When you click, a window called "upload learning data" opens, so click the "Select file" button, select the training data file (&lt;numerical sequence&gt;.json), and press Click.
+
+<img src="images/en/upload_dialog.png" />
+
+At this time, be aware that the data that has been learned will be overwritten.
+
+## For Developers - How to run ML2Scratch extension on your computer
+
+1. Setup LLK/scratch-gui on your computer.
 
     ```
     % git clone git@github.com:LLK/scratch-gui.git
@@ -101,13 +154,19 @@
     % npm install
     ```
 
-2. Run the install script.
+2. In scratch-gui folder, clone ML2Scratch. You will have ml2scratch folder under scratch-gui.
 
     ```
-    % curl https://raw.githubusercontent.com/champierre/ml2scratch/master/install.sh | sh
+    % git clone git@github.com:champierre/ml2scratch.git
     ```
 
-3. Run Scratch, then go to http://localhost:8601/.
+3. Run the install script.
+
+    ```
+    % sh ml2scratch/install.sh
+    ```
+
+4. Run Scratch, then go to http://localhost:8601/.
 
     ```
     % npm start
