@@ -57,7 +57,7 @@
 
 ### Setup(设定)
 
-1. 打开 [https://champierre.github.io/scratch3/](https://champierre.github.io/scratch3/)。
+1. 打开 [https://stretch3.github.io/](https://stretch3.github.io/)。
 
 2. 打开“选择扩展”窗口，然后选择“ML2Scratch”。
 

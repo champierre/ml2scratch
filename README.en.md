@@ -57,7 +57,7 @@ ML2Scratch sometimes does not work because of some Chrome extensions. Plese swit
 
 ### Setup
 
-1. Open [https://champierre.github.io/scratch3/](https://champierre.github.io/scratch3/).
+1. Open [https://stretch3.github.io/](https://stretch3.github.io/).
 
 2. Open "Choose an Extension" window and select "ML2Scratch".
 

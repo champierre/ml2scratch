@@ -57,7 +57,7 @@ Chrome の拡張機能を使用している場合に、正常に動作しない�
 
 ### Setup(準備)
 
-1. [https://champierre.github.io/scratch3/](https://champierre.github.io/scratch3/) をChromeで開きます。
+1. [https://stretch3.github.io/](https://stretch3.github.io/) をChromeで開きます。
 
 2. 「拡張機能を選ぶ」画面を開き、「ML2Scratch」を選びます。
 
