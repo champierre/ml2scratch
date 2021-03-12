@@ -2,8 +2,21 @@ const ArgumentType = require('../../extension-support/argument-type');
 const BlockType = require('../../extension-support/block-type');
 const Cast = require('../../util/cast');
 const log = require('../../util/log');
-const ml5 = require('ml5');
-const formatMessage = require('format-message');
+const ml5 = require('./ml5.min.js');
+
+/**
+ * Formatter which is used for translating.
+ * When it was loaded as a module, 'formatMessage' will be replaced which is used in the runtime.
+ * @type {Function}
+ */
+let formatMessage = require('format-message');
+
+/**
+ * URL to get this extension as a module.
+ * When it was loaded as a module, 'extensionURL' will be replaced a URL which is retrieved from.
+ * @type {string}
+ */
+let extensionURL = 'https://champierre.github.io/ml2scratch/dist/ml2scratch.mjs';
 
 const HAT_TIMEOUT = 100;
 
@@ -231,8 +244,45 @@ const Message = {
 const AvailableLocales = ['en', 'ja', 'ja-Hira', 'zh-cn'];
 
 class Scratch3ML2ScratchBlocks {
-  constructor (runtime) {
+
+  /**
+   * @return {string} - the name of this extension.
+   */
+  static get EXTENSION_NAME() {
+    return 'ML2Scratch';
+  }
+
+  /**
+   * @return {string} - the ID of this extension.
+   */
+  static get EXTENSION_ID() {
+    return 'ml2scratch';
+  }
+
+  /**
+   * URL to get this extension.
+   * @type {string}
+   */
+  static get extensionURL() {
+    return extensionURL;
+  }
+
+  /**
+   * Set URL to get this extension.
+   * extensionURL will be reset when the module is loaded from the web.
+   * @param {string} url - URL
+   */
+  static set extensionURL(url) {
+    extensionURL = url;
+  }
+
+  constructor(runtime) {
     this.runtime = runtime;
+    if (runtime.formatMessage) {
+      // Replace 'formatMessage' to a formatter which is used in the runtime.
+      formatMessage = runtime.formatMessage;
+    }
+
     this.when_received = false;
     this.when_received_arr = Array(8).fill(false);
     this.label = null;
@@ -279,8 +329,9 @@ class Scratch3ML2ScratchBlocks {
     this.locale = this.setLocale();
 
     return {
-      id: 'ml2scratch',
-      name: 'ML2Scratch',
+      id: Scratch3ML2ScratchBlocks.EXTENSION_ID,
+      name: Scratch3ML2ScratchBlocks.EXTENSION_NAME,
+      extensionURL: Scratch3ML2ScratchBlocks.extensionURL,
       blockIconURI: blockIconURI,
       blocks: [
         {
@@ -944,4 +995,5 @@ class Scratch3ML2ScratchBlocks {
   }
 }
 
+exports.blockClass = Scratch3ML2ScratchBlocks; // loadable-extension needs this line.
 module.exports = Scratch3ML2ScratchBlocks;
