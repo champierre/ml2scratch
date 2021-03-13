@@ -20,6 +20,9 @@ jobs:
           path: ./ml2scratch
       - run: sh ./ml2scratch/install.sh
       - run: npm run build
+      - name: npm install under ml2scratch
+        run: npm install
+        working-directory: ./ml2scratch
       - name: Build ml2scratch.mjs for xcratch
         run: npm run build
         working-directory: ./ml2scratch
