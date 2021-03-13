@@ -1,0 +1,46 @@
+{
+  "name": "ml2scratch",
+  "version": "0.1.0",
+  "description": "機械学習 x スクラッチ(Connect Machine Learning with Scratch)",
+  "scripts": {
+    "build": "rimraf ./dist && mkdirp ./dist && node ./scripts/build.js --name=ml2scratch --block=\"./scratch-vm/src/extensions/scratch3_ml2scratch\" --entry=\"./scratch-gui/src/lib/libraries/extensions/ml2scratch\" --gui=\"../scratch-gui\" --output=\"./dist\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/champierre/ml2scratch.git"
+  },
+  "keywords": [
+    "scratch",
+    "xcratch"
+  ],
+  "author": "Junya Ishihara",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/champierre/ml2scratch/issues"
+  },
+  "homepage": "https://github.com/champierre/ml2scratch#readme",
+  "devDependencies": {
+    "@babel/core": "^7.11.6",
+    "@babel/plugin-transform-react-jsx": "^7.10.4",
+    "@babel/preset-env": "^7.11.5",
+    "@babel/preset-react": "^7.10.4",
+    "@rollup/plugin-babel": "^5.2.1",
+    "@rollup/plugin-commonjs": "^15.0.0",
+    "@rollup/plugin-image": "^2.0.5",
+    "@rollup/plugin-multi-entry": "^4.0.0",
+    "@rollup/plugin-node-resolve": "^9.0.0",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.1.0",
+    "command-line-args": "^5.1.1",
+    "eslint": "^7.21.0",
+    "eslint-config-scratch": "^6.0.0",
+    "eslint-plugin-react": "^7.22.0",
+    "fs-extra": "^9.0.1",
+    "mkdirp": "^1.0.4",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.26.11",
+    "rollup-plugin-node-builtins": "^2.1.2",
+    "rollup-plugin-node-globals": "^1.4.0"
+  },
+  "dependencies": {}
+}
