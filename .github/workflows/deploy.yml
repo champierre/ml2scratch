@@ -1,0 +1,30 @@
+name: Deploy
+on:
+  push:
+    branches:
+      - master
+    tags:
+      - "!*"
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          repository: LLK/scratch-gui
+          ref: develop
+      - run: npm install
+      - uses: actions/checkout@v2
+        with:
+          path: ./ml2scratch
+      - run: sh ./ml2scratch/install.sh
+      - run: npm run build
+      - name: Build ml2scratch.mjs for xcratch
+          run: npm run build
+          working-directory: ./ml2scratch
+      - run: cp ./ml2scratch/dist/ml2scratch.mjs ./build
+      - uses: peaceiris/actions-gh-pages@v3
+        with:
+          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          publish_dir: ./build

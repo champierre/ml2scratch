@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "機械学習 x スクラッチ(Connect Machine Learning with Scratch)",
   "scripts": {
-    "build": "rimraf ./dist && mkdirp ./dist && node ./scripts/build.js --name=ml2scratch --block=\"./scratch-vm/src/extensions/scratch3_ml2scratch\" --entry=\"./scratch-gui/src/lib/libraries/extensions/ml2scratch\" --gui=\"../scratch-gui\" --output=\"./dist\""
+    "build": "rimraf ./dist && mkdirp ./dist && node ./scripts/build.js --name=ml2scratch --block=\"./scratch-vm/src/extensions/scratch3_ml2scratch\" --entry=\"./scratch-gui/src/lib/libraries/extensions/ml2scratch\" --gui=\"../\" --output=\"./dist\""
   },
   "repository": {
     "type": "git",
