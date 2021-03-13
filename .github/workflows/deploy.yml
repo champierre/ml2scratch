@@ -28,6 +28,8 @@ jobs:
         working-directory: ./ml2scratch
       - name: Copy ml2scratch.mjs to build folder
         run: cp ./ml2scratch/dist/ml2scratch.mjs ./build
+      - name: Copy sample.sb3 to build folder
+        run: cp ./ml2scratch/sample_projects/xcratch/sample.sb3 ./build
       - uses: peaceiris/actions-gh-pages@v3
         with:
           deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
