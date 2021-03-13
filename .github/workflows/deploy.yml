@@ -21,8 +21,8 @@ jobs:
       - run: sh ./ml2scratch/install.sh
       - run: npm run build
       - name: Build ml2scratch.mjs for xcratch
-          run: npm run build
-          working-directory: ./ml2scratch
+        run: npm run build
+        working-directory: ./ml2scratch
       - run: cp ./ml2scratch/dist/ml2scratch.mjs ./build
       - uses: peaceiris/actions-gh-pages@v3
         with:
