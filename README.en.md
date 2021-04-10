@@ -59,6 +59,7 @@ If you take a few images with a webcam, label them, and learn them, you can clas
   - Windows 8
   - Windows 10
   - MacOS
+  - Chrome OS
 - Browser
   - Chrome
 

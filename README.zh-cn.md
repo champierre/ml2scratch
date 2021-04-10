@@ -59,6 +59,7 @@
   - Windows 8
   - Windows 10
   - MacOS
+  - Chrome OS
 - Browser
   - Chrome
 
