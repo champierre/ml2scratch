@@ -288,31 +288,20 @@ class Scratch3ML2ScratchBlocks {
     this.label = null;
     this.locale = this.setLocale();
 
-    this.video = document.createElement("video");
-    this.video.width = 480;
-    this.video.height = 360;
-    this.video.autoplay = true;
-    this.video.style.display = "none";
-
     this.blockClickedAt = null;
 
     this.counts = null;
     this.firstTraining = true;
 
     this.interval = 1000;
-
-    let media = navigator.mediaDevices.getUserMedia({
-      video: true,
-      audio: false
-    });
-
-    media.then((stream) => {
-      this.video.srcObject = stream;
+    this.globalVideoTransparency = 0;
+    this.setVideoTransparency({
+        TRANSPARENCY: this.globalVideoTransparency
     });
 
     this.canvas = document.querySelector('canvas');
 
-    this.input =  this.video;
+    this.runtime.ioDevices.video.enableVideo().then(() => {this.input = this.runtime.ioDevices.video.provider.video});
 
     this.knnClassifier = ml5.KNNClassifier();
     this.featureExtractor = ml5.featureExtractor('MobileNet', () => {
@@ -321,8 +310,6 @@ class Scratch3ML2ScratchBlocks {
         this.classify();
       }, this.interval);
     });
-
-    this.runtime.ioDevices.video.enableVideo();
   }
 
   getInfo() {
@@ -531,6 +518,20 @@ class Scratch3ML2ScratchBlocks {
           }
         },
         {
+          opcode: 'setVideoTransparency',
+          text: formatMessage({
+              id: 'videoSensing.setVideoTransparency',
+              default: 'set video transparency to [TRANSPARENCY]',
+              description: 'Controls transparency of the video preview layer'
+          }),
+          arguments: {
+              TRANSPARENCY: {
+                  type: ArgumentType.NUMBER,
+                  defaultValue: 50
+              }
+          }
+        },
+        {
           opcode: 'setInput',
           text: Message.set_input[this.locale],
           blockType: BlockType.COMMAND,
@@ -566,6 +567,27 @@ class Scratch3ML2ScratchBlocks {
         input_menu: this.getInputMenu()
       }
     };
+  }
+
+  /**
+   * The transparency setting of the video preview stored in a value
+   * accessible by any object connected to the virtual machine.
+   * @type {number}
+   */
+  get globalVideoTransparency () {
+      const stage = this.runtime.getTargetForStage();
+      if (stage) {
+          return stage.videoTransparency;
+      }
+      return 50;
+  }
+
+  set globalVideoTransparency (transparency) {
+      const stage = this.runtime.getTargetForStage();
+      if (stage) {
+          stage.videoTransparency = transparency;
+      }
+      return transparency;
   }
 
   addExample1() {
@@ -797,15 +819,28 @@ class Scratch3ML2ScratchBlocks {
     if (state === 'off') {
       this.runtime.ioDevices.video.disableVideo();
     } else {
-      this.runtime.ioDevices.video.enableVideo();
+      this.runtime.ioDevices.video.enableVideo().then(() => {this.input = this.runtime.ioDevices.video.provider.video});
       this.runtime.ioDevices.video.mirror = state === "on";
     }
+  }
+
+  /**
+   * A scratch command block handle that configures the video preview's
+   * transparency from passed arguments.
+   * @param {object} args - the block arguments
+   * @param {number} args.TRANSPARENCY - the transparency to set the video
+   *   preview to
+   */
+  setVideoTransparency (args) {
+      const transparency = Cast.toNumber(args.TRANSPARENCY);
+      this.globalVideoTransparency = transparency;
+      this.runtime.ioDevices.video.setPreviewGhost(transparency);
   }
 
   setInput (args) {
     let input = args.INPUT;
     if (input === 'webcam') {
-      this.input = this.video;
+      this.input = this.runtime.ioDevices.video.provider.video;
     } else {
       this.input = this.canvas;
     }
