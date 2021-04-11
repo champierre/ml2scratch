@@ -8565,6 +8565,532 @@ var BlockType = {
 };
 var blockType = BlockType;
 
+var Color = /*#__PURE__*/function () {
+  function Color() {
+    _classCallCheck(this, Color);
+  }
+
+  _createClass(Color, null, [{
+    key: "RGB_BLACK",
+    get:
+    /**
+     * @typedef {object} RGBObject - An object representing a color in RGB format.
+     * @property {number} r - the red component, in the range [0, 255].
+     * @property {number} g - the green component, in the range [0, 255].
+     * @property {number} b - the blue component, in the range [0, 255].
+     */
+
+    /**
+     * @typedef {object} HSVObject - An object representing a color in HSV format.
+     * @property {number} h - hue, in the range [0-359).
+     * @property {number} s - saturation, in the range [0,1].
+     * @property {number} v - value, in the range [0,1].
+     */
+
+    /** @type {RGBObject} */
+    function get() {
+      return {
+        r: 0,
+        g: 0,
+        b: 0
+      };
+    }
+    /** @type {RGBObject} */
+
+  }, {
+    key: "RGB_WHITE",
+    get: function get() {
+      return {
+        r: 255,
+        g: 255,
+        b: 255
+      };
+    }
+    /**
+     * Convert a Scratch decimal color to a hex string, #RRGGBB.
+     * @param {number} decimal RGB color as a decimal.
+     * @return {string} RGB color as #RRGGBB hex string.
+     */
+
+  }, {
+    key: "decimalToHex",
+    value: function decimalToHex(decimal) {
+      if (decimal < 0) {
+        decimal += 0xFFFFFF + 1;
+      }
+
+      var hex = Number(decimal).toString(16);
+      hex = "#".concat('000000'.substr(0, 6 - hex.length)).concat(hex);
+      return hex;
+    }
+    /**
+     * Convert a Scratch decimal color to an RGB color object.
+     * @param {number} decimal RGB color as decimal.
+     * @return {RGBObject} rgb - {r: red [0,255], g: green [0,255], b: blue [0,255]}.
+     */
+
+  }, {
+    key: "decimalToRgb",
+    value: function decimalToRgb(decimal) {
+      var a = decimal >> 24 & 0xFF;
+      var r = decimal >> 16 & 0xFF;
+      var g = decimal >> 8 & 0xFF;
+      var b = decimal & 0xFF;
+      return {
+        r: r,
+        g: g,
+        b: b,
+        a: a > 0 ? a : 255
+      };
+    }
+    /**
+     * Convert a hex color (e.g., F00, #03F, #0033FF) to an RGB color object.
+     * CC-BY-SA Tim Down:
+     * https://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb
+     * @param {!string} hex Hex representation of the color.
+     * @return {RGBObject} null on failure, or rgb: {r: red [0,255], g: green [0,255], b: blue [0,255]}.
+     */
+
+  }, {
+    key: "hexToRgb",
+    value: function hexToRgb(hex) {
+      var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+      hex = hex.replace(shorthandRegex, function (m, r, g, b) {
+        return r + r + g + g + b + b;
+      });
+      var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+      return result ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16)
+      } : null;
+    }
+    /**
+     * Convert an RGB color object to a hex color.
+     * @param {RGBObject} rgb - {r: red [0,255], g: green [0,255], b: blue [0,255]}.
+     * @return {!string} Hex representation of the color.
+     */
+
+  }, {
+    key: "rgbToHex",
+    value: function rgbToHex(rgb) {
+      return Color.decimalToHex(Color.rgbToDecimal(rgb));
+    }
+    /**
+     * Convert an RGB color object to a Scratch decimal color.
+     * @param {RGBObject} rgb - {r: red [0,255], g: green [0,255], b: blue [0,255]}.
+     * @return {!number} Number representing the color.
+     */
+
+  }, {
+    key: "rgbToDecimal",
+    value: function rgbToDecimal(rgb) {
+      return (rgb.r << 16) + (rgb.g << 8) + rgb.b;
+    }
+    /**
+    * Convert a hex color (e.g., F00, #03F, #0033FF) to a decimal color number.
+    * @param {!string} hex Hex representation of the color.
+    * @return {!number} Number representing the color.
+    */
+
+  }, {
+    key: "hexToDecimal",
+    value: function hexToDecimal(hex) {
+      return Color.rgbToDecimal(Color.hexToRgb(hex));
+    }
+    /**
+     * Convert an HSV color to RGB format.
+     * @param {HSVObject} hsv - {h: hue [0,360), s: saturation [0,1], v: value [0,1]}
+     * @return {RGBObject} rgb - {r: red [0,255], g: green [0,255], b: blue [0,255]}.
+     */
+
+  }, {
+    key: "hsvToRgb",
+    value: function hsvToRgb(hsv) {
+      var h = hsv.h % 360;
+      if (h < 0) h += 360;
+      var s = Math.max(0, Math.min(hsv.s, 1));
+      var v = Math.max(0, Math.min(hsv.v, 1));
+      var i = Math.floor(h / 60);
+      var f = h / 60 - i;
+      var p = v * (1 - s);
+      var q = v * (1 - s * f);
+      var t = v * (1 - s * (1 - f));
+      var r;
+      var g;
+      var b;
+
+      switch (i) {
+        default:
+        case 0:
+          r = v;
+          g = t;
+          b = p;
+          break;
+
+        case 1:
+          r = q;
+          g = v;
+          b = p;
+          break;
+
+        case 2:
+          r = p;
+          g = v;
+          b = t;
+          break;
+
+        case 3:
+          r = p;
+          g = q;
+          b = v;
+          break;
+
+        case 4:
+          r = t;
+          g = p;
+          b = v;
+          break;
+
+        case 5:
+          r = v;
+          g = p;
+          b = q;
+          break;
+      }
+
+      return {
+        r: Math.floor(r * 255),
+        g: Math.floor(g * 255),
+        b: Math.floor(b * 255)
+      };
+    }
+    /**
+     * Convert an RGB color to HSV format.
+     * @param {RGBObject} rgb - {r: red [0,255], g: green [0,255], b: blue [0,255]}.
+     * @return {HSVObject} hsv - {h: hue [0,360), s: saturation [0,1], v: value [0,1]}
+     */
+
+  }, {
+    key: "rgbToHsv",
+    value: function rgbToHsv(rgb) {
+      var r = rgb.r / 255;
+      var g = rgb.g / 255;
+      var b = rgb.b / 255;
+      var x = Math.min(Math.min(r, g), b);
+      var v = Math.max(Math.max(r, g), b); // For grays, hue will be arbitrarily reported as zero. Otherwise, calculate
+
+      var h = 0;
+      var s = 0;
+
+      if (x !== v) {
+        var f = r === x ? g - b : g === x ? b - r : r - g;
+        var i = r === x ? 3 : g === x ? 5 : 1;
+        h = (i - f / (v - x)) * 60 % 360;
+        s = (v - x) / v;
+      }
+
+      return {
+        h: h,
+        s: s,
+        v: v
+      };
+    }
+    /**
+     * Linear interpolation between rgb0 and rgb1.
+     * @param {RGBObject} rgb0 - the color corresponding to fraction1 <= 0.
+     * @param {RGBObject} rgb1 - the color corresponding to fraction1 >= 1.
+     * @param {number} fraction1 - the interpolation parameter. If this is 0.5, for example, mix the two colors equally.
+     * @return {RGBObject} the interpolated color.
+     */
+
+  }, {
+    key: "mixRgb",
+    value: function mixRgb(rgb0, rgb1, fraction1) {
+      if (fraction1 <= 0) return rgb0;
+      if (fraction1 >= 1) return rgb1;
+      var fraction0 = 1 - fraction1;
+      return {
+        r: fraction0 * rgb0.r + fraction1 * rgb1.r,
+        g: fraction0 * rgb0.g + fraction1 * rgb1.g,
+        b: fraction0 * rgb0.b + fraction1 * rgb1.b
+      };
+    }
+  }]);
+
+  return Color;
+}();
+
+var color$1 = Color;
+
+/**
+ * @fileoverview
+ * Utilities for casting and comparing Scratch data-types.
+ * Scratch behaves slightly differently from JavaScript in many respects,
+ * and these differences should be encapsulated below.
+ * For example, in Scratch, add(1, join("hello", world")) -> 1.
+ * This is because "hello world" is cast to 0.
+ * In JavaScript, 1 + Number("hello" + "world") would give you NaN.
+ * Use when coercing a value before computation.
+ */
+
+var Cast = /*#__PURE__*/function () {
+  function Cast() {
+    _classCallCheck(this, Cast);
+  }
+
+  _createClass(Cast, null, [{
+    key: "toNumber",
+    value:
+    /**
+     * Scratch cast to number.
+     * Treats NaN as 0.
+     * In Scratch 2.0, this is captured by `interp.numArg.`
+     * @param {*} value Value to cast to number.
+     * @return {number} The Scratch-casted number value.
+     */
+    function toNumber(value) {
+      // If value is already a number we don't need to coerce it with
+      // Number().
+      if (typeof value === 'number') {
+        // Scratch treats NaN as 0, when needed as a number.
+        // E.g., 0 + NaN -> 0.
+        if (Number.isNaN(value)) {
+          return 0;
+        }
+
+        return value;
+      }
+
+      var n = Number(value);
+
+      if (Number.isNaN(n)) {
+        // Scratch treats NaN as 0, when needed as a number.
+        // E.g., 0 + NaN -> 0.
+        return 0;
+      }
+
+      return n;
+    }
+    /**
+     * Scratch cast to boolean.
+     * In Scratch 2.0, this is captured by `interp.boolArg.`
+     * Treats some string values differently from JavaScript.
+     * @param {*} value Value to cast to boolean.
+     * @return {boolean} The Scratch-casted boolean value.
+     */
+
+  }, {
+    key: "toBoolean",
+    value: function toBoolean(value) {
+      // Already a boolean?
+      if (typeof value === 'boolean') {
+        return value;
+      }
+
+      if (typeof value === 'string') {
+        // These specific strings are treated as false in Scratch.
+        if (value === '' || value === '0' || value.toLowerCase() === 'false') {
+          return false;
+        } // All other strings treated as true.
+
+
+        return true;
+      } // Coerce other values and numbers.
+
+
+      return Boolean(value);
+    }
+    /**
+     * Scratch cast to string.
+     * @param {*} value Value to cast to string.
+     * @return {string} The Scratch-casted string value.
+     */
+
+  }, {
+    key: "toString",
+    value: function toString(value) {
+      return String(value);
+    }
+    /**
+     * Cast any Scratch argument to an RGB color array to be used for the renderer.
+     * @param {*} value Value to convert to RGB color array.
+     * @return {Array.<number>} [r,g,b], values between 0-255.
+     */
+
+  }, {
+    key: "toRgbColorList",
+    value: function toRgbColorList(value) {
+      var color = Cast.toRgbColorObject(value);
+      return [color.r, color.g, color.b];
+    }
+    /**
+     * Cast any Scratch argument to an RGB color object to be used for the renderer.
+     * @param {*} value Value to convert to RGB color object.
+     * @return {RGBOject} [r,g,b], values between 0-255.
+     */
+
+  }, {
+    key: "toRgbColorObject",
+    value: function toRgbColorObject(value) {
+      var color;
+
+      if (typeof value === 'string' && value.substring(0, 1) === '#') {
+        color = color$1.hexToRgb(value); // If the color wasn't *actually* a hex color, cast to black
+
+        if (!color) color = {
+          r: 0,
+          g: 0,
+          b: 0,
+          a: 255
+        };
+      } else {
+        color = color$1.decimalToRgb(Cast.toNumber(value));
+      }
+
+      return color;
+    }
+    /**
+     * Determine if a Scratch argument is a white space string (or null / empty).
+     * @param {*} val value to check.
+     * @return {boolean} True if the argument is all white spaces or null / empty.
+     */
+
+  }, {
+    key: "isWhiteSpace",
+    value: function isWhiteSpace(val) {
+      return val === null || typeof val === 'string' && val.trim().length === 0;
+    }
+    /**
+     * Compare two values, using Scratch cast, case-insensitive string compare, etc.
+     * In Scratch 2.0, this is captured by `interp.compare.`
+     * @param {*} v1 First value to compare.
+     * @param {*} v2 Second value to compare.
+     * @returns {number} Negative number if v1 < v2; 0 if equal; positive otherwise.
+     */
+
+  }, {
+    key: "compare",
+    value: function compare(v1, v2) {
+      var n1 = Number(v1);
+      var n2 = Number(v2);
+
+      if (n1 === 0 && Cast.isWhiteSpace(v1)) {
+        n1 = NaN;
+      } else if (n2 === 0 && Cast.isWhiteSpace(v2)) {
+        n2 = NaN;
+      }
+
+      if (isNaN(n1) || isNaN(n2)) {
+        // At least one argument can't be converted to a number.
+        // Scratch compares strings as case insensitive.
+        var s1 = String(v1).toLowerCase();
+        var s2 = String(v2).toLowerCase();
+
+        if (s1 < s2) {
+          return -1;
+        } else if (s1 > s2) {
+          return 1;
+        }
+
+        return 0;
+      } // Handle the special case of Infinity
+
+
+      if (n1 === Infinity && n2 === Infinity || n1 === -Infinity && n2 === -Infinity) {
+        return 0;
+      } // Compare as numbers.
+
+
+      return n1 - n2;
+    }
+    /**
+     * Determine if a Scratch argument number represents a round integer.
+     * @param {*} val Value to check.
+     * @return {boolean} True if number looks like an integer.
+     */
+
+  }, {
+    key: "isInt",
+    value: function isInt(val) {
+      // Values that are already numbers.
+      if (typeof val === 'number') {
+        if (isNaN(val)) {
+          // NaN is considered an integer.
+          return true;
+        } // True if it's "round" (e.g., 2.0 and 2).
+
+
+        return val === parseInt(val, 10);
+      } else if (typeof val === 'boolean') {
+        // `True` and `false` always represent integer after Scratch cast.
+        return true;
+      } else if (typeof val === 'string') {
+        // If it contains a decimal point, don't consider it an int.
+        return val.indexOf('.') < 0;
+      }
+
+      return false;
+    }
+  }, {
+    key: "LIST_INVALID",
+    get: function get() {
+      return 'INVALID';
+    }
+  }, {
+    key: "LIST_ALL",
+    get: function get() {
+      return 'ALL';
+    }
+    /**
+     * Compute a 1-based index into a list, based on a Scratch argument.
+     * Two special cases may be returned:
+     * LIST_ALL: if the block is referring to all of the items in the list.
+     * LIST_INVALID: if the index was invalid in any way.
+     * @param {*} index Scratch arg, including 1-based numbers or special cases.
+     * @param {number} length Length of the list.
+     * @param {boolean} acceptAll Whether it should accept "all" or not.
+     * @return {(number|string)} 1-based index for list, LIST_ALL, or LIST_INVALID.
+     */
+
+  }, {
+    key: "toListIndex",
+    value: function toListIndex(index, length, acceptAll) {
+      if (typeof index !== 'number') {
+        if (index === 'all') {
+          return acceptAll ? Cast.LIST_ALL : Cast.LIST_INVALID;
+        }
+
+        if (index === 'last') {
+          if (length > 0) {
+            return length;
+          }
+
+          return Cast.LIST_INVALID;
+        } else if (index === 'random' || index === 'any') {
+          if (length > 0) {
+            return 1 + Math.floor(Math.random() * length);
+          }
+
+          return Cast.LIST_INVALID;
+        }
+      }
+
+      index = Math.floor(Cast.toNumber(index));
+
+      if (index < 1 || index > length) {
+        return Cast.LIST_INVALID;
+      }
+
+      return index;
+    }
+  }]);
+
+  return Cast;
+}();
+
+var cast = Cast;
+
 function M() {
   this._events = {};
 }
@@ -12262,24 +12788,18 @@ var Scratch3ML2ScratchBlocks = /*#__PURE__*/function () {
     this.when_received_arr = Array(8).fill(false);
     this.label = null;
     this.locale = this.setLocale();
-    this.video = document.createElement("video");
-    this.video.width = 480;
-    this.video.height = 360;
-    this.video.autoplay = true;
-    this.video.style.display = "none";
     this.blockClickedAt = null;
     this.counts = null;
     this.firstTraining = true;
     this.interval = 1000;
-    var media = navigator.mediaDevices.getUserMedia({
-      video: true,
-      audio: false
-    });
-    media.then(function (stream) {
-      _this.video.srcObject = stream;
+    this.globalVideoTransparency = 0;
+    this.setVideoTransparency({
+      TRANSPARENCY: this.globalVideoTransparency
     });
     this.canvas = document.querySelector('canvas');
-    this.input = this.video;
+    this.runtime.ioDevices.video.enableVideo().then(function () {
+      _this.input = _this.runtime.ioDevices.video.provider.video;
+    });
     this.knnClassifier = ml5_min.KNNClassifier();
     this.featureExtractor = ml5_min.featureExtractor('MobileNet', function () {
       console.log('[featureExtractor] Model Loaded!');
@@ -12287,7 +12807,6 @@ var Scratch3ML2ScratchBlocks = /*#__PURE__*/function () {
         _this.classify();
       }, _this.interval);
     });
-    this.runtime.ioDevices.video.enableVideo();
   }
 
   _createClass(Scratch3ML2ScratchBlocks, [{
@@ -12470,6 +12989,19 @@ var Scratch3ML2ScratchBlocks = /*#__PURE__*/function () {
             }
           }
         }, {
+          opcode: 'setVideoTransparency',
+          text: formatMessage({
+            id: 'videoSensing.setVideoTransparency',
+            default: 'set video transparency to [TRANSPARENCY]',
+            description: 'Controls transparency of the video preview layer'
+          }),
+          arguments: {
+            TRANSPARENCY: {
+              type: argumentType.NUMBER,
+              defaultValue: 50
+            }
+          }
+        }, {
           opcode: 'setInput',
           text: Message.set_input[this.locale],
           blockType: blockType.COMMAND,
@@ -12503,6 +13035,32 @@ var Scratch3ML2ScratchBlocks = /*#__PURE__*/function () {
           input_menu: this.getInputMenu()
         }
       };
+    }
+    /**
+     * The transparency setting of the video preview stored in a value
+     * accessible by any object connected to the virtual machine.
+     * @type {number}
+     */
+
+  }, {
+    key: "globalVideoTransparency",
+    get: function get() {
+      var stage = this.runtime.getTargetForStage();
+
+      if (stage) {
+        return stage.videoTransparency;
+      }
+
+      return 50;
+    },
+    set: function set(transparency) {
+      var stage = this.runtime.getTargetForStage();
+
+      if (stage) {
+        stage.videoTransparency = transparency;
+      }
+
+      return transparency;
     }
   }, {
     key: "addExample1",
@@ -12778,14 +13336,33 @@ var Scratch3ML2ScratchBlocks = /*#__PURE__*/function () {
   }, {
     key: "videoToggle",
     value: function videoToggle(args) {
+      var _this7 = this;
+
       var state = args.VIDEO_STATE;
 
       if (state === 'off') {
         this.runtime.ioDevices.video.disableVideo();
       } else {
-        this.runtime.ioDevices.video.enableVideo();
+        this.runtime.ioDevices.video.enableVideo().then(function () {
+          _this7.input = _this7.runtime.ioDevices.video.provider.video;
+        });
         this.runtime.ioDevices.video.mirror = state === "on";
       }
+    }
+    /**
+     * A scratch command block handle that configures the video preview's
+     * transparency from passed arguments.
+     * @param {object} args - the block arguments
+     * @param {number} args.TRANSPARENCY - the transparency to set the video
+     *   preview to
+     */
+
+  }, {
+    key: "setVideoTransparency",
+    value: function setVideoTransparency(args) {
+      var transparency = cast.toNumber(args.TRANSPARENCY);
+      this.globalVideoTransparency = transparency;
+      this.runtime.ioDevices.video.setPreviewGhost(transparency);
     }
   }, {
     key: "setInput",
@@ -12793,7 +13370,7 @@ var Scratch3ML2ScratchBlocks = /*#__PURE__*/function () {
       var input = args.INPUT;
 
       if (input === 'webcam') {
-        this.input = this.video;
+        this.input = this.runtime.ioDevices.video.provider.video;
       } else {
         this.input = this.canvas;
       }
@@ -12801,7 +13378,7 @@ var Scratch3ML2ScratchBlocks = /*#__PURE__*/function () {
   }, {
     key: "uploadButtonClicked",
     value: function uploadButtonClicked(uploadWindow) {
-      var _this7 = this;
+      var _this8 = this;
 
       var files = uploadWindow.document.getElementById('upload-files').files;
 
@@ -12815,12 +13392,12 @@ var Scratch3ML2ScratchBlocks = /*#__PURE__*/function () {
       fr.onload = function (e) {
         var data = JSON.parse(e.target.result);
 
-        _this7.knnClassifier.load(data, function () {
+        _this8.knnClassifier.load(data, function () {
           console.log('uploaded!');
 
-          _this7.updateCounts();
+          _this8.updateCounts();
 
-          alert(Message.uploaded[_this7.locale]);
+          alert(Message.uploaded[_this8.locale]);
         });
       };
 
@@ -12834,7 +13411,7 @@ var Scratch3ML2ScratchBlocks = /*#__PURE__*/function () {
   }, {
     key: "classify",
     value: function classify() {
-      var _this8 = this;
+      var _this9 = this;
 
       var numLabels = this.knnClassifier.getNumLabels();
       if (numLabels == 0) return;
@@ -12843,9 +13420,9 @@ var Scratch3ML2ScratchBlocks = /*#__PURE__*/function () {
         if (err) {
           console.error(err);
         } else {
-          _this8.label = _this8.getTopConfidenceLabel(result.confidencesByLabel);
-          _this8.when_received = true;
-          _this8.when_received_arr[_this8.label] = true;
+          _this9.label = _this9.getTopConfidenceLabel(result.confidencesByLabel);
+          _this9.when_received = true;
+          _this9.when_received_arr[_this9.label] = true;
         }
       });
     }
