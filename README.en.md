@@ -60,8 +60,10 @@ If you take a few images with a webcam, label them, and learn them, you can clas
   - Windows 10
   - MacOS
   - Chrome OS
+  - iOS
 - Browser
   - Chrome
+  - Safari(iOS)
 
 ML2Scratch sometimes does not work because of some Chrome extensions. Plese switch to [Guest Mode](https://support.google.com/chrome/answer/6130773) in such cases.
 
