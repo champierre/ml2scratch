@@ -12805,7 +12805,7 @@ var Message = {
     'zh-tw': '第一次訓練需要一段時間，請稍後，不要一直點擊。'
   }
 };
-var AvailableLocales = ['en', 'ja', 'ja-Hira', 'zh-cn'];
+var AvailableLocales = ['en', 'ja', 'ja-Hira', 'zh-cn', 'zh-tw'];
 
 var Scratch3ML2ScratchBlocks = /*#__PURE__*/function () {
   function Scratch3ML2ScratchBlocks(runtime) {
