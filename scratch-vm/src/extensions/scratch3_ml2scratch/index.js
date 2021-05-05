@@ -241,7 +241,7 @@ const Message = {
   }
 }
 
-const AvailableLocales = ['en', 'ja', 'ja-Hira', 'zh-cn'];
+const AvailableLocales = ['en', 'ja', 'ja-Hira', 'zh-cn', 'zh-tw'];
 
 class Scratch3ML2ScratchBlocks {
 
