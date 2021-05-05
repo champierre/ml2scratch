@@ -4,6 +4,8 @@ ML2Scratchは[TensorFlow.js](https://www.tensorflow.org/js)を使った機械学
 
 Webカメラでいくつかの画像を撮り、ラベルを付けて学習すれば、似たような新たな画像を、学習結果をもとに分類することができます。キャプチャした画像はサーバーに送られることはなく、学習および分類はすべてブラウザ上で行われるのが特徴です。（ただし、起動時にアプリケーションを読み込むのと、学習モデルをダウンロードするためにはネットワーク接続が必要です。）
 
+ブロックの言語は、English、日本語、にほんご、简体中文(陶旭 https://twitter.com/taoxu_toukyoku 提供)、繁體中文(CAVEDU Education https://github.com/cavedunissin 提供)、に対応しています。その他の言語への翻訳にご協力いただける方がいましたら、Issue に登録いただくか、連絡先までご連絡ください。
+
 *他の言語で読む: [English](README.en.md), [日本語](README.md), [简体中文](README.zh-cn.md).*
 
 [ML2Scratch ホームページ](https://champierre.github.io/ml2scratch/)
@@ -37,10 +39,6 @@ Webカメラでいくつかの画像を撮り、ラベルを付けて学習す�
 - Twitter
 
     <img src="images/twitter.png" />
-
-- WeChat
-
-    <img src="images/wechat.jpg" />
 
 ## Examples of use(活用例)
 
