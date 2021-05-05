@@ -27,217 +27,253 @@ const Message = {
     'ja': 'ラベル1を学習する',
     'ja-Hira': 'ラベル1をがくしゅうする',
     'en': 'train label 1',
-    'zh-cn': '学习标签1'
+    'zh-cn': '学习标签1',
+    'zh-tw': '學習標籤1'
   },
   train_label_2: {
     'ja': 'ラベル2を学習する',
     'ja-Hira': 'ラベル2をがくしゅうする',
     'en': 'train label 2',
-    'zh-cn': '学习标签2'
+    'zh-cn': '学习标签2',
+    'zh-tw': '學習標籤2'
   },
   train_label_3: {
     'ja': 'ラベル3を学習する',
     'ja-Hira': 'ラベル3をがくしゅうする',
     'en': 'train label 3',
-    'zh-cn': '学习标签3'
+    'zh-cn': '学习标签3',
+    'zh-tw': '學習標籤3'
   },
   train: {
     'ja': 'ラベル[LABEL]を学習する',
     'ja-Hira': 'ラベル[LABEL]をがくしゅうする',
     'en': 'train label [LABEL]',
-    'zh-cn': '学习标签[LABEL]'
+    'zh-cn': '学习标签[LABEL]',
+    'zh-tw': '學習標籤[LABEL]'
   },
   when_received_block: {
     'ja': 'ラベル[LABEL]を受け取ったとき',
     'ja-Hira': 'ラベル[LABEL]をうけとったとき',
     'en': 'when received label:[LABEL]',
-    'zh-cn': '接收到类别[LABEL]时'
+    'zh-cn': '接收到类别[LABEL]时',
+    'zh-tw': '接收到類別[LABEL]時'
   },
   label_block: {
     'ja': 'ラベル',
     'ja-Hira': 'ラベル',
     'en': 'label',
-    'zh-cn': '标签'
+    'zh-cn': '标签',
+    'zh-tw': '標籤'
   },
   counts_label_1: {
     'ja': 'ラベル1の枚数',
     'ja-Hira': 'ラベル1のまいすう',
     'en': 'counts of label 1',
-    'zh-cn': '标签数量1'
+    'zh-cn': '标签数量1',
+    'zh-tw': '標籤數量1'
   },
   counts_label_2: {
     'ja': 'ラベル2の枚数',
     'ja-Hira': 'ラベル2のまいすう',
     'en': 'counts of label 2',
-    'zh-cn': '标签数量2'
+    'zh-cn': '标签数量2',
+    'zh-tw': '標籤數量2'
   },
   counts_label_3: {
     'ja': 'ラベル3の枚数',
     'ja-Hira': 'ラベル3のまいすう',
     'en': 'counts of label 3',
-    'zh-cn': '标签数量3'
+    'zh-cn': '标签数量3',
+    'zh-tw': '標籤數量3'
   },
   counts_label_4: {
     'ja': 'ラベル4の枚数',
     'ja-Hira': 'ラベル4のまいすう',
     'en': 'counts of label 4',
-    'zh-cn': '标签数量4'
+    'zh-cn': '标签数量4',
+    'zh-tw': '標籤數量4'
   },
   counts_label_5: {
     'ja': 'ラベル5の枚数',
     'ja-Hira': 'ラベル5のまいすう',
     'en': 'counts of label 5',
-    'zh-cn': '标签数量5'
+    'zh-cn': '标签数量5',
+    'zh-tw': '標籤數量5'
   },
   counts_label_6: {
     'ja': 'ラベル6の枚数',
     'ja-Hira': 'ラベル6のまいすう',
     'en': 'counts of label 6',
-    'zh-cn': '标签数量6'
+    'zh-cn': '标签数量6',
+    'zh-tw': '標籤數量6'
   },
   counts_label_7: {
     'ja': 'ラベル7の枚数',
     'ja-Hira': 'ラベル7のまいすう',
     'en': 'counts of label 7',
-    'zh-cn': '标签数量7'
+    'zh-cn': '标签数量7',
+    'zh-tw': '標籤數量7'
   },
   counts_label_8: {
     'ja': 'ラベル8の枚数',
     'ja-Hira': 'ラベル8のまいすう',
     'en': 'counts of label 8',
-    'zh-cn': '标签数量8'
+    'zh-cn': '标签数量8',
+    'zh-tw': '標籤數量8'
   },
   counts_label_9: {
     'ja': 'ラベル9の枚数',
     'ja-Hira': 'ラベル9のまいすう',
     'en': 'counts of label 9',
-    'zh-cn': '标签数量9'
+    'zh-cn': '标签数量9',
+    'zh-tw': '標籤數量9'
   },
   counts_label_10: {
     'ja': 'ラベル10の枚数',
     'ja-Hira': 'ラベル10のまいすう',
     'en': 'counts of label 10',
-    'zh-cn': '标签数量10'
+    'zh-cn': '标签数量10',
+    'zh-tw': '標籤數量10'
   },
   counts_label: {
     'ja': 'ラベル[LABEL]の枚数',
     'ja-Hira': 'ラベル[LABEL]のまいすう',
     'en': 'counts of label [LABEL]',
-    'zh-cn': '标签数量[LABEL]'
+    'zh-cn': '标签数量[LABEL]',
+    'zh-tw': '標籤數量[LABEL]'
   },
   any: {
     'ja': 'のどれか',
     'ja-Hira': 'のどれか',
     'en': 'any',
-    'zh-cn': '任何'
+    'zh-cn': '任何',
+    'zh-tw': '任何'
   },
   all: {
     'ja': 'の全て',
     'ja-Hira': 'のすべて',
     'en': 'all',
-    'zh-cn': '所有'
+    'zh-cn': '所有',
+    'zh-tw': '所有量'
   },
   reset: {
     'ja': 'ラベル[LABEL]の学習をリセット',
     'ja-Hira': 'ラベル[LABEL]のがくしゅうをリセット',
     'en': 'reset label:[LABEL]',
-    'zh-cn': '重置[LABEL]'
+    'zh-cn': '重置[LABEL]',
+    'zh-tw': '重置[LABEL]'
   },
   download_learning_data: {
     'ja': '学習データをダウンロード',
     'ja-Hira': 'がくしゅうデータをダウンロード',
     'en': 'download learning data',
-    'zh-cn': '下载学习数据'
+    'zh-cn': '下载学习数据',
+    'zh-tw': '下載學習資料'
   },
   upload_learning_data: {
     'ja': '学習データをアップロード',
     'ja-Hira': 'がくしゅうデータをアップロード',
     'en': 'upload learning data',
-    'zh-cn': '上传学习数据'
+    'zh-cn': '上传学习数据',
+    'zh-tw': '上傳學習資料'
   },
   upload: {
     'ja': 'アップロード',
     'ja-Hira': 'アップロード',
     'en': 'upload',
-    'zh-cn': '上传'
+    'zh-cn': '上传',
+    'zh-tw': '上傳'
   },
   uploaded: {
     'ja': 'アップロードが完了しました。',
     'ja-Hira': 'アップロードがかんりょうしました。',
     'en': 'The upload is complete.',
-    'zh-cn': '上传完成。'
+    'zh-cn': '上传完成。',
+    'zh-tw': '上傳完成。'
   },
   upload_instruction: {
     'ja': 'ファイルを選び、アップロードボタンをクリックして下さい。',
     'ja-Hira': 'ファイルをえらび、アップロードボタンをクリックしてください。',
     'en': 'Select a file and click the upload button.',
-    'zh-cn': '选择一个文件，然后单击上传按钮。'
+    'zh-cn': '选择一个文件，然后单击上传按钮。',
+    'zh-tw': '選擇一個檔案，然後點擊上傳按鈕'
   },
   confirm_reset: {
     'ja': '本当にリセットしてもよろしいですか？',
     'ja-Hira': 'ほんとうにリセットしてもよろしいですか？',
     'en': 'Are you sure to reset?',
-    'zh-cn': '你确定要重置吗？'
+    'zh-cn': '你确定要重置吗？',
+    'zh-tw': '您確定要重置嗎？'
   },
   toggle_classification: {
     'ja': 'ラベル付けを[CLASSIFICATION_STATE]にする',
     'ja-Hira': 'ラベルづけを[CLASSIFICATION_STATE]にする',
     'en': 'turn classification [CLASSIFICATION_STATE]',
-    'zh-cn': '[CLASSIFICATION_STATE]分类'
+    'zh-cn': '[CLASSIFICATION_STATE]分类',
+    'zh-tw': '[CLASSIFICATION_STATE]分類'
   },
   set_classification_interval: {
     'ja': 'ラベル付けを[CLASSIFICATION_INTERVAL]秒間に1回行う',
     'ja-Hira': 'ラベルづけを[CLASSIFICATION_INTERVAL]びょうかんに1かいおこなう',
     'en': 'Label once every [CLASSIFICATION_INTERVAL] seconds',
-    'zh-cn': '每隔[CLASSIFICATION_INTERVAL]秒标记一次'
+    'zh-cn': '每隔[CLASSIFICATION_INTERVAL]秒标记一次',
+    'zh-tw': '每隔[CLASSIFICATION_INTERVAL]秒標記一次'
   },
   video_toggle: {
     'ja': 'ビデオを[VIDEO_STATE]にする',
     'ja-Hira': 'ビデオを[VIDEO_STATE]にする',
     'en': 'turn video [VIDEO_STATE]',
-    'zh-cn': '[VIDEO_STATE]摄像头'
+    'zh-cn': '[VIDEO_STATE]摄像头',
+    'zh-tw': '[VIDEO_STATE]切換攝影機'
   },
   set_input: {
     'ja': '[INPUT]の画像を学習/判定する',
     'ja-Hira': '[INPUT]のがぞうをがくしゅう/はんていする',
     'en': 'Learn/Classify [INPUT] image',
-    'zh-cn': '学习/分类[INPUT]图像'
+    'zh-cn': '学习/分类[INPUT]图像',
+	'zh-tw': '學習/分類[INPUT]影像'
   },
   on: {
     'ja': '入',
     'ja-Hira': 'いり',
     'en': 'on',
-    'zh-cn': '开启'
+    'zh-cn': '开启',
+    'zh-tw': '開啟'
   },
   off: {
     'ja': '切',
     'ja-Hira': 'きり',
     'en': 'off',
-    'zh-cn': '关闭'
+    'zh-cn': '关闭',
+    'zh-tw': '關閉'
   },
   video_on_flipped: {
     'ja': '左右反転',
     'ja-Hira': 'さゆうはんてん',
     'en': 'on flipped',
-    'zh-cn': '镜像开启'
+    'zh-cn': '镜像开启',
+    'zh-tw': '左右翻轉'
   },
   webcam: {
     'ja': 'カメラ',
     'ja-Hira': 'カメラ',
     'en': 'webcam',
-    'zh-cn': '网络摄像头'
+    'zh-cn': '网络摄像头',
+    'zh-tw': '網路攝影機'
   },
   stage: {
     'ja': 'ステージ',
     'ja-Hira': 'ステージ',
     'en': 'stage',
-    'zh-cn': '舞台'
+    'zh-cn': '舞台',
+    'zh-tw': '舞台'
   },
   first_training_warning: {
     'ja': '最初の学習にはしばらく時間がかかるので、何度もクリックしないで下さい。',
     'ja-Hira': 'さいしょのがくしゅうにはしばらくじかんがかかるので、なんどもクリックしないでください。',
     'en': 'The first training will take a while, so do not click again and again.',
-    'zh-cn': '第一项研究需要一段时间，所以不要一次又一次地点击。'
+    'zh-cn': '第一项研究需要一段时间，所以不要一次又一次地点击。',
+    'zh-tw': '第一次訓練需要一段時間，請稍後，不要一直點擊。'
   }
 }
 
