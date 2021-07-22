@@ -886,7 +886,7 @@ class Scratch3ML2ScratchBlocks {
     let files = uploadWindow.document.getElementById('upload-files').files;
 
     if (files.length <= 0) {
-      alert('Please select JSON file.');
+      uploadWindow.alert('Please select JSON file.');
       return false;
     }
 
