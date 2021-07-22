@@ -13419,7 +13419,7 @@ var Scratch3ML2ScratchBlocks = /*#__PURE__*/function () {
       var files = uploadWindow.document.getElementById('upload-files').files;
 
       if (files.length <= 0) {
-        alert('Please select JSON file.');
+        uploadWindow.alert('Please select JSON file.');
         return false;
       }
 
