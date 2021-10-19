@@ -147,11 +147,11 @@ ML2Scratch では、学習したモデルを「学習データをダウンロー
 
 ## How to use from Xcratch(Xcratch からの利用)
 
-ML2Scratch は必要な独自拡張機能を読み込むことができる Scratch Mod の「[Xcratch](https://lab.yengawa.com/project/xcratch/)」からも利用できます。
+ML2Scratch は必要な独自拡張機能を読み込むことができる Scratch Mod の「[Xcratch](https://xcratch.github.io/)」からも利用できます。
 
-Xcratch の URL である [https://yokobond.github.io/xcratch/](https://yokobond.github.io/xcratch/) をブラウザで開き、「拡張機能を選ぶ」画面から「拡張機能を読み込む」を選んでから URL 入力欄に https://champierre.github.io/ml2scratch/ml2scratch.mjs を入力するか、以下のプロジェクトファイル付き URL から直接アクセスすれば、すでに ML2Scratch の拡張機能を読み込み済みの状態で Xcratch を開くことができます。
+Xcratch の URL である [https://xcratch.github.io/](https://xcratch.github.io/) をブラウザで開き、「エディターを開く」を選んだあと、「拡張機能を選ぶ」画面から「拡張機能を読み込む」を選んでから URL 入力欄に https://champierre.github.io/ml2scratch/ml2scratch.mjs を入力するか、以下のプロジェクトファイル付き URL から直接アクセスすれば、すでに ML2Scratch の拡張機能を読み込み済みの状態で Xcratch を開くことができます。
 
-&raquo; [ML2Scratch を読み込み済みの Xcratch を開く](https://yokobond.github.io/xcratch/?project=https://champierre.github.io/ml2scratch/sample.sb3)
+&raquo; [ML2Scratch を読み込み済みの Xcratch を開く](https://xcratch.github.io/editor/#https://champierre.github.io/ml2scratch/sample.sb3)
 
 ## For Developers - How to run ML2Scratch extension on your computer
 
