@@ -224,7 +224,7 @@ const Message = {
     'ja-Hira': 'ビデオを[VIDEO_STATE]にする',
     'en': 'turn video [VIDEO_STATE]',
     'zh-cn': '[VIDEO_STATE]摄像头',
-    'zh-tw': '[VIDEO_STATE]切換攝影機'
+    'zh-tw': '視訊設為[VIDEO_STATE]'
   },
   set_input: {
     'ja': '[INPUT]の画像を学習/判定する',
@@ -252,7 +252,7 @@ const Message = {
     'ja-Hira': 'さゆうはんてん',
     'en': 'on flipped',
     'zh-cn': '镜像开启',
-    'zh-tw': '左右翻轉'
+    'zh-tw': '翻轉'
   },
   webcam: {
     'ja': 'カメラ',
