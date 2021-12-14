@@ -16,7 +16,7 @@ let formatMessage = require('format-message');
  * When it was loaded as a module, 'extensionURL' will be replaced a URL which is retrieved from.
  * @type {string}
  */
-let extensionURL = 'https://champierre.github.io/ml2scratch/dist/ml2scratch.mjs';
+let extensionURL = 'https://champierre.github.io/ml2scratch/ml2scratch.mjs';
 
 const HAT_TIMEOUT = 100;
 
