@@ -8451,7 +8451,7 @@ var translationMap = {
 var entry = {
   name: 'ML2Scratch',
   extensionId: 'ml2scratch',
-  extensionURL: 'https://champierre.github.io/ml2scratch/dist/ml2scratch.mjs',
+  extensionURL: 'https://champierre.github.io/ml2scratch/ml2scratch.mjs',
   collaborator: 'champierre',
   iconURL: img$1,
   insetIconURL: img,
