@@ -160,6 +160,14 @@ Xcratch の URL である [https://xcratch.github.io/](https://xcratch.github.io
     % npm start
     ```
 
+## Acknowledgments(謝辞)
+
+このプロジェクトは以下の方々の貢献で成り立っています。その他、以下に挙げきれていないバグ報告や機能改善を提案してくれた方々、ワークショップなどで使っていただきフィードバックをくださった方々などに感謝いたします。
+
+- バナー画像やアイコンのデザイン: [Yu Ishihara](https://twitter.com/is8r_)
+- 简体中文への翻訳: [陶旭](https://twitter.com/taoxu_toukyoku)
+- 繁體中文への翻訳: [CAVEDU Education](https://github.com/cavedunissin)
+
 ## Licence(ライセンス)
 
 - ML2Scratchには [BSD 3-Clause License](./LICENSE.md) が適用されます。オープンソースで、誰でも自由に利用できます。授業やワークショップで使用でき、商用利用も認められています。あなたやあなたの生徒さんがML2Scratchを使用して何か面白いプロジェクトを作成したときは、ぜひハッシュタグ #ml2scratch を使用してSNSで共有するか、連絡先までお知らせください。以下の「活用例」に追加させていただきます。

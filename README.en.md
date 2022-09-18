@@ -31,27 +31,6 @@ CAVEDU Education https://github.com/cavedunissin). If you would like to help us 
 - Rock/Scissors/Paper Demo [YouTube](https://www.youtube.com/watch?v=DkH1hwc-Gb4) | [.mov file](https://s3.amazonaws.com/champierre/movies/rsp_demo.mov)
 - Control a toy robot, MiP, by hand gestures [YouTube](https://www.youtube.com/watch?v=GKXimEB5WQg) | [.mov file](https://s3.amazonaws.com/champierre/movies/mip_demo.mov)
 
-## Licence
-
-- ML2Scratch is under [BSD 3-Clause License](./LICENSE.md), open source and freely available to anyone. You can use it at your classes, workshops. Commercial usage is also accepted. If you or your students created something cool using ML2Scratch, please share it on SNS using hashtag #ml2scratch or let me know to any of these contacts. Interesting projects will be added to the "Examples of use".
-
-## Contacts
-
-- Twitter
-
-    <img src="images/twitter.png" />
-
-## Examples of use
-
-- [Try to avoid obstacles with machine learning # ML2Scratch # ev3(Google Translated)](https://translate.google.com/translate?hl=&sl=auto&tl=en&u=https%3A%2F%2Fwww.ogaworks.com%2Farchives%2F11301&sandbox=1)
-- [Control Wagara-saurus(Japanese style dinosaur) using ML2Scratch](https://www.facebook.com/azusa.amino/videos/2408305165934138/)
-- [Control an electric fan with illustration](https://www.facebook.com/groups/scratch.microbit/permalink/704715526600743/)
-- [Smart Trash Box(Japanese)](https://robotstart.info/2019/10/20/jjpc-4thprog-competition.html)
-- [Making a coin sorting AI robot with Scratch and micro:bit](http://make-lab.sakura.ne.jp/wordpress/2019/10/12/making-a-coin-sorting-ai-robot-with-scratch-and-micro-bit/)
-- [Go forward with jasmine bottle, go backward with canned coffee (movie)](https://www.facebook.com/groups/visualprogramming.jp/permalink/531024724134426/)
-- [ML2Scratch bookshelf arrangement check (movie)](https://www.youtube.com/watch?v=ZQ88E6HSUdg)
-- [ML2Scratch detects parking space fullness (movie)](https://www.youtube.com/watch?v=vZwfN18op8w)
-
 ## Requirements
 
 - OS
@@ -174,6 +153,35 @@ At this time, be aware that the data that has been learned will be overwritten.
     ```
     % npm start
     ```
+
+## Acknowledgments
+
+This project was made possible by the contributions of the following people. I would also like to thank those who have reported bugs or suggested improvements not listed below, and those who have used the software in workshops and given me feedback.
+
+- Banner images and icons: [Yu Ishihara](https://twitter.com/is8r_)
+- Simplified Chinese Translation: [陶旭](https://twitter.com/taoxu_toukyoku)
+- Traditional Chinese Translation: [CAVEDU Education](https://github.com/cavedunissin)
+
+## Licence
+
+- ML2Scratch is under [BSD 3-Clause License](./LICENSE.md), open source and freely available to anyone. You can use it at your classes, workshops. Commercial usage is also accepted. If you or your students created something cool using ML2Scratch, please share it on SNS using hashtag #ml2scratch or let me know to any of these contacts. Interesting projects will be added to the "Examples of use".
+
+## Contacts
+
+- Twitter
+
+    <img src="images/twitter.png" />
+
+## Examples of use
+
+- [Try to avoid obstacles with machine learning # ML2Scratch # ev3(Google Translated)](https://translate.google.com/translate?hl=&sl=auto&tl=en&u=https%3A%2F%2Fwww.ogaworks.com%2Farchives%2F11301&sandbox=1)
+- [Control Wagara-saurus(Japanese style dinosaur) using ML2Scratch](https://www.facebook.com/azusa.amino/videos/2408305165934138/)
+- [Control an electric fan with illustration](https://www.facebook.com/groups/scratch.microbit/permalink/704715526600743/)
+- [Smart Trash Box(Japanese)](https://robotstart.info/2019/10/20/jjpc-4thprog-competition.html)
+- [Making a coin sorting AI robot with Scratch and micro:bit](http://make-lab.sakura.ne.jp/wordpress/2019/10/12/making-a-coin-sorting-ai-robot-with-scratch-and-micro-bit/)
+- [Go forward with jasmine bottle, go backward with canned coffee (movie)](https://www.facebook.com/groups/visualprogramming.jp/permalink/531024724134426/)
+- [ML2Scratch bookshelf arrangement check (movie)](https://www.youtube.com/watch?v=ZQ88E6HSUdg)
+- [ML2Scratch detects parking space fullness (movie)](https://www.youtube.com/watch?v=vZwfN18op8w)
 
 ## Reference
 
