@@ -30,27 +30,6 @@ Webカメラでいくつかの画像を撮り、ラベルを付けて学習す�
 - Webカメラでグー、チョキ、パーを判定 [YouTube](https://www.youtube.com/watch?v=DkH1hwc-Gb4) | [.mov file](https://s3.amazonaws.com/champierre/movies/rsp_demo.mov)
 - ジェスチャーで倒立2輪ロボットMiPを動かす [YouTube](https://www.youtube.com/watch?v=GKXimEB5WQg) | [.mov file](https://s3.amazonaws.com/champierre/movies/mip_demo.mov)
 
-## Licence(ライセンス)
-
-- ML2Scratchには [BSD 3-Clause License](./LICENSE.md) が適用されます。オープンソースで、誰でも自由に利用できます。授業やワークショップで使用でき、商用利用も認められています。あなたやあなたの生徒さんがML2Scratchを使用して何か面白いプロジェクトを作成したときは、ぜひハッシュタグ #ml2scratch を使用してSNSで共有するか、連絡先までお知らせください。以下の「活用例」に追加させていただきます。
-
-## Contacts(連絡先)
-
-- Twitter
-
-    <img src="images/twitter.png" />
-
-## Examples of use(活用例)
-
-- [機械学習で障害物を避けてみる #ML2Scratch #ev3](https://www.ogaworks.com/archives/11301)
-- [ML2Scratchでワガラサウルスを動かしてみました！](https://www.facebook.com/azusa.amino/videos/2408305165934138/)
-- [イラストで扇風機をコントロール](https://www.facebook.com/groups/scratch.microbit/permalink/704715526600743/)
-- [小学生が作った「未来のゴミ箱」は自律走行＆機械学習でゴミ分別　IoTセンサーで外の環境を検知！JJPC 全国小中学生プログラミング大会レポート](https://robotstart.info/2019/10/20/jjpc-4thprog-competition.html)
-- [Scratchとmicro:bitでコイン選別AIロボットを作る](http://make-lab.sakura.ne.jp/wordpress/2019/10/12/scratch%e3%81%a8microbit%e3%81%a7%e3%82%b3%e3%82%a4%e3%83%b3%e9%81%b8%e5%88%a5ai%e3%83%ad%e3%83%9c%e3%83%83%e3%83%88%e3%82%92%e4%bd%9c%e3%82%8b/)
-- [ジャスミンボトルで前進、缶コーヒーで後進(動画)](https://www.facebook.com/groups/visualprogramming.jp/permalink/531024724134426/)
-- [ML2Scratchで本棚整理チェック(動画)](https://www.youtube.com/watch?v=ZQ88E6HSUdg)
-- [ML2Scratchで駐車場の満空検知(動画)](https://www.youtube.com/watch?v=vZwfN18op8w)
-
 ## Requirements(推奨環境)
 
 - OS
@@ -180,6 +159,27 @@ Xcratch の URL である [https://xcratch.github.io/](https://xcratch.github.io
     ```
     % npm start
     ```
+
+## Licence(ライセンス)
+
+- ML2Scratchには [BSD 3-Clause License](./LICENSE.md) が適用されます。オープンソースで、誰でも自由に利用できます。授業やワークショップで使用でき、商用利用も認められています。あなたやあなたの生徒さんがML2Scratchを使用して何か面白いプロジェクトを作成したときは、ぜひハッシュタグ #ml2scratch を使用してSNSで共有するか、連絡先までお知らせください。以下の「活用例」に追加させていただきます。
+
+## Contacts(連絡先)
+
+- Twitter
+
+    <img src="images/twitter.png" />
+
+## Examples of use(活用例)
+
+- [機械学習で障害物を避けてみる #ML2Scratch #ev3](https://www.ogaworks.com/archives/11301)
+- [ML2Scratchでワガラサウルスを動かしてみました！](https://www.facebook.com/azusa.amino/videos/2408305165934138/)
+- [イラストで扇風機をコントロール](https://www.facebook.com/groups/scratch.microbit/permalink/704715526600743/)
+- [小学生が作った「未来のゴミ箱」は自律走行＆機械学習でゴミ分別　IoTセンサーで外の環境を検知！JJPC 全国小中学生プログラミング大会レポート](https://robotstart.info/2019/10/20/jjpc-4thprog-competition.html)
+- [Scratchとmicro:bitでコイン選別AIロボットを作る](http://make-lab.sakura.ne.jp/wordpress/2019/10/12/scratch%e3%81%a8microbit%e3%81%a7%e3%82%b3%e3%82%a4%e3%83%b3%e9%81%b8%e5%88%a5ai%e3%83%ad%e3%83%9c%e3%83%83%e3%83%88%e3%82%92%e4%bd%9c%e3%82%8b/)
+- [ジャスミンボトルで前進、缶コーヒーで後進(動画)](https://www.facebook.com/groups/visualprogramming.jp/permalink/531024724134426/)
+- [ML2Scratchで本棚整理チェック(動画)](https://www.youtube.com/watch?v=ZQ88E6HSUdg)
+- [ML2Scratchで駐車場の満空検知(動画)](https://www.youtube.com/watch?v=vZwfN18op8w)
 
 ## Tシャツ
 
