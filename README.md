@@ -3,6 +3,8 @@
 ML2Scratchは2018年よりオープンソースかつ無料で提供しており、学校や各種プログラミング教室はじめさまざまな場所で利用されております。継続して開発を続けるためには、使っていただいている皆さまからの支援が必要です。<br />
 [一杯のコーヒー](https://www.buymeacoffee.com/champierre)という形でサポートをいただけると大変ありがたく思います。
 
+![bmc_qr](https://user-images.githubusercontent.com/10215/215533679-bb41b1a2-ba42-4eb6-9f9a-6d0bd67f3aaa.png)
+
 # ML2Scratch(Scratch2ML)
 
 ML2Scratchは[TensorFlow.js](https://www.tensorflow.org/js)を使った機械学習をScratchから簡単に体験、利用できるようにします。
