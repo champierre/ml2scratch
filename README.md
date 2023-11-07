@@ -5,9 +5,9 @@ ML2Scratchは2018年よりオープンソースかつ無料で提供しており
 
 <a href="https://www.buymeacoffee.com/champierre"><img src="https://user-images.githubusercontent.com/10215/215533679-bb41b1a2-ba42-4eb6-9f9a-6d0bd67f3aaa.png"></a>
 
-# ML2Scratch(Scratch2ML)
+# ML2Scratch(エムエル トゥー スクラッチ)
 
-ML2Scratchは[TensorFlow.js](https://www.tensorflow.org/js)を使った機械学習をScratchから簡単に体験、利用できるようにします。
+ML2Scratch(エムエル トゥー スクラッチ)は[TensorFlow.js](https://www.tensorflow.org/js)を使った機械学習をScratchから簡単に体験、利用できるようにします。
 
 Webカメラでいくつかの画像を撮り、ラベルを付けて学習すれば、似たような新たな画像を、学習結果をもとに分類することができます。キャプチャした画像はサーバーに送られることはなく、学習および分類はすべてブラウザ上で行われるのが特徴です。（ただし、起動時にアプリケーションを読み込むのと、学習モデルをダウンロードするためにはネットワーク接続が必要です。）
 
