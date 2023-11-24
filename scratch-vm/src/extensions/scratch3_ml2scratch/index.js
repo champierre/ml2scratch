@@ -366,7 +366,7 @@ class Scratch3ML2ScratchBlocks {
           }
         }
       });
-    } catch {
+    } catch (e){
       console.error("failed to load media devices!");
     }
   }
