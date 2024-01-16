@@ -3,6 +3,7 @@ const BlockType = require('../../extension-support/block-type');
 const Cast = require('../../util/cast');
 const log = require('../../util/log');
 const ml5 = require('ml5');
+const { setupSelectableVideoProvider } = require('./lib/selectable-video-provider');
 
 /**
  * Formatter which is used for translating.
@@ -274,7 +275,21 @@ const Message = {
     'en': 'The first training will take a while, so do not click again and again.',
     'zh-cn': '第一项研究需要一段时间，所以不要一次又一次地点击。',
     'zh-tw': '第一次訓練需要一段時間，請稍後，不要一直點擊。'
-  }
+  },
+  select_camera: {
+    'ja': 'カメラを[DEVICE]に切り替える',
+    'ja-Hira': 'かめらを[DEVICE]にきりかえる',
+    'en': 'Set camera to [DEVICE]',
+    'zh-cn': '切换相机至[DEVICE]',
+    'zh-te': '切换相机至[DEVICE]'
+  },
+  select_camera_default: {
+    'ja': '\u{200b}Default\u{200b}', // ビデオデバイスの label にマッチしない値にする
+    'ja-Hira': '\u{200b}Default\u{200b}',
+    'en': '\u{200b}Default\u{200b}',
+    'zh-cn': '\u{200b}Default\u{200b}',
+    'zh-te': '\u{200b}Default\u{200b}'
+  },
 }
 
 const AvailableLocales = ['en', 'ja', 'ja-Hira', 'zh-cn', 'zh-tw'];
@@ -336,6 +351,9 @@ class Scratch3ML2ScratchBlocks {
     });
 
     this.canvas = document.querySelector('canvas');
+
+    //初めて video を利用する前に VidepProvider を差し替えておく
+    this.selectableVideoProvider = setupSelectableVideoProvider(runtime)
 
     this.runtime.ioDevices.video.enableVideo().then(() => {this.input = this.runtime.ioDevices.video.provider.video});
 
@@ -578,8 +596,19 @@ class Scratch3ML2ScratchBlocks {
               defaultValue: 'webcam'
             }
           }
+        },
+        {
+          opcode: 'selectCamera',
+          text: Message.select_camera[this.locale],
+          blockType: BlockType.COMMAND,
+          arguments: {
+            DEVICE: {
+              type: ArgumentType.STRING,
+              menu: 'select_camera_menu',
+              defaultValue: 'Default'
+            }
+          }
         }
-
       ],
       menus: {
         received_menu: {
@@ -600,7 +629,8 @@ class Scratch3ML2ScratchBlocks {
           items: this.getClassificationIntervalMenu()
         },
         classification_menu: this.getClassificationMenu(),
-        input_menu: this.getInputMenu()
+        input_menu: this.getInputMenu(),
+        select_camera_menu: 'getSelectCameraMenu'
       }
     };
   }
@@ -1054,6 +1084,23 @@ class Scratch3ML2ScratchBlocks {
       alert(Message.first_training_warning[this.locale]);
       this.firstTraining = false;
     }
+  }
+
+  selectCamera(args) {
+    const label = args.DEVICE || ''
+    this.selectableVideoProvider.setVideoDescriptor({ label })
+  }
+
+  getSelectCameraMenu() {
+    const defaultValue = {
+      text: Message.select_camera_default[this.locale],
+      value: Message.select_camera_default[this.locale]
+    }
+    const devices = this.selectableVideoProvider.videoDevices.map(dev => ({
+      text: dev.label,
+      value: dev.label
+    }))
+    return [defaultValue].concat(devices)
   }
 
   setLocale() {
