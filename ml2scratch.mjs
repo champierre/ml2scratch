@@ -6573,8 +6573,17 @@ var FORWARD_REF_STATICS = {
   displayName: true,
   propTypes: true
 };
+var MEMO_STATICS = {
+  '$$typeof': true,
+  compare: true,
+  defaultProps: true,
+  displayName: true,
+  propTypes: true,
+  type: true
+};
 var TYPE_STATICS = {};
 TYPE_STATICS[reactIs.ForwardRef] = FORWARD_REF_STATICS;
+TYPE_STATICS[reactIs.Memo] = MEMO_STATICS;
 
 /**
  * Use invariant() to assert state which your program assumes to be true.
@@ -13393,6 +13402,13 @@ var Message = {
     'en': 'The first training will take a while, so do not click again and again.',
     'zh-cn': '第一项研究需要一段时间，所以不要一次又一次地点击。',
     'zh-tw': '第一次訓練需要一段時間，請稍後，不要一直點擊。'
+  },
+  switch_webcam: {
+    'ja': 'カメラを[DEVICE]に切り替える',
+    'ja-Hira': 'カメラを[DEVICE]にきりかえる',
+    'en': 'switch webcam to [DEVICE]',
+    'zh-cn': '网络摄像头切换到[DEVICE]',
+    'zh-tw': '網路攝影機切換到[DEVICE]'
   }
 };
 var AvailableLocales = ['en', 'ja', 'ja-Hira', 'zh-cn', 'zh-tw'];
@@ -13433,6 +13449,36 @@ var Scratch3ML2ScratchBlocks = /*#__PURE__*/function () {
         _this.classify();
       }, _this.interval);
     });
+    this.devices = [{
+      text: 'default',
+      value: ''
+    }];
+
+    try {
+      navigator.mediaDevices.enumerateDevices().then(function (media) {
+        var _iterator = _createForOfIteratorHelper(media),
+            _step;
+
+        try {
+          for (_iterator.s(); !(_step = _iterator.n()).done;) {
+            var device = _step.value;
+
+            if (device.kind === 'videoinput') {
+              _this.devices.push({
+                text: device.label,
+                value: device.deviceId
+              });
+            }
+          }
+        } catch (err) {
+          _iterator.e(err);
+        } finally {
+          _iterator.f();
+        }
+      });
+    } catch (e) {
+      console.error("failed to load media devices!");
+    }
   }
 
   _createClass(Scratch3ML2ScratchBlocks, [{
@@ -13638,6 +13684,17 @@ var Scratch3ML2ScratchBlocks = /*#__PURE__*/function () {
               defaultValue: 'webcam'
             }
           }
+        }, {
+          opcode: 'switchCamera',
+          blockType: blockType.COMMAND,
+          text: Message.switch_webcam[this.locale],
+          arguments: {
+            DEVICE: {
+              type: argumentType.STRING,
+              defaultValue: '',
+              menu: 'mediadevices'
+            }
+          }
         }],
         menus: {
           received_menu: {
@@ -13658,7 +13715,11 @@ var Scratch3ML2ScratchBlocks = /*#__PURE__*/function () {
             items: this.getClassificationIntervalMenu()
           },
           classification_menu: this.getClassificationMenu(),
-          input_menu: this.getInputMenu()
+          input_menu: this.getInputMenu(),
+          mediadevices: {
+            acceptReporters: true,
+            items: 'getDevices'
+          }
         }
       };
     }
@@ -14195,6 +14256,41 @@ var Scratch3ML2ScratchBlocks = /*#__PURE__*/function () {
       } else {
         return 'en';
       }
+    }
+  }, {
+    key: "switchCamera",
+    value: function switchCamera(args) {
+      var _this10 = this;
+
+      if (args.DEVICE !== '') {
+        if (this.runtime.ioDevices.video.provider._track !== null) {
+          this.runtime.ioDevices.video.provider._track.stop();
+
+          var deviceId = args.DEVICE;
+          navigator.mediaDevices.getUserMedia({
+            audio: false,
+            video: {
+              deviceId: deviceId
+            }
+          }).then(function (stream) {
+            try {
+              _this10.runtime.ioDevices.video.provider._video.srcObject = stream;
+            } catch (error) {
+              _this10.runtime.ioDevices.video.provider._video.src = window.URL.createObjectURL(stream);
+            } // Needed for Safari/Firefox, Chrome auto-plays.
+
+
+            _this10.runtime.ioDevices.video.provider._video.play();
+
+            _this10.runtime.ioDevices.video.provider._track = stream.getTracks()[0];
+          });
+        }
+      }
+    }
+  }, {
+    key: "getDevices",
+    value: function getDevices() {
+      return this.devices;
     }
   }], [{
     key: "EXTENSION_NAME",
