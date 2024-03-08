@@ -364,10 +364,12 @@ class Scratch3ML2ScratchBlocks {
       <div style="margin-top:10px;display:flex;justify-content:flex-end;"><button id="close" aria-label="close" formnovalidate>閉じる</button></div>
       </body><body>
     `;
+    this.uploadDialog = dialog;
     document.body.appendChild(dialog);
 
+
     document.getElementById("upload-button").onclick = () =>{
-      this.uploadButtonClicked(dialog);
+      this.uploadButtonClicked();
     }
 
     document.getElementById("close").onclick = () =>{
@@ -924,11 +926,11 @@ class Scratch3ML2ScratchBlocks {
     }
   }
 
-  uploadButtonClicked(uploadWindow) {
-    let files = uploadWindow.document.getElementById('upload-files').files;
+  uploadButtonClicked() {
+    let files = document.getElementById('upload-files').files;
 
     if (files.length <= 0) {
-      uploadWindow.alert('Please select JSON file.');
+      alert('Please select JSON file.');
       return false;
     }
 
@@ -945,11 +947,11 @@ class Scratch3ML2ScratchBlocks {
     }
 
     fr.onloadend = (e) => {
-      uploadWindow.document.getElementById('upload-files').value = "";
+      document.getElementById('upload-files').value = "";
     }
 
     fr.readAsText(files.item(0));
-    uploadWindow.close();
+    this.uploadDialog.close();
   }
 
   classify() {
