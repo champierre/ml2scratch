@@ -355,6 +355,25 @@ class Scratch3ML2ScratchBlocks {
     });
 
     this.devices = [{ text: 'default', value: '' }];
+
+    const dialog = document.createElement("DIALOG");
+    dialog.id = "upload-dialog";
+    dialog.innerHTML = `
+      <html><body>
+      <div>${Message.upload_instruction[this.locale]}</p><input type="file" id="upload-files"><input type="button" value="${Message.upload[this.locale]}" id="upload-button"></div>
+      <div style="margin-top:10px;display:flex;justify-content:flex-end;"><button id="close" aria-label="close" formnovalidate>閉じる</button></div>
+      </body><body>
+    `;
+    document.body.appendChild(dialog);
+
+    document.getElementById("upload-button").onclick = () =>{
+      this.uploadButtonClicked(dialog);
+    }
+
+    document.getElementById("close").onclick = () =>{
+      dialog.close();
+    }
+
     try {
       navigator.mediaDevices.enumerateDevices().then(media => {
         for (const device of media) {
@@ -847,23 +866,7 @@ class Scratch3ML2ScratchBlocks {
   upload() {
     if (this.actionRepeated()) { return };
 
-    const dialog = document.createElement("DIALOG");
-    dialog.innerHTML = `
-      <html><body>
-      <div>${Message.upload_instruction[this.locale]}</p><input type="file" id="upload-files"><input type="button" value="${Message.upload[this.locale]}" id="upload-button"></div>
-      <div style="margin-top:10px;display:flex;justify-content:flex-end;"><button id="close" aria-label="close" formnovalidate>閉じる</button></div>
-      </body><body>
-    `;
-    document.body.appendChild(dialog);
-    dialog.showModal();
-
-    document.getElementById("upload-button").onclick = () =>{
-      this.uploadButtonClicked(dialog);
-    }
-
-    document.getElementById("close").onclick = () =>{
-      dialog.close();
-    }
+    document.getElementById('upload-dialog').showModal();
   }
 
   toggleClassification(args) {
