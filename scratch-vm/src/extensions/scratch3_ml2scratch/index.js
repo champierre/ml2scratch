@@ -807,23 +807,23 @@ class Scratch3ML2ScratchBlocks {
 
   upload() {
     if (this.actionRepeated()) { return };
-    let width = 480;
-    let height = 200;
-    let left = window.innerWidth / 2;
-    let top = window.innerHeight / 2;
-    let x = left - (width / 2);
-    let y = top - (height / 2);
-    uploadWindow = window.open('', null, 'top=' + y + ',left=' + x + ',width=' + width + ',height=' + height);
-    uploadWindow.document.open();
-    uploadWindow.document.write('<html><head><title>' + Message.upload_learning_data[this.locale] + '</title></head><body>');
-    uploadWindow.document.write('<p>' + Message.upload_instruction[this.locale] + '</p>');
-    uploadWindow.document.write('<input type="file" id="upload-files">');
-    uploadWindow.document.write('<input type="button" value="' + Message.upload[this.locale] + '" id="upload-button">');
-    uploadWindow.document.write('</body></html>');
-    uploadWindow.document.close();
 
-    uploadWindow.document.getElementById("upload-button").onclick = () =>{
-      this.uploadButtonClicked(uploadWindow);
+    const dialog = document.createElement("DIALOG");
+    dialog.innerHTML = `
+      <html><body>
+      <div>${Message.upload_instruction[this.locale]}</p><input type="file" id="upload-files"><input type="button" value="${Message.upload[this.locale]}" id="upload-button"></div>
+      <div style="margin-top:10px;display:flex;justify-content:flex-end;"><button id="close" aria-label="close" formnovalidate>閉じる</button></div>
+      </body><body>
+    `;
+    document.body.appendChild(dialog);
+    dialog.showModal();
+
+    document.getElementById("upload-button").onclick = () =>{
+      this.uploadButtonClicked(dialog);
+    }
+
+    document.getElementById("close").onclick = () =>{
+      dialog.close();
     }
   }
 
