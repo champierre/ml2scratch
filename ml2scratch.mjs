@@ -13970,23 +13970,17 @@ var Scratch3ML2ScratchBlocks = /*#__PURE__*/function () {
       if (this.actionRepeated()) {
         return;
       }
-      var width = 480;
-      var height = 200;
-      var left = window.innerWidth / 2;
-      var top = window.innerHeight / 2;
-      var x = left - width / 2;
-      var y = top - height / 2;
-      uploadWindow = window.open('', null, 'top=' + y + ',left=' + x + ',width=' + width + ',height=' + height);
-      uploadWindow.document.open();
-      uploadWindow.document.write('<html><head><title>' + Message.upload_learning_data[this.locale] + '</title></head><body>');
-      uploadWindow.document.write('<p>' + Message.upload_instruction[this.locale] + '</p>');
-      uploadWindow.document.write('<input type="file" id="upload-files">');
-      uploadWindow.document.write('<input type="button" value="' + Message.upload[this.locale] + '" id="upload-button">');
-      uploadWindow.document.write('</body></html>');
-      uploadWindow.document.close();
+      var dialog = document.createElement("DIALOG");
+      dialog.innerHTML = "\n      <html><body>\n      <div>".concat(Message.upload_instruction[this.locale], "</p><input type=\"file\" id=\"upload-files\"><input type=\"button\" value=\"").concat(Message.upload[this.locale], "\" id=\"upload-button\"></div>\n      <div style=\"margin-top:10px;display:flex;justify-content:flex-end;\"><button id=\"close\" aria-label=\"close\" formnovalidate>\u9589\u3058\u308B</button></div>\n      </body><body>\n    ");
+      document.body.appendChild(dialog);
+      dialog.showModal();
 
-      uploadWindow.document.getElementById("upload-button").onclick = function () {
-        _this4.uploadButtonClicked(uploadWindow);
+      document.getElementById("upload-button").onclick = function () {
+        _this4.uploadButtonClicked(dialog);
+      };
+
+      document.getElementById("close").onclick = function () {
+        dialog.close();
       };
     }
   }, {
