@@ -13453,6 +13453,18 @@ var Scratch3ML2ScratchBlocks = /*#__PURE__*/function () {
       text: 'default',
       value: ''
     }];
+    var dialog = document.createElement("DIALOG");
+    dialog.id = "upload-dialog";
+    dialog.innerHTML = "\n      <html><body>\n      <div>".concat(Message.upload_instruction[this.locale], "</p><input type=\"file\" id=\"upload-files\"><input type=\"button\" value=\"").concat(Message.upload[this.locale], "\" id=\"upload-button\"></div>\n      <div style=\"margin-top:10px;display:flex;justify-content:flex-end;\"><button id=\"close\" aria-label=\"close\" formnovalidate>\u9589\u3058\u308B</button></div>\n      </body><body>\n    ");
+    document.body.appendChild(dialog);
+
+    document.getElementById("upload-button").onclick = function () {
+      _this.uploadButtonClicked(dialog);
+    };
+
+    document.getElementById("close").onclick = function () {
+      dialog.close();
+    };
 
     try {
       navigator.mediaDevices.enumerateDevices().then(function (media) {
@@ -13965,28 +13977,15 @@ var Scratch3ML2ScratchBlocks = /*#__PURE__*/function () {
   }, {
     key: "upload",
     value: function upload() {
-      var _this4 = this;
-
       if (this.actionRepeated()) {
         return;
       }
-      var dialog = document.createElement("DIALOG");
-      dialog.innerHTML = "\n      <html><body>\n      <div>".concat(Message.upload_instruction[this.locale], "</p><input type=\"file\" id=\"upload-files\"><input type=\"button\" value=\"").concat(Message.upload[this.locale], "\" id=\"upload-button\"></div>\n      <div style=\"margin-top:10px;display:flex;justify-content:flex-end;\"><button id=\"close\" aria-label=\"close\" formnovalidate>\u9589\u3058\u308B</button></div>\n      </body><body>\n    ");
-      document.body.appendChild(dialog);
-      dialog.showModal();
-
-      document.getElementById("upload-button").onclick = function () {
-        _this4.uploadButtonClicked(dialog);
-      };
-
-      document.getElementById("close").onclick = function () {
-        dialog.close();
-      };
+      document.getElementById('upload-dialog').showModal();
     }
   }, {
     key: "toggleClassification",
     value: function toggleClassification(args) {
-      var _this5 = this;
+      var _this4 = this;
 
       var state = args.CLASSIFICATION_STATE;
 
@@ -13996,14 +13995,14 @@ var Scratch3ML2ScratchBlocks = /*#__PURE__*/function () {
 
       if (state === 'on') {
         this.timer = setInterval(function () {
-          _this5.classify();
+          _this4.classify();
         }, this.interval);
       }
     }
   }, {
     key: "setClassificationInterval",
     value: function setClassificationInterval(args) {
-      var _this6 = this;
+      var _this5 = this;
 
       if (this.timer) {
         clearTimeout(this.timer);
@@ -14011,13 +14010,13 @@ var Scratch3ML2ScratchBlocks = /*#__PURE__*/function () {
 
       this.interval = args.CLASSIFICATION_INTERVAL * 1000;
       this.timer = setInterval(function () {
-        _this6.classify();
+        _this5.classify();
       }, this.interval);
     }
   }, {
     key: "videoToggle",
     value: function videoToggle(args) {
-      var _this7 = this;
+      var _this6 = this;
 
       var state = args.VIDEO_STATE;
 
@@ -14025,7 +14024,7 @@ var Scratch3ML2ScratchBlocks = /*#__PURE__*/function () {
         this.runtime.ioDevices.video.disableVideo();
       } else {
         this.runtime.ioDevices.video.enableVideo().then(function () {
-          _this7.input = _this7.runtime.ioDevices.video.provider.video;
+          _this6.input = _this6.runtime.ioDevices.video.provider.video;
         });
         this.runtime.ioDevices.video.mirror = state === "on";
       }
@@ -14059,7 +14058,7 @@ var Scratch3ML2ScratchBlocks = /*#__PURE__*/function () {
   }, {
     key: "uploadButtonClicked",
     value: function uploadButtonClicked(uploadWindow) {
-      var _this8 = this;
+      var _this7 = this;
 
       var files = uploadWindow.document.getElementById('upload-files').files;
 
@@ -14073,12 +14072,12 @@ var Scratch3ML2ScratchBlocks = /*#__PURE__*/function () {
       fr.onload = function (e) {
         var data = JSON.parse(e.target.result);
 
-        _this8.knnClassifier.load(data, function () {
+        _this7.knnClassifier.load(data, function () {
           console.log('uploaded!');
 
-          _this8.updateCounts();
+          _this7.updateCounts();
 
-          alert(Message.uploaded[_this8.locale]);
+          alert(Message.uploaded[_this7.locale]);
         });
       };
 
@@ -14092,7 +14091,7 @@ var Scratch3ML2ScratchBlocks = /*#__PURE__*/function () {
   }, {
     key: "classify",
     value: function classify() {
-      var _this9 = this;
+      var _this8 = this;
 
       var numLabels = this.knnClassifier.getNumLabels();
       if (numLabels == 0) return;
@@ -14101,9 +14100,9 @@ var Scratch3ML2ScratchBlocks = /*#__PURE__*/function () {
         if (err) {
           console.error(err);
         } else {
-          _this9.label = _this9.getTopConfidenceLabel(result.confidencesByLabel);
-          _this9.when_received = true;
-          _this9.when_received_arr[_this9.label] = true;
+          _this8.label = _this8.getTopConfidenceLabel(result.confidencesByLabel);
+          _this8.when_received = true;
+          _this8.when_received_arr[_this8.label] = true;
         }
       });
     }
@@ -14254,7 +14253,7 @@ var Scratch3ML2ScratchBlocks = /*#__PURE__*/function () {
   }, {
     key: "switchCamera",
     value: function switchCamera(args) {
-      var _this10 = this;
+      var _this9 = this;
 
       if (args.DEVICE !== '') {
         if (this.runtime.ioDevices.video.provider._track !== null) {
@@ -14268,15 +14267,15 @@ var Scratch3ML2ScratchBlocks = /*#__PURE__*/function () {
             }
           }).then(function (stream) {
             try {
-              _this10.runtime.ioDevices.video.provider._video.srcObject = stream;
+              _this9.runtime.ioDevices.video.provider._video.srcObject = stream;
             } catch (error) {
-              _this10.runtime.ioDevices.video.provider._video.src = window.URL.createObjectURL(stream);
+              _this9.runtime.ioDevices.video.provider._video.src = window.URL.createObjectURL(stream);
             } // Needed for Safari/Firefox, Chrome auto-plays.
 
 
-            _this10.runtime.ioDevices.video.provider._video.play();
+            _this9.runtime.ioDevices.video.provider._video.play();
 
-            _this10.runtime.ioDevices.video.provider._track = stream.getTracks()[0];
+            _this9.runtime.ioDevices.video.provider._track = stream.getTracks()[0];
           });
         }
       }
