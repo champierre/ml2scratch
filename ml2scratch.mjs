@@ -13456,10 +13456,11 @@ var Scratch3ML2ScratchBlocks = /*#__PURE__*/function () {
     var dialog = document.createElement("DIALOG");
     dialog.id = "upload-dialog";
     dialog.innerHTML = "\n      <html><body>\n      <div>".concat(Message.upload_instruction[this.locale], "</p><input type=\"file\" id=\"upload-files\"><input type=\"button\" value=\"").concat(Message.upload[this.locale], "\" id=\"upload-button\"></div>\n      <div style=\"margin-top:10px;display:flex;justify-content:flex-end;\"><button id=\"close\" aria-label=\"close\" formnovalidate>\u9589\u3058\u308B</button></div>\n      </body><body>\n    ");
+    this.uploadDialog = dialog;
     document.body.appendChild(dialog);
 
     document.getElementById("upload-button").onclick = function () {
-      _this.uploadButtonClicked(dialog);
+      _this.uploadButtonClicked();
     };
 
     document.getElementById("close").onclick = function () {
@@ -14057,13 +14058,13 @@ var Scratch3ML2ScratchBlocks = /*#__PURE__*/function () {
     }
   }, {
     key: "uploadButtonClicked",
-    value: function uploadButtonClicked(uploadWindow) {
+    value: function uploadButtonClicked() {
       var _this7 = this;
 
-      var files = uploadWindow.document.getElementById('upload-files').files;
+      var files = document.getElementById('upload-files').files;
 
       if (files.length <= 0) {
-        uploadWindow.alert('Please select JSON file.');
+        alert('Please select JSON file.');
         return false;
       }
 
@@ -14082,11 +14083,11 @@ var Scratch3ML2ScratchBlocks = /*#__PURE__*/function () {
       };
 
       fr.onloadend = function (e) {
-        uploadWindow.document.getElementById('upload-files').value = "";
+        document.getElementById('upload-files').value = "";
       };
 
       fr.readAsText(files.item(0));
-      uploadWindow.close();
+      this.uploadDialog.close();
     }
   }, {
     key: "classify",
