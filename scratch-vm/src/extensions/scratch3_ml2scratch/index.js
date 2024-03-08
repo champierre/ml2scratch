@@ -231,7 +231,7 @@ const Message = {
     'ja-Hira': '[INPUT]のがぞうをがくしゅう/はんていする',
     'en': 'Learn/Classify [INPUT] image',
     'zh-cn': '学习/分类[INPUT]图像',
-	'zh-tw': '學習/分類[INPUT]影像'
+    'zh-tw': '學習/分類[INPUT]影像'
   },
   on: {
     'ja': '入',
@@ -274,6 +274,13 @@ const Message = {
     'en': 'The first training will take a while, so do not click again and again.',
     'zh-cn': '第一项研究需要一段时间，所以不要一次又一次地点击。',
     'zh-tw': '第一次訓練需要一段時間，請稍後，不要一直點擊。'
+  },
+  switch_webcam: {
+    'ja': 'カメラを[DEVICE]に切り替える',
+    'ja-Hira': 'カメラを[DEVICE]にきりかえる',
+    'en': 'switch webcam to [DEVICE]',
+    'zh-cn': '网络摄像头切换到[DEVICE]',
+    'zh-tw': '網路攝影機切換到[DEVICE]'
   }
 }
 
@@ -332,12 +339,12 @@ class Scratch3ML2ScratchBlocks {
     this.interval = 1000;
     this.globalVideoTransparency = 0;
     this.setVideoTransparency({
-        TRANSPARENCY: this.globalVideoTransparency
+      TRANSPARENCY: this.globalVideoTransparency
     });
 
     this.canvas = document.querySelector('canvas');
 
-    this.runtime.ioDevices.video.enableVideo().then(() => {this.input = this.runtime.ioDevices.video.provider.video});
+    this.runtime.ioDevices.video.enableVideo().then(() => { this.input = this.runtime.ioDevices.video.provider.video });
 
     this.knnClassifier = ml5.KNNClassifier();
     this.featureExtractor = ml5.featureExtractor('MobileNet', () => {
@@ -346,6 +353,22 @@ class Scratch3ML2ScratchBlocks {
         this.classify();
       }, this.interval);
     });
+
+    this.devices = [{ text: 'default', value: '' }];
+    try {
+      navigator.mediaDevices.enumerateDevices().then(media => {
+        for (const device of media) {
+          if (device.kind === 'videoinput') {
+            this.devices.push({
+              text: device.label,
+              value: device.deviceId
+            });
+          }
+        }
+      });
+    } catch (e) {
+      console.error("failed to load media devices!");
+    }
   }
 
   getInfo() {
@@ -556,15 +579,15 @@ class Scratch3ML2ScratchBlocks {
         {
           opcode: 'setVideoTransparency',
           text: formatMessage({
-              id: 'videoSensing.setVideoTransparency',
-              default: 'set video transparency to [TRANSPARENCY]',
-              description: 'Controls transparency of the video preview layer'
+            id: 'videoSensing.setVideoTransparency',
+            default: 'set video transparency to [TRANSPARENCY]',
+            description: 'Controls transparency of the video preview layer'
           }),
           arguments: {
-              TRANSPARENCY: {
-                  type: ArgumentType.NUMBER,
-                  defaultValue: 50
-              }
+            TRANSPARENCY: {
+              type: ArgumentType.NUMBER,
+              defaultValue: 50
+            }
           }
         },
         {
@@ -576,6 +599,18 @@ class Scratch3ML2ScratchBlocks {
               type: ArgumentType.STRING,
               menu: 'input_menu',
               defaultValue: 'webcam'
+            }
+          }
+        },
+        {
+          opcode: 'switchCamera',
+          blockType: BlockType.COMMAND,
+          text: Message.switch_webcam[this.locale],
+          arguments: {
+            DEVICE: {
+              type: ArgumentType.STRING,
+              defaultValue: '',
+              menu: 'mediadevices'
             }
           }
         }
@@ -600,7 +635,11 @@ class Scratch3ML2ScratchBlocks {
           items: this.getClassificationIntervalMenu()
         },
         classification_menu: this.getClassificationMenu(),
-        input_menu: this.getInputMenu()
+        input_menu: this.getInputMenu(),
+        mediadevices: {
+          acceptReporters: true,
+          items: 'getDevices'
+        }
       }
     };
   }
@@ -610,20 +649,20 @@ class Scratch3ML2ScratchBlocks {
    * accessible by any object connected to the virtual machine.
    * @type {number}
    */
-  get globalVideoTransparency () {
-      const stage = this.runtime.getTargetForStage();
-      if (stage) {
-          return stage.videoTransparency;
-      }
-      return 50;
+  get globalVideoTransparency() {
+    const stage = this.runtime.getTargetForStage();
+    if (stage) {
+      return stage.videoTransparency;
+    }
+    return 50;
   }
 
-  set globalVideoTransparency (transparency) {
-      const stage = this.runtime.getTargetForStage();
-      if (stage) {
-          stage.videoTransparency = transparency;
-      }
-      return transparency;
+  set globalVideoTransparency(transparency) {
+    const stage = this.runtime.getTargetForStage();
+    if (stage) {
+      stage.videoTransparency = transparency;
+    }
+    return transparency;
   }
 
   addExample1() {
@@ -666,7 +705,7 @@ class Scratch3ML2ScratchBlocks {
     if (args.LABEL === 'any') {
       if (this.when_received) {
         setTimeout(() => {
-            this.when_received = false;
+          this.when_received = false;
         }, HAT_TIMEOUT);
         return true;
       }
@@ -827,7 +866,7 @@ class Scratch3ML2ScratchBlocks {
     }
   }
 
-  toggleClassification (args) {
+  toggleClassification(args) {
     let state = args.CLASSIFICATION_STATE;
     if (this.timer) {
       clearTimeout(this.timer);
@@ -839,7 +878,7 @@ class Scratch3ML2ScratchBlocks {
     }
   }
 
-  setClassificationInterval (args) {
+  setClassificationInterval(args) {
     if (this.timer) {
       clearTimeout(this.timer);
     }
@@ -850,12 +889,12 @@ class Scratch3ML2ScratchBlocks {
     }, this.interval);
   }
 
-  videoToggle (args) {
+  videoToggle(args) {
     let state = args.VIDEO_STATE;
     if (state === 'off') {
       this.runtime.ioDevices.video.disableVideo();
     } else {
-      this.runtime.ioDevices.video.enableVideo().then(() => {this.input = this.runtime.ioDevices.video.provider.video});
+      this.runtime.ioDevices.video.enableVideo().then(() => { this.input = this.runtime.ioDevices.video.provider.video });
       this.runtime.ioDevices.video.mirror = state === "on";
     }
   }
@@ -867,13 +906,13 @@ class Scratch3ML2ScratchBlocks {
    * @param {number} args.TRANSPARENCY - the transparency to set the video
    *   preview to
    */
-  setVideoTransparency (args) {
-      const transparency = Cast.toNumber(args.TRANSPARENCY);
-      this.globalVideoTransparency = transparency;
-      this.runtime.ioDevices.video.setPreviewGhost(transparency);
+  setVideoTransparency(args) {
+    const transparency = Cast.toNumber(args.TRANSPARENCY);
+    this.globalVideoTransparency = transparency;
+    this.runtime.ioDevices.video.setPreviewGhost(transparency);
   }
 
-  setInput (args) {
+  setInput(args) {
     let input = args.INPUT;
     if (input === 'webcam') {
       this.input = this.runtime.ioDevices.video.provider.video;
@@ -964,8 +1003,8 @@ class Scratch3ML2ScratchBlocks {
       defaultValue = 'all';
       text = Message.all[this.locale];
     }
-    arr.push({text: text, value: defaultValue});
-    for(let i = 1; i <= 10; i++) {
+    arr.push({ text: text, value: defaultValue });
+    for (let i = 1; i <= 10; i++) {
       let obj = {};
       obj.text = i.toString(10);
       obj.value = i.toString(10);
@@ -976,7 +1015,7 @@ class Scratch3ML2ScratchBlocks {
 
   getTrainMenu() {
     let arr = [];
-    for(let i = 4; i <= 10; i++) {
+    for (let i = 4; i <= 10; i++) {
       let obj = {};
       obj.text = i.toString(10);
       obj.value = i.toString(10);
@@ -1063,6 +1102,31 @@ class Scratch3ML2ScratchBlocks {
     } else {
       return 'en';
     }
+  }
+
+  switchCamera(args) {
+    if (args.DEVICE !== '') {
+      if (this.runtime.ioDevices.video.provider._track !== null) {
+        this.runtime.ioDevices.video.provider._track.stop();
+        const deviceId = args.DEVICE;
+        navigator.mediaDevices.getUserMedia({ audio: false, video: { deviceId } }).then(
+          stream => {
+            try {
+              this.runtime.ioDevices.video.provider._video.srcObject = stream;
+            } catch (error) {
+              this.runtime.ioDevices.video.provider._video.src = window.URL.createObjectURL(stream);
+            }
+            // Needed for Safari/Firefox, Chrome auto-plays.
+            this.runtime.ioDevices.video.provider._video.play();
+            this.runtime.ioDevices.video.provider._track = stream.getTracks()[0];
+          }
+        );
+      }
+    }
+  }
+
+  getDevices() {
+    return this.devices;
   }
 }
 
