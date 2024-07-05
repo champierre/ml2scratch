@@ -131,27 +131,27 @@ At this time, be aware that the data that has been learned will be overwritten.
 1. Setup LLK/scratch-gui on your computer.
 
     ```
-    % git clone git@github.com:LLK/scratch-gui.git
-    % cd scratch-gui
-    % npm install
+    git clone --depth 1 git@github.com:LLK/scratch-gui.git
+    cd scratch-gui
+    npm install
     ```
 
 2. In scratch-gui folder, clone ML2Scratch. You will have ml2scratch folder under scratch-gui.
 
     ```
-    % git clone git@github.com:champierre/ml2scratch.git
+    git clone git@github.com:champierre/ml2scratch.git
     ```
 
 3. Run the install script.
 
     ```
-    % sh ml2scratch/install.sh
+    sh ml2scratch/install.sh
     ```
 
 4. Run Scratch, then go to http://localhost:8601/.
 
     ```
-    % npm start
+    npm start
     ```
 
 ## Acknowledgments

@@ -13,7 +13,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           repository: LLK/scratch-gui
-          ref: develop
+          ref: v3.6.18
       - run: npm install
       - uses: actions/checkout@v2
         with:
