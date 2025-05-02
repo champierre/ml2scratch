@@ -19,6 +19,10 @@ Webカメラでいくつかの画像を撮り、ラベルを付けて学習す�
 
 <img src="images/qrcode.png" />
 
+## 音声解説(NotebookLMを使って生成)
+
+[音声ファイルを再生・ダウンロード](https://raw.githubusercontent.com/champierre/ml2scratch/master/audio/overview.wav)
+
 ## Demo Movie(デモ動画)
 
 ### ステージの画像を学習
