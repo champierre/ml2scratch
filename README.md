@@ -23,7 +23,7 @@ Webカメラでいくつかの画像を撮り、ラベルを付けて学習す�
 
 [音声ファイルを再生・ダウンロード](https://raw.githubusercontent.com/champierre/ml2scratch/master/audio/overview.wav)
 
-## Demo Movie(デモ動画)
+## デモ動画
 
 ### ステージの画像を学習
 
@@ -38,10 +38,10 @@ Webカメラでいくつかの画像を撮り、ラベルを付けて学習す�
 
 #### その他のデモ動画
 
-- Webカメラでグー、チョキ、パーを判定 [YouTube](https://www.youtube.com/watch?v=DkH1hwc-Gb4) | [.mov file](https://s3.amazonaws.com/champierre/movies/rsp_demo.mov)
-- ジェスチャーで倒立2輪ロボットMiPを動かす [YouTube](https://www.youtube.com/watch?v=GKXimEB5WQg) | [.mov file](https://s3.amazonaws.com/champierre/movies/mip_demo.mov)
+- Webカメラでグー、チョキ、パーを判定 [YouTube](https://www.youtube.com/watch?v=DkH1hwc-Gb4) | [.mov ファイル](https://s3.amazonaws.com/champierre/movies/rsp_demo.mov)
+- ジェスチャーで倒立2輪ロボットMiPを動かす [YouTube](https://www.youtube.com/watch?v=GKXimEB5WQg) | [.mov ファイル](https://s3.amazonaws.com/champierre/movies/mip_demo.mov)
 
-## Requirements(推奨環境)
+## 推奨環境
 
 - OS
   - Windows 8
@@ -55,9 +55,9 @@ Webカメラでいくつかの画像を撮り、ラベルを付けて学習す�
 
 Chrome の拡張機能を使用している場合に、正常に動作しないことがあるので、もしうまく動かないという場合には、[ゲストモード](https://support.google.com/chrome/answer/6130773?hl=ja)に切り替えてお試しください。
 
-## How to use(使い方)
+## 使い方
 
-### Setup(準備)
+### 準備
 
 1. [https://stretch3.github.io/](https://stretch3.github.io/) をChromeで開きます。
 
@@ -71,7 +71,7 @@ Chrome の拡張機能を使用している場合に、正常に動作しない�
 
     <img src="images/ja/check_blocks.png" />
 
-### Training(学習)
+### 学習
 
 5. ジャンケンの「グー」のサインをカメラに映し、「ラベル1を学習する」ブロックをクリックします。この操作で、「グー」をラベル1として機械に学習させます。
 
@@ -83,7 +83,7 @@ Chrome の拡張機能を使用している場合に、正常に動作しない�
 
 8. 「チョキ」をカメラに映し、「ラベル3の枚数」が20になるまで、「ラベル3を学習する」ブロックをクリックし続けます。
 
-### Recognition(認識)
+### 認識
 
 9. 学習を終えると、認識結果が常にステージ上の「ラベル」に表示されるようになります。「グー」を見せれば「1」に、「パー」を見せれば「2」に、「チョキ」を見せれば「3」と表示されます。
 
@@ -109,7 +109,7 @@ Chrome の拡張機能を使用している場合に、正常に動作しない�
 
 で学習/判定する画像をWebカメラの画像に切り替えることができます。カメラの画像に映ったジェスチャーでキャラクターを動かしたいという場合は、こちらの方が精度良く判定できると思います。
 
-### Download/Upload(学習データとプロジェクトのダウンロード/アップロード)
+### 学習データとプロジェクトのダウンロード/アップロード
 
 ML2Scratch では、学習したモデルを「学習データをダウンロード」ブロックを使うことで、PC上にダウンロードして保存しておくことができます。
 
@@ -135,7 +135,7 @@ ML2Scratch では、学習したモデルを「学習データをダウンロー
 
 このとき、いままで学習していたデータは上書きされてしまうので注意してください。
 
-## How to use from Xcratch(Xcratch からの利用)
+## Xcratch からの利用
 
 ML2Scratch は必要な独自拡張機能を読み込むことができる Scratch Mod の「[Xcratch](https://xcratch.github.io/)」からも利用できます。
 
@@ -187,7 +187,7 @@ npm start
     npm start
     ```
 
-## Acknowledgments(謝辞)
+## 謝辞
 
 このプロジェクトは以下の方々の貢献で成り立っています。その他、以下に挙げきれていないバグ報告や機能改善を提案してくれた方々、ワークショップなどで使っていただきフィードバックをくださった方々などに感謝いたします。
 
@@ -195,17 +195,17 @@ npm start
 - 简体中文への翻訳: [陶旭](https://twitter.com/taoxu_toukyoku)
 - 繁體中文への翻訳: [CAVEDU Education](https://github.com/cavedunissin)
 
-## Licence(ライセンス)
+## ライセンス
 
-ML2Scratchには [AGPL-3.0 license](./LICENSE) が適用されます。オープンソースで、誰でも自由に利用できます。授業やワークショップで使用でき、商用利用も認められています。あなたやあなたの生徒さんがML2Scratchを使用して何か面白いプロジェクトを作成したときは、ぜひハッシュタグ #ml2scratch を使用してSNSで共有するか、連絡先までお知らせください。以下の「活用例」に追加させていただきます。
+ML2Scratchには [AGPL-3.0 ライセンス](./LICENSE) が適用されます。オープンソースで、誰でも自由に利用できます。授業やワークショップで使用でき、商用利用も認められています。あなたやあなたの生徒さんがML2Scratchを使用して何か面白いプロジェクトを作成したときは、ぜひハッシュタグ #ml2scratch を使用してSNSで共有するか、連絡先までお知らせください。以下の「活用例」に追加させていただきます。
 
-## Contacts(連絡先)
+## 連絡先
 
 - Twitter
 
     <img src="images/twitter.png" />
 
-## Examples of use(活用例)
+## 活用例
 
 - [機械学習で障害物を避けてみる #ML2Scratch #ev3](https://www.ogaworks.com/archives/11301)
 - [ML2Scratchでワガラサウルスを動かしてみました！](https://www.facebook.com/azusa.amino/videos/2408305165934138/)
@@ -221,7 +221,7 @@ ML2Scratchには [AGPL-3.0 license](./LICENSE) が適用されます。オープ
 ML2Scratchのロゴ入りTシャツ、こちらで販売しています ->
 [https://suzuri.jp/is8r_/1251743/t-shirt/s/white](https://suzuri.jp/is8r_/1251743/t-shirt/s/white)
 
-## Release Notes
+## リリースノート
 
 - 1.0.0 2018/04/09 ScratchXバージョン
 - 2.0.0 2019/01/20 Scratch3バージョン
@@ -229,7 +229,7 @@ ML2Scratchのロゴ入りTシャツ、こちらで販売しています ->
 - 3.0.1 2020/03/29 デフォルトで、カメラの画像を学習/判定するようにする。ラベル名を自由に設定できるようにする。
 - 3.0.2 2020/04/18 「ビデオを切にする」と「カメラの画像を学習/判定する」などのブロックを続けて使用した時、あとに続けたブロックが実行されないバグを修正しました。
 
-## Reference(参考)
+## 参考
 
 - [https://js.tensorflow.org/](https://js.tensorflow.org/)
 - [https://github.com/googlecreativelab/teachable-machine-boilerplate](https://github.com/googlecreativelab/teachable-machine-boilerplate)
