@@ -686,30 +686,38 @@ class Scratch3ML2ScratchBlocks {
     return transparency;
   }
 
+  getFeatures() {
+    if (this.input === this.canvas) {
+      this.runtime.renderer.draw();
+    }
+
+    return this.featureExtractor.infer(this.input);
+  }
+
   addExample1() {
     this.firstTrainingWarning();
-    let features = this.featureExtractor.infer(this.input);
+    let features = this.getFeatures();
     this.knnClassifier.addExample(features, '1');
     this.updateCounts();
   }
 
   addExample2() {
     this.firstTrainingWarning();
-    let features = this.featureExtractor.infer(this.input);
+    let features = this.getFeatures();
     this.knnClassifier.addExample(features, '2');
     this.updateCounts();
   }
 
   addExample3() {
     this.firstTrainingWarning();
-    let features = this.featureExtractor.infer(this.input);
+    let features = this.getFeatures();
     this.knnClassifier.addExample(features, '3');
     this.updateCounts();
   }
 
   train(args) {
     this.firstTrainingWarning();
-    let features = this.featureExtractor.infer(this.input);
+    let features = this.getFeatures();
     this.knnClassifier.addExample(features, args.LABEL);
     this.updateCounts();
   }
@@ -958,7 +966,7 @@ class Scratch3ML2ScratchBlocks {
     let numLabels = this.knnClassifier.getNumLabels();
     if (numLabels == 0) return;
 
-    let features = this.featureExtractor.infer(this.input);
+    let features = this.getFeatures();
     this.knnClassifier.classify(features, (err, result) => {
       if (err) {
         console.error(err);
