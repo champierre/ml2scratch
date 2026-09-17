@@ -13763,10 +13763,19 @@ var Scratch3ML2ScratchBlocks = /*#__PURE__*/function () {
       return transparency;
     }
   }, {
+    key: "getFeatures",
+    value: function getFeatures() {
+      if (this.input === this.canvas) {
+        this.runtime.renderer.draw();
+      }
+
+      return this.featureExtractor.infer(this.input);
+    }
+  }, {
     key: "addExample1",
     value: function addExample1() {
       this.firstTrainingWarning();
-      var features = this.featureExtractor.infer(this.input);
+      var features = this.getFeatures();
       this.knnClassifier.addExample(features, '1');
       this.updateCounts();
     }
@@ -13774,7 +13783,7 @@ var Scratch3ML2ScratchBlocks = /*#__PURE__*/function () {
     key: "addExample2",
     value: function addExample2() {
       this.firstTrainingWarning();
-      var features = this.featureExtractor.infer(this.input);
+      var features = this.getFeatures();
       this.knnClassifier.addExample(features, '2');
       this.updateCounts();
     }
@@ -13782,7 +13791,7 @@ var Scratch3ML2ScratchBlocks = /*#__PURE__*/function () {
     key: "addExample3",
     value: function addExample3() {
       this.firstTrainingWarning();
-      var features = this.featureExtractor.infer(this.input);
+      var features = this.getFeatures();
       this.knnClassifier.addExample(features, '3');
       this.updateCounts();
     }
@@ -13790,7 +13799,7 @@ var Scratch3ML2ScratchBlocks = /*#__PURE__*/function () {
     key: "train",
     value: function train(args) {
       this.firstTrainingWarning();
-      var features = this.featureExtractor.infer(this.input);
+      var features = this.getFeatures();
       this.knnClassifier.addExample(features, args.LABEL);
       this.updateCounts();
     }
@@ -14096,7 +14105,7 @@ var Scratch3ML2ScratchBlocks = /*#__PURE__*/function () {
 
       var numLabels = this.knnClassifier.getNumLabels();
       if (numLabels == 0) return;
-      var features = this.featureExtractor.infer(this.input);
+      var features = this.getFeatures();
       this.knnClassifier.classify(features, function (err, result) {
         if (err) {
           console.error(err);
