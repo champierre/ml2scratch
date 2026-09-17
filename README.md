@@ -143,29 +143,45 @@ Xcratch の URL である [https://xcratch.github.io/](https://xcratch.github.io
 
 &raquo; [ML2Scratch を読み込み済みの Xcratch を開く](https://xcratch.github.io/editor/#https://champierre.github.io/ml2scratch/sample.sb3)
 
-## For Developers - How to run ML2Scratch extension on your computer
+## 開発者向け - 自分のコンピューターで ML2Scratch 拡張機能を動かす方法
 
-1. Setup LLK/scratch-gui on your computer.
+必要なもの: git、Node.js、`sh`(Windows の場合は Git Bash か WSL を使ってください)
+
+```
+git clone https://github.com/champierre/ml2scratch.git
+cd ml2scratch
+npm start
+```
+
+起動したら http://localhost:8601/ を開きます。
+
+初回の実行時は、[scratch-gui](https://github.com/scratchfoundation/scratch-gui) を `.dev/` フォルダに clone し、依存パッケージをインストールして、`install.sh` で ML2Scratch 拡張機能を登録するため、数分かかります。2回目以降は開発サーバーを起動するだけです。
+
+開発サーバーの起動中は、`scratch-vm/src/extensions/scratch3_ml2scratch/index.js` への変更が自動で `.dev/scratch-gui` にコピーされ、ページが再ビルドされます。環境を最初から作り直したいときは、`.dev/` フォルダを削除してください。
+
+### 自分の scratch-gui に ML2Scratch を追加する
+
+1. 自分のコンピューターに scratch-gui をセットアップします。
 
     ```
-    git clone --depth 1 git@github.com:LLK/scratch-gui.git
+    git clone --depth 1 https://github.com/scratchfoundation/scratch-gui.git
     cd scratch-gui
     npm install
     ```
 
-2. In scratch-gui folder, clone ML2Scratch. You will have ml2scratch folder under scratch-gui.
+2. scratch-gui フォルダの中に ML2Scratch を clone します。scratch-gui の下に ml2scratch フォルダができます。
 
     ```
-    git clone git@github.com:champierre/ml2scratch.git
+    git clone https://github.com/champierre/ml2scratch.git
     ```
 
-3. Run the install script.
+3. インストールスクリプトを実行します。
 
     ```
     sh ml2scratch/install.sh
     ```
 
-4. Run Scratch, then go to http://localhost:8601/.
+4. Scratch を起動し、http://localhost:8601/ を開きます。
 
     ```
     npm start

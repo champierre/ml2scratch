@@ -149,10 +149,26 @@ At this time, be aware that the data that has been learned will be overwritten.
 
 ## For Developers - How to run ML2Scratch extension on your computer
 
-1. Setup LLK/scratch-gui on your computer.
+Requirements: git, Node.js, and `sh` (on Windows, use Git Bash or WSL).
+
+```
+git clone https://github.com/champierre/ml2scratch.git
+cd ml2scratch
+npm start
+```
+
+Then go to http://localhost:8601/.
+
+The first run takes several minutes, because it clones [scratch-gui](https://github.com/scratchfoundation/scratch-gui) into the `.dev/` folder, installs its dependencies and registers the ML2Scratch extension by `install.sh`. From the second run, it just starts the dev server.
+
+While the dev server is running, changes to `scratch-vm/src/extensions/scratch3_ml2scratch/index.js` are copied into `.dev/scratch-gui` automatically, and the page is rebuilt. To set up the environment from scratch again, delete the `.dev/` folder.
+
+### Add ML2Scratch to your own scratch-gui
+
+1. Setup scratch-gui on your computer.
 
     ```
-    git clone --depth 1 git@github.com:LLK/scratch-gui.git
+    git clone --depth 1 https://github.com/scratchfoundation/scratch-gui.git
     cd scratch-gui
     npm install
     ```
@@ -160,7 +176,7 @@ At this time, be aware that the data that has been learned will be overwritten.
 2. In scratch-gui folder, clone ML2Scratch. You will have ml2scratch folder under scratch-gui.
 
     ```
-    git clone git@github.com:champierre/ml2scratch.git
+    git clone https://github.com/champierre/ml2scratch.git
     ```
 
 3. Run the install script.

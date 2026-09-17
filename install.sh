@@ -6,19 +6,21 @@ EXTENSION_NAME=ML2Scratch
 EXTENSION_ID=ml2scratch
 COLLABORATOR=champierre
 EXTENSION_DESCRIPTION="ML2Scratch Blocks."
+# Location of this repository (default: ./ml2scratch under scratch-gui)
+EXTENSION_DIR=${EXTENSION_DIR:-$EXTENSION_ID}
 
 cd node_modules/scratch-vm
 npm install ml5@0.12.2
 cd ../../
 
 mkdir -p node_modules/scratch-vm/src/extensions/scratch3_${EXTENSION_ID}
-cp ${EXTENSION_ID}/scratch-vm/src/extensions/scratch3_${EXTENSION_ID}/index.js node_modules/scratch-vm/src/extensions/scratch3_${EXTENSION_ID}/
+cp "${EXTENSION_DIR}"/scratch-vm/src/extensions/scratch3_${EXTENSION_ID}/index.js node_modules/scratch-vm/src/extensions/scratch3_${EXTENSION_ID}/
 mv node_modules/scratch-vm/src/extension-support/extension-manager.js node_modules/scratch-vm/src/extension-support/extension-manager.js_orig
 sed -e "s|class ExtensionManager {$|builtinExtensions['${EXTENSION_ID}'] = () => require('../extensions/scratch3_${EXTENSION_ID}');${LF}${LF}class ExtensionManager {|g" node_modules/scratch-vm/src/extension-support/extension-manager.js_orig > node_modules/scratch-vm/src/extension-support/extension-manager.js
 
 mkdir -p src/lib/libraries/extensions/${EXTENSION_ID}
-cp ${EXTENSION_ID}/scratch-gui/src/lib/libraries/extensions/${EXTENSION_ID}/${EXTENSION_ID}.png src/lib/libraries/extensions/${EXTENSION_ID}/
-cp ${EXTENSION_ID}/scratch-gui/src/lib/libraries/extensions/${EXTENSION_ID}/${EXTENSION_ID}-small.png src/lib/libraries/extensions/${EXTENSION_ID}/
+cp "${EXTENSION_DIR}"/scratch-gui/src/lib/libraries/extensions/${EXTENSION_ID}/${EXTENSION_ID}.png src/lib/libraries/extensions/${EXTENSION_ID}/
+cp "${EXTENSION_DIR}"/scratch-gui/src/lib/libraries/extensions/${EXTENSION_ID}/${EXTENSION_ID}-small.png src/lib/libraries/extensions/${EXTENSION_ID}/
 mv src/lib/libraries/extensions/index.jsx src/lib/libraries/extensions/index.jsx_orig
 DESCRIPTION="\
     {${LF}\
